@@ -1,0 +1,38 @@
+.NavBar {
+  width: 20%;
+  flex-shrink: 0;
+  background-color: #d3e0ea;
+  padding-top: 6rem;
+  width: 15%;
+}
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+li {
+  margin: 1rem;
+  height: 4rem;
+
+  border-radius: 5px;
+  color: black;
+  transition-duration: 0.3s;
+}
+li:hover {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+.link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black;
+
+  text-align: center;
+  line-height: 4rem;
+}
+.link:visited {
+  text-decoration: none;
+  color: black;
+}
