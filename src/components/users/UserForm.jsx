@@ -11,6 +11,7 @@ import { GenericModal } from '../shared/GenericModal';
 import { UPDATE, CREATE } from '../../redux/types/modalTypes';
 import { Form, Field } from 'react-final-form';
 import { TextInput } from '../shared/TextInput';
+import { CheckboxInput } from '../shared/CheckBoxInput';
 import { ErrorContainer } from '../shared/ErrorContainer';
 import {
   mustBeNumber,
@@ -22,11 +23,11 @@ import {
 const initialState = {
   name: '',
   lastName: '',
-  telephone: '',
-  direction: '',
+  phone: '',
   dni: '',
   email: '',
-  password: ''
+  password: '',
+  status: ''
 };
 
 export const UserForm = () => {
@@ -78,16 +79,9 @@ export const UserForm = () => {
               </div>
 
               <div>
-                <Field name="telephone" validate={composeValidators(required, mustBeNumber)}>
+                <Field name="phone" validate={composeValidators(required, mustBeNumber)}>
                   {({ input, meta }) => (
                     <TextInput input={input} meta={meta} name="Phone" />
-                  )}
-                </Field>
-              </div>
-              <div>
-                <Field name="direction" validate={required}>
-                  {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Address" />
                   )}
                 </Field>
               </div>
@@ -112,6 +106,15 @@ export const UserForm = () => {
                   )}
                 </Field>
               </div>}
+              <div>
+                Status
+                <Field name="status">
+                  {({ input, meta }) => (
+                    <CheckboxInput input={input} meta={meta}/>
+                  )}
+                </Field>
+              </div>
+              
               <div className={styles.actionsContainer}>
                 <Button
                   disabled={submitting}

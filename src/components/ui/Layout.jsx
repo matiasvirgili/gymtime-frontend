@@ -10,7 +10,7 @@ export const Layout = ({ children }) => {
       <NavBar />
       <div className={styles.body}>
         <div className={styles.content}>
-          <Header title="UserApp" />
+          <Header title="GymTime" />
           {children}
         </div>
         <div className={styles.foot}></div>
