@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './UserForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  updateUserAsync,
-  createUserAsync,
+  updateExerciseAsync,
+  createExerciseAsync,
   unsetAction,
-} from '../../redux/actions/usersAction';
+} from '../../redux/actions/exercisesAction';
 import Button from '@mui/lab/LoadingButton';
 import { GenericModal } from '../shared/GenericModal';
 import { UPDATE, CREATE } from '../../redux/types/modalTypes';
@@ -22,44 +22,41 @@ import {
 
 const initialState = {
   name: '',
-  lastName: '',
-  phone: '',
-  dni: '',
-  email: '',
-  password: '',
-  status: ''
+  area: '',
+  expecifyMuscle: '',
 };
 
 export const UserForm = () => {
-  const { actionInProgress, selectedUser, isLoading, error } =
-    useSelector((state) => state.users);
+  const { actionInProgress, selectedExercise, isLoading, error } = useSelector(
+    (state) => state.exercises
+  );
 
   const dispatch = useDispatch();
 
-  let action = actionInProgress.charAt(0) + actionInProgress.toLowerCase().slice(1);
+  let action =
+    actionInProgress.charAt(0) + actionInProgress.toLowerCase().slice(1);
 
   const handleCancel = () => {
     dispatch(unsetAction());
   };
 
-  const handleFormSubmit = (user) => {
+  const handleFormSubmit = (exercise) => {
     if (actionInProgress === UPDATE) {
-      user._id = selectedUser._id;
-      dispatch(updateUserAsync(user));
+      exercise._id = selectedExercise._id;
+      dispatch(updateExerciseAsync(exercise));
     } else {
-      dispatch(createUserAsync(user));
+      dispatch(createExerciseAsync(exercise));
     }
   };
 
   return (
     <GenericModal>
       <>
-        <h2>{action} User</h2>
+        <h2>{action} Exercise</h2>
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}
-          initialValues={selectedUser || initialState}
-
+          initialValues={selectedExercise || initialState}
         >
           {({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
@@ -71,50 +68,27 @@ export const UserForm = () => {
                 </Field>
               </div>
               <div>
-                <Field name="lastName" validate={required}>
+                <Field name="Area" validate={required}>
                   {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Last Name" />
+                    <TextInput input={input} meta={meta} name="Area" />
+                  )}
+                </Field>
+              </div>
+              <div>
+                <Field
+                  name="expecifyMuscle"
+                  validate={composeValidators(required, mustBeNumber)}
+                >
+                  {({ input, meta }) => (
+                    <TextInput
+                      input={input}
+                      meta={meta}
+                      name="Expecify Muscle"
+                    />
                   )}
                 </Field>
               </div>
 
-              <div>
-                <Field name="phone" validate={composeValidators(required, mustBeNumber)}>
-                  {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Phone" />
-                  )}
-                </Field>
-              </div>
-              <div>
-                <Field name="dni" validate={composeValidators(required, mustBeNumber, mustBe8Digit)}>
-                  {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="DNI" />
-                  )}
-                </Field>
-              </div>
-              <div>
-                <Field name="email">
-                  {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Email" />
-                  )}
-                </Field>
-              </div>
-              {actionInProgress === CREATE && <div>
-                <Field name="password">
-                  {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Password" />
-                  )}
-                </Field>
-              </div>}
-              <div>
-                Status
-                <Field name="status">
-                  {({ input, meta }) => (
-                    <CheckboxInput input={input} meta={meta}/>
-                  )}
-                </Field>
-              </div>
-              
               <div className={styles.actionsContainer}>
                 <Button
                   disabled={submitting}

@@ -22,7 +22,7 @@ export const ConfirmDelete = ({ exercise }) => {
       <>
         <h2>You are about to delete a Exercise</h2>
         {error && <ErrorContainer message={error} />}
-        <p>{`This will delete ${exercise.name} ${user.lastName} permanently`}</p>
+        <p>{`This will delete ${exercise.name} permanently`}</p>
         <p>Are you sure?</p>
         <div className={styles.actionsContainer}>
           <Button
@@ -44,5 +44,5 @@ export const ConfirmDelete = ({ exercise }) => {
 };
 
 ConfirmDelete.propTypes = {
-  user: PropTypes.object.isRequired,
+  exercise: PropTypes.object.isRequired,
 };

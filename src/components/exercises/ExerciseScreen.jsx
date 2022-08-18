@@ -1,52 +1,54 @@
-import React, {useEffect} from 'react';
-import { UserList } from './UserList';
-import styles from './UserScreen.module.css';
+import React, { useEffect } from 'react';
+import { ExerciseList } from './ExerciseList';
+import styles from './ExerciseScreen.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
 import { CREATE, DELETE, UPDATE } from '../../redux/types/modalTypes';
 import { ConfirmDelete } from './ConfirmDelete';
-import { UserForm } from './UserForm';
-import { getUsersAsync, setCreateAction } from '../../redux/actions/usersAction';
+import { ExerciseForm } from './ExerciseForm';
+import {
+  getExercisesAsync,
+  setCreateAction,
+} from '../../redux/actions/exercisesAction';
 
-export const UserScreen = () => {
+export const ExerciseScreen = () => {
   const dispatch = useDispatch();
   const {
-    list: users,
+    list: exercises,
     isLoading,
     actionInProgress,
-    selectedUser,
-    credentials
-  } = useSelector((state) => state.users);
+    selectedExercise,
+    credentials,
+  } = useSelector((state) => state.exercises);
 
   const handleAddClick = () => {
     dispatch(setCreateAction());
   };
-  
-  useEffect(()=>{
-    dispatch(getUsersAsync());
-  }, [])
+
+  useEffect(() => {
+    dispatch(getExercisesAsync());
+  }, []);
 
   return (
     <div>
-      <h2>Users</h2>
-      {
-        credentials.user &&
+      <h2>Exercises</h2>
+      {credentials.exercise && (
         <button className={styles.newButton} onClick={handleAddClick}>
-          New User
+          New Exercise
         </button>
-      }
+      )}
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
-        <UserForm />
+        <ExerciseForm />
       )}
       {actionInProgress === DELETE && (
-        <ConfirmDelete user={selectedUser} />
+        <ConfirmDelete exercise={selectedExercise} />
       )}
       {isLoading && (
         <div className={styles.loadingBar}>
           <LinearProgress />
         </div>
       )}
-      <UserList users={users} />
+      <ExerciseList exercises={exercises} />
     </div>
   );
 };

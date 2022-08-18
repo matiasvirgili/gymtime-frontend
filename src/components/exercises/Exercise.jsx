@@ -2,40 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaTimes as DeleteIcon } from 'react-icons/fa';
 import { MdEdit as EditIcon } from 'react-icons/md';
-import styles from './User.module.css';
+import styles from './Exercise.module.css';
 import { useDispatch } from 'react-redux';
 import {
   setDeleteAction,
   setUpdateAction,
-} from '../../redux/actions/usersAction';
+} from '../../redux/actions/exercisesAction';
 
-export const User = ({ user, isLoggedIn }) => {
-  const { name, lastName, dni, phone, _id } = user;
+export const User = ({ exercise, isLoggedIn }) => {
+  const { name, area, expecifyMuscle, _id } = exercise;
   const dispatch = useDispatch();
   return (
     <div className={styles.container} key={_id}>
       <div className={styles.column}>
-        <span className={styles.title}>Full name</span>
-        <span className={styles.content}>{name + ' ' + lastName}</span>
+        <span className={styles.title}>Full Name</span>
+        <span className={styles.content}>{name}</span>
       </div>
       <div className={styles.column}>
-        <span className={styles.title}>DNI</span>
-        <span className={styles.content}>{dni}</span>
+        <span className={styles.title}>Area</span>
+        <span className={styles.content}>{area}</span>
       </div>
       <div className={styles.column}>
-        <span className={styles.title}>Phone</span>
-        <span className={styles.content}>{phone}</span>
+        <span className={styles.title}>Expecify Muscle</span>
+        <span className={styles.content}>{expecifyMuscle}</span>
       </div>
       {isLoggedIn && (
         <div className={styles.actions}>
           <EditIcon
             className={styles.editIcon}
-            onClick={() => dispatch(setUpdateAction(user))}
+            onClick={() => dispatch(setUpdateAction(exercise))}
           />
           {isLoggedIn != _id && (
             <DeleteIcon
               className={styles.deleteIcon}
-              onClick={() => dispatch(setDeleteAction(user))}
+              onClick={() => dispatch(setDeleteAction(exercise))}
             />
           )}
         </div>
@@ -44,7 +44,7 @@ export const User = ({ user, isLoggedIn }) => {
   );
 };
 
-User.propTypes = {
-  user: PropTypes.object.isRequired,
+Exercise.propTypes = {
+  exercise: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.string.isRequired,
 };
