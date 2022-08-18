@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { User } from './User';
+import { Exercise } from './Exercise';
 import { useSelector } from 'react-redux';
 
-export const UserList = ({ users }) => {
-  const { user } = useSelector((state) => state.users.credentials);
-  return users.map((us) => (
-    <User key={us._id} user={us} isLoggedIn={user?._id} />
+export const ExerciseList = ({ exercises }) => {
+  const { exercise } = useSelector((state) => state.exercises.credentials);
+  return exercises.map((us) => (
+    <Exercise key={us._id} user={us} isLoggedIn={exercise?._id} />
   ));
 };
 
-UserList.propTypes = {
-  users: PropTypes.array.isRequired,
+ExerciseList.propTypes = {
+  exercises: PropTypes.array.isRequired,
 };
