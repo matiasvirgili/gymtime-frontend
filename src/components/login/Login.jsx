@@ -33,7 +33,7 @@ export const Login = () => {
   return (
     <Grid>
       <nav className={styles.nav}>
-        <h1>Users App</h1>
+        <h1>GymTime</h1>
         <div className={styles.containerActions}>
           <button>Sign In</button>
           <button>Sign Up</button>

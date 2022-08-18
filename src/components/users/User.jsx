@@ -10,7 +10,7 @@ import {
 } from '../../redux/actions/usersAction';
 
 export const User = ({ user, isLoggedIn }) => {
-  const { name, lastName, dni, telephone, _id} = user;
+  const { name, lastName, dni, phone, _id} = user;
   const dispatch = useDispatch();
   return (
     <div className={styles.container} key={_id}>
@@ -24,7 +24,7 @@ export const User = ({ user, isLoggedIn }) => {
       </div>
       <div className={styles.column}>
         <span className={styles.title}>Phone</span>
-        <span className={styles.content}>{telephone}</span>
+        <span className={styles.content}>{phone}</span>
       </div>
       {
         isLoggedIn &&
