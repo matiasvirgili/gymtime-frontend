@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './UserForm.module.css';
+import styles from './ExerciseForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   updateExerciseAsync,
@@ -8,15 +8,13 @@ import {
 } from '../../redux/actions/exercisesAction';
 import Button from '@mui/lab/LoadingButton';
 import { GenericModal } from '../shared/GenericModal';
-import { UPDATE, CREATE } from '../../redux/types/modalTypes';
+import { UPDATE } from '../../redux/types/modalTypes';
 import { Form, Field } from 'react-final-form';
 import { TextInput } from '../shared/TextInput';
-import { CheckboxInput } from '../shared/CheckBoxInput';
 import { ErrorContainer } from '../shared/ErrorContainer';
 import {
   mustBeNumber,
   required,
-  mustBe8Digit,
   composeValidators,
 } from '../validations/FormValidation';
 
@@ -26,7 +24,7 @@ const initialState = {
   expecifyMuscle: '',
 };
 
-export const UserForm = () => {
+export const ExerciseForm = () => {
   const { actionInProgress, selectedExercise, isLoading, error } = useSelector(
     (state) => state.exercises
   );

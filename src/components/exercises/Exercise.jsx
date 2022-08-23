@@ -9,7 +9,7 @@ import {
   setUpdateAction,
 } from '../../redux/actions/exercisesAction';
 
-export const User = ({ exercise, isLoggedIn }) => {
+export const Exercise = ({ exercise, isLoggedIn }) => {
   const { name, area, expecifyMuscle, _id } = exercise;
   const dispatch = useDispatch();
   return (

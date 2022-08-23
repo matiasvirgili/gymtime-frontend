@@ -9,9 +9,6 @@ import {
   EXERCISE_SET_UPDATE_ACTION,
   EXERCISE_SET_DELETE_ACTION,
   EXERCISE_UNSET_ACTION,
-  EXERCISE_LOGIN,
-  SET_EXERCISE_CREDENTIALS,
-  LOGOUT,
 } from '../types/exercisesType';
 import { UPDATE, DELETE, CREATE, NONE } from '../types/modalTypes';
 
@@ -27,7 +24,7 @@ const initialState = {
   },
 };
 
-export const ExerciseReducer = (state = initialState, action) => {
+export const exerciseReducer = (state = initialState, action) => {
   switch (action.type) {
     case EXERCISE_CREATE_EXERCISE:
       return {

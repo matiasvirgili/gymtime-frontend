@@ -23,13 +23,13 @@ export const createExercise = (exercise) => {
 export const updateExercise = (exercise) => {
   return {
     type: EXERCISE_UPDATE_EXERCISE,
-    payload: EXERCISE,
+    payload: exercise,
   };
 };
 export const deleteExercise = (exerciseId) => {
   return {
     type: EXERCISE_DELETE_EXERCISE,
-    payload: EXERCISEId,
+    payload: exerciseId,
   };
 };
 export const setExercises = (exercises) => {
@@ -83,7 +83,7 @@ export const getExercisesAsync = () => async (dispatch) => {
       for (let i = 0; i < res.data.length; i++) {
         exercises.push(res.data[i]);
       }
-      dispatch(setEXERCISEs(exercises));
+      dispatch(setExercises(exercises));
     }
   } catch (error) {
     dispatch(setError(error?.response?.data?.error));
@@ -101,9 +101,6 @@ export const deleteExerciseAsync = (exerciseId) => async (dispatch) => {
       dispatch(deleteExercise(exerciseId));
     }
   } catch (error) {
-    if (error.message === 'auth_error') {
-      return dispatch(logout());
-    }
     dispatch(setError(error?.response?.data?.error));
   }
 };
@@ -120,9 +117,6 @@ export const createExerciseAsync = (exercise) => async (dispatch) => {
       return dispatch(createExercise(res.data.data));
     }
   } catch (error) {
-    if (error.message === 'auth_error') {
-      return dispatch(logout());
-    }
     return dispatch(setError(error?.response?.data?.error));
   }
 };
@@ -139,9 +133,6 @@ export const updateExerciseAsync = (exercise) => async (dispatch) => {
       return dispatch(updateExercise(res.data.data));
     }
   } catch (error) {
-    if (error.message === 'auth_error') {
-      return dispatch(logout());
-    }
     return dispatch(setError(error?.response?.data?.error));
   }
 };
