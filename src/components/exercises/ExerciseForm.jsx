@@ -66,7 +66,7 @@ export const ExerciseForm = () => {
                 </Field>
               </div>
               <div>
-                <Field name="Area" validate={required}>
+                <Field name="area" validate={required}>
                   {({ input, meta }) => (
                     <TextInput input={input} meta={meta} name="Area" />
                   )}

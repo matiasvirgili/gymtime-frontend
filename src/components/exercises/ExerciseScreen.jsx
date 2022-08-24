@@ -18,7 +18,6 @@ export const ExerciseScreen = () => {
     isLoading,
     actionInProgress,
     selectedExercise,
-    credentials,
   } = useSelector((state) => state.exercises);
 
   const handleAddClick = () => {
@@ -32,11 +31,9 @@ export const ExerciseScreen = () => {
   return (
     <div>
       <h2>Exercises</h2>
-      {credentials.exercise && (
-        <button className={styles.newButton} onClick={handleAddClick}>
-          New Exercise
-        </button>
-      )}
+      <button className={styles.newButton} onClick={handleAddClick}>
+        New Exercise
+      </button>
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
         <ExerciseForm />
       )}

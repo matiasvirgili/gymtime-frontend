@@ -4,9 +4,9 @@ import { Exercise } from './Exercise';
 import { useSelector } from 'react-redux';
 
 export const ExerciseList = ({ exercises }) => {
-  const { exercise } = useSelector((state) => state.exercises.credentials);
+  const isLoggedIn = useSelector((state) => state.users?.credentials?.user?._id);
   return exercises.map((us) => (
-    <Exercise key={us._id} user={us} isLoggedIn={exercise?._id} />
+    <Exercise key={us._id} user={us} isLoggedIn={isLoggedIn} exercise={us} />
   ));
 };
 
