@@ -107,10 +107,9 @@ export const UserForm = () => {
                 </Field>
               </div>}
               <div>
-                Status
-                <Field name="status">
-                  {({ input, meta }) => (
-                    <CheckboxInput input={input} meta={meta}/>
+                <Field name="status" type="checkbox">
+                  {({input}) => (
+                   <CheckboxInput  input={input} name="Status" />
                   )}
                 </Field>
               </div>
