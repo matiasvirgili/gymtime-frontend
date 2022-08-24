@@ -1,0 +1,10 @@
+.specializationsContainter {
+  display: flex;
+  font-size: 1.2rem;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+.actionsContainer {
+  display: flex;
+  gap: 1rem;
+}
