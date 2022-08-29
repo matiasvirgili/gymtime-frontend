@@ -1,14 +1,11 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { UserForm } from '../components/users/UserForm';
 import { UserScreen } from '../components/users/UserScreen';
 import { HomeScreen } from '../components/home/HomeScreen';
 import { Layout } from '../components/ui/Layout';
 import { Login } from '../components/login/Login';
+import { ExerciseScreen } from '../components/exercises/ExerciseScreen';
 
 export const MainRouter = () => {
   return (
@@ -26,6 +23,9 @@ export const MainRouter = () => {
           </Route>
           <Route exact path="/users/:action/:userId?">
             <UserForm />
+          </Route>
+          <Route exact path="/exercises">
+            <ExerciseScreen />
           </Route>
         </Layout>
       </Switch>
