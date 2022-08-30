@@ -20,6 +20,11 @@ export const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/permission" className={styles.link}>
+            Role and Permission
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/exercises" className={styles.link}>
             Exercises
           </NavLink>
