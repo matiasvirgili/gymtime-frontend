@@ -12,11 +12,11 @@ import { ErrorContainer } from '../shared/ErrorContainer';
 
 export const ConfirmDelete = ({ permission }) => {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state) => state.premissions);
+  const { isLoading, error } = useSelector((state) => state.permissions);
 
   const handleCancel = () => dispatch(unsetAction());
   const handleDelete = () => dispatch(deletePermissionAsync(permission._id));
-
+ 
   return (
     <GenericModal>
       <>

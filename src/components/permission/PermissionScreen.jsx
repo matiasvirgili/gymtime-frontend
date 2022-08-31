@@ -14,7 +14,7 @@ export const PermissionScreen = () => {
     list: permissions,
     isLoading,
     actionInProgress,
-    selectedExercise,
+    selectedPermission,
   } = useSelector((state) => state.permissions);
 
   const handleAddClick = () => {
@@ -35,7 +35,7 @@ export const PermissionScreen = () => {
         <PermissionForm />
       )}
       {actionInProgress === DELETE && (
-        <ConfirmDelete exercise={selectedExercise} />
+        <ConfirmDelete permission={selectedPermission} />
       )}
       {isLoading && (
         <div className={styles.loadingBar}>

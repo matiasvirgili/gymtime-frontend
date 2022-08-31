@@ -25,7 +25,7 @@ export const ConfirmDelete = ({ user }) => {
         <p>{`This will delete ${user.name} ${user.lastName} permanently`}</p>
         <p>Are you sure?</p>
         <div className={styles.actionsContainer}>
-        <Button
+          <Button
             onClick={handleDelete}
             variant="contained"
             disableRipple
