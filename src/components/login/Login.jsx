@@ -34,10 +34,6 @@ export const Login = () => {
     <Grid>
       <nav className={styles.nav}>
         <h1>GymTime</h1>
-        <div className={styles.containerActions}>
-          <button>Sign In</button>
-          <button>Sign Up</button>
-        </div>
       </nav>
       <Paper elevation={10} className={styles.paperStyle}>
         <Grid align="center">
