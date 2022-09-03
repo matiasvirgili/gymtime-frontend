@@ -17,6 +17,10 @@ export const PermissionScreen = () => {
     selectedPermission,
   } = useSelector((state) => state.permissions);
 
+  const {
+    credentials
+  } = useSelector((state) => state.users);
+
   const handleAddClick = () => {
     dispatch(setCreateAction());
   };
@@ -28,9 +32,12 @@ export const PermissionScreen = () => {
   return (
     <div>
       <h2>Permissions</h2>
+      {
+        credentials.user &&
       <button className={styles.newButton} onClick={handleAddClick}>
         New Permission
       </button>
+      }
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
         <PermissionForm />
       )}

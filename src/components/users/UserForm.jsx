@@ -30,7 +30,7 @@ const initialState = {
   dni: '',
   email: '',
   password: '',
-  permissionId: '',
+  permissionRole: '',
   status: ''
 };
 
@@ -114,9 +114,9 @@ export const UserForm = () => {
                 </Field>
               </div>}
               <div>
-                <Field name="permissionId" type="combobox">
+                <Field name="permissionRole" type="combobox" validate={required}>
                   {({input}) => (
-                   <ComboBoxInput input={input} label="role" options={permissionsList}/>
+                   <ComboBoxInput input={input} label="Role" options={permissionsList}/>
                   )}
                 </Field>
               </div>

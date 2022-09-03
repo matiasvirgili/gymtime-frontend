@@ -20,6 +20,10 @@ export const ExerciseScreen = () => {
     selectedExercise,
   } = useSelector((state) => state.exercises);
 
+  const {
+    credentials
+  } = useSelector((state) => state.users);
+
   const handleAddClick = () => {
     dispatch(setCreateAction());
   };
@@ -31,9 +35,12 @@ export const ExerciseScreen = () => {
   return (
     <div>
       <h2>Exercises</h2>
-      <button className={styles.newButton} onClick={handleAddClick}>
+      {
+        credentials.user &&
+        <button className={styles.newButton} onClick={handleAddClick}>
         New Exercise
       </button>
+      }
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
         <ExerciseForm />
       )}
