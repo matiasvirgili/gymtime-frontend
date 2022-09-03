@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const HomeScreen = () => {
-  return <div>Home</div>;
+  return <div>APUREMOS CON EL PROYECTO, DALE DALE DALE</div>;
 };
