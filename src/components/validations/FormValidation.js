@@ -5,6 +5,8 @@ export const mustBeNumber = (value) => isNaN(value) ? 'Must be a number' : undef
 export const mustBe8Digit = (value) => 
 ((String(value).match(/\d/g).length < 6) || (String(value).match(/\d/g).length > 8)) ? 'Must contain between 6 and 8 digits' : undefined; 
 
+export const isEmail = (value) => !(String(value).includes('@') && String(value).includes('.com'))  ? "Must be a Email (with @ and '.com')" : undefined;
+
 
 export const composeValidators =
   (...validators) =>

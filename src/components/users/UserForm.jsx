@@ -19,6 +19,7 @@ import {
   required,
   mustBe8Digit,
   composeValidators,
+  isEmail
 } from '../validations/FormValidation';
 
 
@@ -49,7 +50,6 @@ export const UserForm = () => {
   };
 
   const handleFormSubmit = (user) => {
-    console.log("USER", user)
     if (actionInProgress === UPDATE) {
       user._id = selectedUser._id;
       dispatch(updateUserAsync(user));
@@ -100,14 +100,14 @@ export const UserForm = () => {
                 </Field>
               </div>
               <div>
-                <Field name="email">
+                <Field name="email" validate={composeValidators(required, isEmail)}>
                   {({ input, meta }) => (
                     <TextInput input={input} meta={meta} name="Email" />
                   )}
                 </Field>
               </div>
               {actionInProgress === CREATE && <div>
-                <Field name="password">
+                <Field name="password" validate={required}>
                   {({ input, meta }) => (
                     <TextInput input={input} meta={meta} name="Password" />
                   )}
