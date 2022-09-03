@@ -13,12 +13,14 @@ import { Form, Field } from 'react-final-form';
 import { TextInput } from '../shared/TextInput';
 import { CheckboxInput } from '../shared/CheckBoxInput';
 import { ErrorContainer } from '../shared/ErrorContainer';
+import ComboBoxInput from '../shared/ComboBoxInput';
 import {
   mustBeNumber,
   required,
   mustBe8Digit,
   composeValidators,
 } from '../validations/FormValidation';
+
 
 const initialState = {
   name: '',
@@ -27,12 +29,16 @@ const initialState = {
   dni: '',
   email: '',
   password: '',
+  permissionId: '',
   status: ''
 };
 
 export const UserForm = () => {
   const { actionInProgress, selectedUser, isLoading, error } =
     useSelector((state) => state.users);
+
+  const { list: permissionsList } =
+  useSelector((state) => state.permissions);
 
   const dispatch = useDispatch();
 
@@ -43,6 +49,7 @@ export const UserForm = () => {
   };
 
   const handleFormSubmit = (user) => {
+    console.log("USER", user)
     if (actionInProgress === UPDATE) {
       user._id = selectedUser._id;
       dispatch(updateUserAsync(user));
@@ -107,9 +114,16 @@ export const UserForm = () => {
                 </Field>
               </div>}
               <div>
+                <Field name="permissionId" type="combobox">
+                  {({input}) => (
+                   <ComboBoxInput input={input} label="role" options={permissionsList}/>
+                  )}
+                </Field>
+              </div>
+              <div>
                 <Field name="status" type="checkbox">
                   {({input}) => (
-                   <CheckboxInput  input={input} name="Status" />
+                   <CheckboxInput input={input} name="Status" />
                   )}
                 </Field>
               </div>
