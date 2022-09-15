@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { UserList } from './UserList';
 import styles from './WorkoutEventScreen.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';

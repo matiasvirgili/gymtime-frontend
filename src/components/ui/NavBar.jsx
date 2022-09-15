@@ -25,6 +25,11 @@ export const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/workoutevents" className={styles.link}>
+            Workout Event
+          </NavLink>
+        </li>
+        <li>
           <NavLink
             to="/"
             onClick={() => dispatch(logout())}

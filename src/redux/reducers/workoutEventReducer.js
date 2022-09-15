@@ -5,7 +5,7 @@ import {
   WORKOUTEVENT_SET_ALL_WORKOUTEVENTS,
   WORKOUTEVENT_SET_ERROR,
   WORKOUTEVENT_SET_LOADING_TRUE,
-  WORKOUTEVENT_CREATE_ACTION,
+  WORKOUTEVENT_SET_CREATE_ACTION,
   WORKOUTEVENT_SET_UPDATE_ACTION,
   WORKOUTEVENT_SET_DELETE_ACTION,
   WORKOUTEVENT_UNSET_ACTION,
@@ -73,7 +73,7 @@ export const workoutEventReducer = (state = initialState, action) => {
         ...state,
         isLoading: true,
       };
-    case WORKOUTEVENT_CREATE_ACTION:
+    case WORKOUTEVENT_SET_CREATE_ACTION:
       return {
         ...state,
         actionInProgress: CREATE,

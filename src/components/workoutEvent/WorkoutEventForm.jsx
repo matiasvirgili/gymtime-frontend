@@ -7,16 +7,16 @@ import {
   unsetAction,
 } from '../../redux/actions/workoutEventAction';
 import Button from '@mui/lab/LoadingButton';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import { GenericModal } from '../shared/GenericModal';
-import { UPDATE, CREATE } from '../../redux/types/modalTypes';
+import { UPDATE } from '../../redux/types/modalTypes';
 import { Form, Field } from 'react-final-form';
 import { TextInput } from '../shared/TextInput';
-import { CheckboxInput } from '../shared/CheckBoxInput';
 import { ErrorContainer } from '../shared/ErrorContainer';
 import {
   mustBeNumber,
   required,
-  mustBe8Digit,
   composeValidators,
 } from '../validations/FormValidation';
 
@@ -26,7 +26,7 @@ const initialState = {
   duration: '',
   location: '',
   theme: '',
-  members: '',
+  members: [],
 };
 
 export const WorkoutEventForm = () => {
@@ -103,8 +103,22 @@ export const WorkoutEventForm = () => {
               </div>
               <div>
                 <Field name="members" validate={required}>
-                  {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Members" />
+                  {({ input }) => (
+                    <Autocomplete
+                      multiple
+                      id="tags-standard"
+                      options={members}
+                      getOptionLabel={(option) => option.name}
+                      renderInput={(params) => (
+                        <TextField
+                          {...input}
+                          {...params}
+                          variant="standard"
+                          label="Members"
+                          placeholder="Select Members"
+                        />
+                      )}
+                    />
                   )}
                 </Field>
               </div>
@@ -132,3 +146,5 @@ export const WorkoutEventForm = () => {
     </GenericModal>
   );
 };
+
+const members = [{ name: 'The Shawshank' }, { name: 'The Godfather' }];
