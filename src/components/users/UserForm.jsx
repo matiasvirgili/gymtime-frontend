@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './UserForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -6,6 +6,9 @@ import {
   createUserAsync,
   unsetAction,
 } from '../../redux/actions/usersAction';
+import {
+  getPermissionsAsync
+} from '../../redux/actions/permissionAction';
 import Button from '@mui/lab/LoadingButton';
 import { GenericModal } from '../shared/GenericModal';
 import { UPDATE, CREATE } from '../../redux/types/modalTypes';
@@ -21,7 +24,6 @@ import {
   composeValidators,
   isEmail
 } from '../validations/FormValidation';
-
 
 const initialState = {
   name: '',
@@ -58,6 +60,10 @@ export const UserForm = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(getPermissionsAsync());
+  }, []);
+
   return (
     <GenericModal>
       <>
@@ -66,7 +72,6 @@ export const UserForm = () => {
         <Form
           onSubmit={handleFormSubmit}
           initialValues={selectedUser || initialState}
-
         >
           {({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
@@ -84,7 +89,6 @@ export const UserForm = () => {
                   )}
                 </Field>
               </div>
-
               <div>
                 <Field name="phone" validate={composeValidators(required, mustBeNumber)}>
                   {({ input, meta }) => (
@@ -116,7 +120,7 @@ export const UserForm = () => {
               <div>
                 <Field name="permissionRole" type="combobox" validate={required}>
                   {({input}) => (
-                   <ComboBoxInput input={input} label="Role" options={permissionsList}/>
+                    <ComboBoxInput input={input} label="Role" options={permissionsList} optionsKey="role" optionsValue={"role"}/>
                   )}
                 </Field>
               </div>
@@ -127,7 +131,6 @@ export const UserForm = () => {
                   )}
                 </Field>
               </div>
-              
               <div className={styles.actionsContainer}>
                 <Button
                   disabled={submitting}

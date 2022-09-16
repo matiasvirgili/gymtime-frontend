@@ -7,7 +7,7 @@ export const PermissionList = ({ permissions }) => {
   const isLoggedIn = useSelector((state) => state.users?.credentials?.user?._id);
 
   return permissions.map((pm) => (
-    <Permission key={pm._id} isLoggedIn={isLoggedIn} permission={pm} />
+    <Permission key={pm._id} permission={pm} isLoggedIn={isLoggedIn}/>
    ));
 };
 

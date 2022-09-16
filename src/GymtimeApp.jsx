@@ -10,7 +10,6 @@ function GymTimeApp() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // dispatch(getUsersAsync());
     const userSerialized = localStorage.getItem('user');
     if (userSerialized) {
       const user = JSON.parse(userSerialized)
