@@ -24,12 +24,12 @@ export const Permission = ({ permission = {}, isLoggedIn }) => {
             className={styles.editIcon}
             onClick={() => dispatch(setUpdateAction(permission))}
           />
-          {isLoggedIn != _id && (
+          {
             <DeleteIcon
               className={styles.deleteIcon}
               onClick={() => dispatch(setDeleteAction(permission))}
             />
-          )}
+          }
         </div>
       )}
     </div>

@@ -18,10 +18,6 @@ const initialState = {
   isLoading: false,
   actionInProgress: NONE,
   selectedPermission: null,
-  credentials: {
-    permission: null,
-    token: '',
-  },
 };
 
 export const permissionReducer = (state = initialState, action) => {

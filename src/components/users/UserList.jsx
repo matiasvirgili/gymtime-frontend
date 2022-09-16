@@ -7,6 +7,7 @@ export const UserList = ({ users }) => {
   const {
     user
   } = useSelector((state) => state.users.credentials);
+  
   return users.map((us) => (
     <User key={us._id} user={us} isLoggedIn={user?._id}/>
   ));

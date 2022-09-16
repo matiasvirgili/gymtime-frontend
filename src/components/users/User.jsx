@@ -12,6 +12,7 @@ import {
 export const User = ({ user, isLoggedIn }) => {
   const { name, lastName, dni, phone, _id} = user;
   const dispatch = useDispatch();
+  
   return (
     <div className={styles.container} key={_id}>
       <div className={styles.column}>
