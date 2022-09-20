@@ -1,0 +1,12 @@
+export const ER_CREATE_ER = 'ER_CREATE_ER';
+export const ER_UPDATE_ER = 'ER_UPDATE_ER';
+export const ER_DELETE_ER = 'ER_DELETE_ER';
+export const ER_SET_ALL_ERS = 'ER_SET_ALL_ERS';
+
+export const ER_SET_ERROR = 'ER_SET_ERROR';
+export const ER_SET_LOADING_TRUE = 'ER_SET_LOADING_TRUE';
+
+export const ER_SET_CREATE_ACTION = 'ER_SET_CREATE_ACTION';
+export const ER_SET_UPDATE_ACTION = 'ER_SET_UPDATE_ACTION';
+export const ER_SET_DELETE_ACTION = 'ER_SET_DELETE_ACTION';
+export const ER_UNSET_ACTION = 'ER_UNSET_ACTION';
