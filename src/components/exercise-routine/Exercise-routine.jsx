@@ -2,40 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaTimes as DeleteIcon } from 'react-icons/fa';
 import { MdEdit as EditIcon } from 'react-icons/md';
-import styles from './Exercise.module.css';
+import styles from './Exercise-routine.module.css';
 import { useDispatch } from 'react-redux';
 import {
   setDeleteAction,
   setUpdateAction,
-} from '../../redux/actions/exercisesAction';
+} from '../../redux/actions/exerciseRoutineAction';
 
-export const Exercise = ({ exercise = {}, isLoggedIn }) => {
-  const { name, area, expecifyMuscle, _id } = exercise;
+export const ExerciseRoutine = ({ exerciseRoutine = {}, isLoggedIn }) => {
+  const { routineId, breakDuration, duration, _id, exerciseId } =
+    exerciseRoutine;
   const dispatch = useDispatch();
   return (
     <div className={styles.container} key={_id}>
       <div className={styles.column}>
-        <span className={styles.title}>Full Name</span>
-        <span className={styles.content}>{name}</span>
+        <span className={styles.title}>Routine</span>
+        <span className={styles.content}>{routineId}</span>
       </div>
       <div className={styles.column}>
-        <span className={styles.title}>Area</span>
-        <span className={styles.content}>{area}</span>
+        <span className={styles.title}>Break Duration</span>
+        <span className={styles.content}>{breakDuration}</span>
       </div>
       <div className={styles.column}>
-        <span className={styles.title}>Expecify Muscle</span>
-        <span className={styles.content}>{expecifyMuscle}</span>
+        <span className={styles.title}>Duration</span>
+        <span className={styles.content}>{duration}</span>
+      </div>
+      <div className={styles.column}>
+        <span className={styles.title}>Exercise</span>
+        <span className={styles.content}>{exerciseId}</span>
       </div>
       {isLoggedIn && (
         <div className={styles.actions}>
           <EditIcon
             className={styles.editIcon}
-            onClick={() => dispatch(setUpdateAction(exercise))}
+            onClick={() => dispatch(setUpdateAction(exerciseRoutine))}
           />
           {isLoggedIn != _id && (
             <DeleteIcon
               className={styles.deleteIcon}
-              onClick={() => dispatch(setDeleteAction(exercise))}
+              onClick={() => dispatch(setDeleteAction(exerciseRoutine))}
             />
           )}
         </div>
@@ -44,7 +49,7 @@ export const Exercise = ({ exercise = {}, isLoggedIn }) => {
   );
 };
 
-Exercise.propTypes = {
-  exercise: PropTypes.object.isRequired,
+ExerciseRoutine.propTypes = {
+  exerciseRoutine: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.string.isRequired,
 };

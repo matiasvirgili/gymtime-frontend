@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './ExerciseForm.module.css';
+import styles from './Exercise-routineForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  updateExerciseAsync,
-  createExerciseAsync,
+  updateExerciseRoutineAsync,
+  createExerciseRoutineAsync,
   unsetAction,
-} from '../../redux/actions/exercisesAction';
+} from '../../redux/actions/exerciseRoutineAction';
 import Button from '@mui/lab/LoadingButton';
 import { GenericModal } from '../shared/GenericModal';
 import { UPDATE } from '../../redux/types/modalTypes';
@@ -19,15 +19,15 @@ import {
 } from '../validations/FormValidation';
 
 const initialState = {
-  name: '',
-  area: '',
-  expecifyMuscle: '',
+  routineId: '',
+  breakDuration: '',
+  duration: '',
+  exerciseId: '',
 };
 
-export const ExerciseForm = () => {
-  const { actionInProgress, selectedExercise, isLoading, error } = useSelector(
-    (state) => state.exercises
-  );
+export const ExerciseRoutineForm = () => {
+  const { actionInProgress, selectedExerciseRoutine, isLoading, error } =
+    useSelector((state) => state.exercises);
 
   const dispatch = useDispatch();
 
@@ -38,23 +38,23 @@ export const ExerciseForm = () => {
     dispatch(unsetAction());
   };
 
-  const handleFormSubmit = (exercise) => {
+  const handleFormSubmit = (exerciseRoutine) => {
     if (actionInProgress === UPDATE) {
-      exercise._id = selectedExercise._id;
-      dispatch(updateExerciseAsync(exercise));
+      exerciseRoutine._id = selectedExerciseRoutine._id;
+      dispatch(updateExerciseRoutineAsync(exerciseRoutine));
     } else {
-      dispatch(createExerciseAsync(exercise));
+      dispatch(createExerciseRoutineAsync(exerciseRoutine));
     }
   };
 
   return (
     <GenericModal>
       <>
-        <h2>{action} Exercise</h2>
+        <h2>{action} Exercise Routine</h2>
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}
-          initialValues={selectedExercise || initialState}
+          initialValues={selectedExerciseRoutine || initialState}
         >
           {({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
