@@ -4,25 +4,25 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/lab/LoadingButton';
 import {
-  deleteUserAsync,
+  deleteHealthAsync,
   unsetAction,
-} from '../../redux/actions/usersAction';
+} from '../../redux/actions/healthAction';
 import styles from './ConfirmDelete.module.css';
 import { ErrorContainer } from '../shared/ErrorContainer';
 
-export const ConfirmDelete = ({ user }) => {
+export const ConfirmDelete = ({ health }) => {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state) => state.users);
+  const { isLoading, error } = useSelector((state) => state.healths);
 
   const handleCancel = () => dispatch(unsetAction());
-  const handleDelete = () => dispatch(deleteUserAsync(user._id));
+  const handleDelete = () => dispatch(deleteHealthAsync(health._id));
 
   return (
     <GenericModal>
       <>
-        <h2>You are about to delete a User</h2>
+        <h2>You are about to delete a Health</h2>
         {error && <ErrorContainer message={error} />}
-        <p>{`This will delete ${user.name} ${user.lastName} permanently`}</p>
+        <p>{`This will delete the health of ${health.userId.name} ${health.userId.lastName} on ${health.day.split("T", 1)?.[0]} permanently`}</p>
         <p>Are you sure?</p>
         <div className={styles.actionsContainer}>
           <Button
@@ -44,5 +44,5 @@ export const ConfirmDelete = ({ user }) => {
 };
 
 ConfirmDelete.propTypes = {
-  user: PropTypes.object.isRequired,
+  health: PropTypes.object.isRequired,
 };

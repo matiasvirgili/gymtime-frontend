@@ -8,3 +8,7 @@
   display: flex;
   gap: 1rem;
 }
+
+.healthSet{
+  padding-bottom: 0.5rem;
+}

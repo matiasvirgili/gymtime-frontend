@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './UserForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -6,6 +6,9 @@ import {
   createUserAsync,
   unsetAction,
 } from '../../redux/actions/usersAction';
+import {
+  getPermissionsAsync
+} from '../../redux/actions/permissionAction';
 import Button from '@mui/lab/LoadingButton';
 import { GenericModal } from '../shared/GenericModal';
 import { UPDATE, CREATE } from '../../redux/types/modalTypes';
@@ -13,11 +16,13 @@ import { Form, Field } from 'react-final-form';
 import { TextInput } from '../shared/TextInput';
 import { CheckboxInput } from '../shared/CheckBoxInput';
 import { ErrorContainer } from '../shared/ErrorContainer';
+import ComboBoxInput from '../shared/ComboBoxInput';
 import {
   mustBeNumber,
   required,
   mustBe8Digit,
   composeValidators,
+  isEmail
 } from '../validations/FormValidation';
 
 const initialState = {
@@ -27,12 +32,16 @@ const initialState = {
   dni: '',
   email: '',
   password: '',
+  permissionRole: '',
   status: ''
 };
 
 export const UserForm = () => {
   const { actionInProgress, selectedUser, isLoading, error } =
     useSelector((state) => state.users);
+
+  const { list: permissionsList } =
+  useSelector((state) => state.permissions);
 
   const dispatch = useDispatch();
 
@@ -51,6 +60,10 @@ export const UserForm = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(getPermissionsAsync());
+  }, []);
+
   return (
     <GenericModal>
       <>
@@ -59,7 +72,6 @@ export const UserForm = () => {
         <Form
           onSubmit={handleFormSubmit}
           initialValues={selectedUser || initialState}
-
         >
           {({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
@@ -77,7 +89,6 @@ export const UserForm = () => {
                   )}
                 </Field>
               </div>
-
               <div>
                 <Field name="phone" validate={composeValidators(required, mustBeNumber)}>
                   {({ input, meta }) => (
@@ -93,27 +104,33 @@ export const UserForm = () => {
                 </Field>
               </div>
               <div>
-                <Field name="email">
+                <Field name="email" validate={composeValidators(required, isEmail)}>
                   {({ input, meta }) => (
                     <TextInput input={input} meta={meta} name="Email" />
                   )}
                 </Field>
               </div>
               {actionInProgress === CREATE && <div>
-                <Field name="password">
+                <Field name="password" validate={required}>
                   {({ input, meta }) => (
                     <TextInput input={input} meta={meta} name="Password" />
                   )}
                 </Field>
               </div>}
               <div>
-                <Field name="status" type="checkbox">
+                <Field name="permissionRole" type="combobox" validate={required}>
                   {({input}) => (
-                   <CheckboxInput  input={input} name="Status" />
+                    <ComboBoxInput input={input} label="Role" options={permissionsList} optionsKey="role" optionsValue={"role"}/>
                   )}
                 </Field>
               </div>
-              
+              <div>
+                <Field name="status" type="checkbox">
+                  {({input}) => (
+                   <CheckboxInput input={input} name="Status" />
+                  )}
+                </Field>
+              </div>
               <div className={styles.actionsContainer}>
                 <Button
                   disabled={submitting}

@@ -61,7 +61,8 @@ import {
           ...state,
           error: '',
           list: state.list.map((user) =>
-            user._id === action.payload._id ? action.payload : user),
+            user._id === action.payload._id ? action.payload : user
+          ),
           isLoading: false,
           actionInProgress: NONE,
           selectedUser: null,
@@ -76,7 +77,12 @@ import {
           selectedUser: null,
         };
       case USER_SET_ALL_USERS:
-        return { ...state, list: action.payload, error: '', isLoading: false };
+        return { 
+          ...state, 
+          list: action.payload, 
+          error: '', 
+          isLoading: false 
+        };
       case USER_SET_ERROR:
         return {
           ...state,

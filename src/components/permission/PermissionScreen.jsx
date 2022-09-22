@@ -1,24 +1,21 @@
 import React, { useEffect } from 'react';
-import { ExerciseList } from './ExerciseList';
-import styles from './ExerciseScreen.module.css';
+import { PermissionList } from './PermissionList';
+import styles from './PermissionScreen.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
 import { CREATE, DELETE, UPDATE } from '../../redux/types/modalTypes';
 import { ConfirmDelete } from './ConfirmDelete';
-import { ExerciseForm } from './ExerciseForm';
-import {
-  getExercisesAsync,
-  setCreateAction,
-} from '../../redux/actions/exercisesAction';
+import { PermissionForm } from './PermissionForm';
+import { getPermissionsAsync, setCreateAction } from '../../redux/actions/permissionAction';
 
-export const ExerciseScreen = () => {
+export const PermissionScreen = () => {
   const dispatch = useDispatch();
   const {
-    list: exercises,
+    list: permissions,
     isLoading,
     actionInProgress,
-    selectedExercise,
-  } = useSelector((state) => state.exercises);
+    selectedPermission,
+  } = useSelector((state) => state.permissions);
 
   const {
     credentials
@@ -29,30 +26,30 @@ export const ExerciseScreen = () => {
   };
 
   useEffect(() => {
-    dispatch(getExercisesAsync());
+    dispatch(getPermissionsAsync());
   }, []);
 
   return (
     <div>
-      <h2>Exercises</h2>
+      <h2>Permissions</h2>
       {
         credentials.user &&
-        <button className={styles.newButton} onClick={handleAddClick}>
-        New Exercise
+      <button className={styles.newButton} onClick={handleAddClick}>
+        New Permission
       </button>
       }
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
-        <ExerciseForm />
+        <PermissionForm />
       )}
       {actionInProgress === DELETE && (
-        <ConfirmDelete exercise={selectedExercise} />
+        <ConfirmDelete permission={selectedPermission} />
       )}
       {isLoading && (
         <div className={styles.loadingBar}>
           <LinearProgress />
         </div>
       )}
-      <ExerciseList exercises={exercises} />
+      <PermissionList permissions={permissions} />
     </div>
   );
 };

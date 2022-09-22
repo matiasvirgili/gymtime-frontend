@@ -15,5 +15,5 @@ export const CheckboxInput = ({input, name}) => {
 
 CheckboxInput.propTypes = {
   input: PropTypes.object.isRequired,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
