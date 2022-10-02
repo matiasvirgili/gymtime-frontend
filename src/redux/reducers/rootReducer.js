@@ -3,10 +3,12 @@ import { usersReducer } from './usersReducer';
 import { exerciseReducer } from './exercisesReducer';
 import { permissionReducer } from './permissionReducer';
 import { healthReducer } from './healthReducer';
+import { postReducer } from './postReducer';
 
 export const rootReducer = combineReducers({
   users: usersReducer,
   exercises: exerciseReducer,
   permissions: permissionReducer,
-  healths: healthReducer
+  healths: healthReducer,
+  posts: postReducer
 });

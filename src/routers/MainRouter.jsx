@@ -8,6 +8,7 @@ import { Login } from '../components/login/Login';
 import { ExerciseScreen } from '../components/exercises/ExerciseScreen';
 import { PermissionScreen } from '../components/permission/PermissionScreen';
 import { HealthScreen } from '../components/health/HealthScreen';
+import { PostScreen } from '../components/post/PostScreen';
 
 export const MainRouter = () => {
   return (
@@ -34,6 +35,9 @@ export const MainRouter = () => {
           </Route>
           <Route exact path="/health">
             <HealthScreen/>
+          </Route>
+          <Route exact path="/post">
+            <PostScreen/>
           </Route>
         </Layout>
       </Switch>
