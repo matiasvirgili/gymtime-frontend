@@ -40,6 +40,11 @@ export const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/subscription" className={styles.link}>
+            Subscriptions
+          </NavLink>
+        </li>
+        <li>
           <NavLink
             to="/"
             onClick={() => dispatch(logout())}
