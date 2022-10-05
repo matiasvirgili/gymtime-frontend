@@ -38,6 +38,15 @@ export const WorkoutEventForm = () => {
   let action =
     actionInProgress.charAt(0) + actionInProgress.toLowerCase().slice(1);
 
+  const { list: userList } = useSelector((state) => state.users);
+
+  const userFormated = userList.map((item) => {
+    return {
+      _id: item._id,
+      userName: `${item.name} ${item.lastName}`,
+    };
+  });
+
   const handleCancel = () => {
     dispatch(unsetAction());
   };
@@ -107,7 +116,7 @@ export const WorkoutEventForm = () => {
                     <Autocomplete
                       multiple
                       id="tags-standard"
-                      options={members}
+                      options={userFormated}
                       getOptionLabel={(option) => option.name}
                       renderInput={(params) => (
                         <TextField
@@ -146,5 +155,3 @@ export const WorkoutEventForm = () => {
     </GenericModal>
   );
 };
-
-const members = [{ name: 'The Shawshank' }, { name: 'The Godfather' }];
