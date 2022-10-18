@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WorkoutEvent } from './WorkoutEvent';
+import { EventMember } from './EventMember';
 import { useSelector } from 'react-redux'
 
-export const WorkoutEventsList = ({ workoutEvents }) => {
+export const EventMemberList = ({ workoutEvents }) => {
   const isLoggedIn = useSelector((state) => state.users?.credentials?.user?._id); 
-  
+
   return workoutEvents.map((wkoes) => (
-    <WorkoutEvent key={wkoes._id} workoutEvent={wkoes} isLoggedIn={isLoggedIn}/>
+    <EventMember key={wkoes._id} workoutEvent={wkoes} isLoggedIn={isLoggedIn}/>
   ));
 };
 
-WorkoutEventsList.propTypes = {
+EventMemberList.propTypes = {
   workoutEvents: PropTypes.array.isRequired,
 };

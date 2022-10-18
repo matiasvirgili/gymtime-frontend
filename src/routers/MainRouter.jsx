@@ -10,6 +10,8 @@ import { PermissionScreen } from '../components/permission/PermissionScreen';
 import { HealthScreen } from '../components/health/HealthScreen';
 import { PostScreen } from '../components/post/PostScreen';
 import { SubscriptionScreen } from '../components/subscription/SubscriptionScreen';
+import { WorkoutEventScreen } from '../components/workoutEvent/WorkoutEventScreen';
+import { EventMemberScreen } from '../components/eventMember/EventMemberScreen';
 
 export const MainRouter = () => {
   return (
@@ -30,6 +32,12 @@ export const MainRouter = () => {
           </Route>
           <Route exact path="/exercises">
             <ExerciseScreen />
+          </Route>
+          <Route exact path="/workoutEvent">
+            <WorkoutEventScreen />
+          </Route>
+          <Route exact path="/eventMembers">
+            <EventMemberScreen />
           </Route>
           <Route exact path="/permission">
             <PermissionScreen/>
