@@ -37,6 +37,12 @@
   width: 2rem;
   cursor: pointer;
 }
+.listfillIcon{
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+  color: #432baf;
+}
 .deleteIcon {
   height: 2rem;
   width: 2rem;

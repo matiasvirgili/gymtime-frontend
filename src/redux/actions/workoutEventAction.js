@@ -9,6 +9,7 @@ import {
   WORKOUTEVENT_SET_CREATE_ACTION,
   WORKOUTEVENT_SET_UPDATE_ACTION,
   WORKOUTEVENT_SET_DELETE_ACTION,
+  WORKOUTEVENT_SET_LISTPARTICIPANTS_ACTION,
   WORKOUTEVENT_UNSET_ACTION,
 } from '../types/workoutEventType';
 import { getConfig } from '../../helpers/axiosConfig';
@@ -54,21 +55,27 @@ export const setCreateAction = () => {
     type: WORKOUTEVENT_SET_CREATE_ACTION,
   };
 };
+export const setUpdateAction = (workoutEvents) => {
+  return {
+    type: WORKOUTEVENT_SET_UPDATE_ACTION,
+    payload: workoutEvents,
+  };
+};
 export const setDeleteAction = (workoutEvents) => {
   return {
     type: WORKOUTEVENT_SET_DELETE_ACTION,
     payload: workoutEvents,
   };
 };
+export const setListparticipantsAction = (workoutEvents) => {
+  return {
+    type: WORKOUTEVENT_SET_LISTPARTICIPANTS_ACTION,
+    payload: workoutEvents,
+  };
+};
 export const unsetAction = () => {
   return {
     type: WORKOUTEVENT_UNSET_ACTION,
-  };
-};
-export const setUpdateAction = (workoutEvents) => {
-  return {
-    type: WORKOUTEVENT_SET_UPDATE_ACTION,
-    payload: workoutEvents,
   };
 };
 

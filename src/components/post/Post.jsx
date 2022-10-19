@@ -49,6 +49,5 @@ export const Post = ({ post, isLoggedIn }) => {
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired,
-  credentials: PropTypes.object.isRequired
+  isLoggedIn: PropTypes.string.isRequired
 };

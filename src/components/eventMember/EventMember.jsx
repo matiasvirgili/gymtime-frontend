@@ -28,7 +28,6 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
   }, [])
   
   const EventMemberCreated = eventMembers && eventMembers.filter(i => i.workoutEvent === eventMemberState.workoutEvent)
-  //{ istata ? () : () }
   
   return (
     <div className={styles.container} key={_id}>
@@ -39,34 +38,39 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
         <div className={styles.actions} key={eventMemberState.workoutEvent}>
           {isLoggedIn && (
             <>
-              <button
-                  disabled={!!EventMemberCreated.length}
-                  onClick={async () => {
-                    try {
-                      await dispatch(createEventMemberAsync(eventMemberState))
-                    } catch (error) {
-                      return
-                    } 
-                  }}
+              {(!EventMemberCreated.length) ? (
+                <button
+                disabled={!!EventMemberCreated.length}
+                onClick={async () => {
+                  try {
+                    await dispatch(createEventMemberAsync(eventMemberState))
+                  } catch (error) {
+                    return
+                  } 
+                }}
               >
                 <BsPatchPlusFill
                   className={styles.editIcon}
                 />
               </button>
+              ) :
+              (
               <button
-                  disabled={!EventMemberCreated.length}
-                  onClick={() => {
-                    try {
-                      dispatch(deleteEventMemberAsync(EventMemberCreated[0]._id))
-                    } catch (error) {
-                      return
-                    } 
-                  }}
+                disabled={!EventMemberCreated.length}
+                onClick={() => {
+                  try {
+                    dispatch(deleteEventMemberAsync(EventMemberCreated[0]._id))
+                  } catch (error) {
+                    return
+                  } 
+                }}
               >
                 <BsPatchMinusFill
                 className={styles.deleteIcon}
               /> 
-              </button>   
+              </button>  
+              )
+              }
             </>
           )
           }

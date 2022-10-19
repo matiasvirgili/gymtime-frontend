@@ -3,9 +3,10 @@ import { WorkoutEventsList } from './WorkoutEventList';
 import styles from './WorkoutEventScreen.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
-import { CREATE, DELETE, UPDATE } from '../../redux/types/modalTypes';
+import { CREATE, DELETE, LIST, UPDATE } from '../../redux/types/modalTypes';
 import { ConfirmDelete } from './ConfirmDelete';
 import { WorkoutEventForm } from './WorkoutEventForm';
+import { ListOfParticipantsForm } from './ListOfParticipantsForm';
 import { getWorkoutEventAsync, setCreateAction } from '../../redux/actions/workoutEventAction';
 
 export const WorkoutEventScreen = () => {
@@ -40,6 +41,9 @@ export const WorkoutEventScreen = () => {
       }
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
         <WorkoutEventForm />
+      )}
+      {(actionInProgress === LIST) && (
+        <ListOfParticipantsForm />
       )}
       {actionInProgress === DELETE && (
         <ConfirmDelete post={selectedWorkoutEvent} />

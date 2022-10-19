@@ -1,6 +1,5 @@
 import React from 'react';
 import { GenericModal } from '../shared/GenericModal';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/lab/LoadingButton';
 import {
@@ -10,19 +9,21 @@ import {
 import styles from './ConfirmDelete.module.css';
 import { ErrorContainer } from '../shared/ErrorContainer';
 
-export const ConfirmDelete = ({ workoutEvent }) => {
+export const ConfirmDelete = () => {
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state) => state.workoutEvents);
+  const { isLoading, error, selectedWorkoutEvent } = useSelector((state) => state.workoutEvents);
 
   const handleCancel = () => dispatch(unsetAction());
-  const handleDelete = () => dispatch(deleteWorkoutEventAsync(workoutEvent._id));
+  const handleDelete = () => dispatch(deleteWorkoutEventAsync(selectedWorkoutEvent._id));
 
   return (
     <GenericModal>
       <>
         <h2>You are about to delete a Workout Event</h2>
         {error && <ErrorContainer message={error} />}
-        <p>{`This will delete the workout Event of ${workoutEvent.name} permanently`}</p>
+        <p>{`This will delete permanently the workout Event of ${selectedWorkoutEvent.name},`}</p>
+        <p>{`Day: ${selectedWorkoutEvent.day},`}</p>
+        <p>{`Location: ${selectedWorkoutEvent.location}`}</p>
         <p>Are you sure?</p>
         <div className={styles.actionsContainer}>
           <Button
@@ -41,8 +42,4 @@ export const ConfirmDelete = ({ workoutEvent }) => {
       </>
     </GenericModal>
   );
-};
-
-ConfirmDelete.propTypes = {
-  workoutEvent: PropTypes.object.isRequired,
 };

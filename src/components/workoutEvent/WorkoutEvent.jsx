@@ -2,18 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaTimes as DeleteIcon } from 'react-icons/fa';
 import { MdEdit as EditIcon } from 'react-icons/md';
+import { RiFileListFill } from "react-icons/ri";
 import styles from './WorkoutEvent.module.css';
 import { useDispatch } from 'react-redux';
 import {
   setDeleteAction,
   setUpdateAction,
+  setListparticipantsAction,
 } from '../../redux/actions/workoutEventAction';
 
 export const WorkoutEvent = ({ workoutEvent, isLoggedIn }) => {
   const { _id, name, duration, location, classroom } = workoutEvent;
 
   const dispatch = useDispatch();
-
+  
   return (
     <div className={styles.container} key={_id}>
       <div className={styles.column}>
@@ -35,16 +37,18 @@ export const WorkoutEvent = ({ workoutEvent, isLoggedIn }) => {
       {
         isLoggedIn &&
         <div className={styles.actions}>
+          <RiFileListFill
+            className={styles.listfillIcon}
+            onClick={() => dispatch(setListparticipantsAction(workoutEvent))}
+          />      
           <EditIcon
             className={styles.editIcon}
             onClick={() => dispatch(setUpdateAction(workoutEvent))}
           />
-        {
           <DeleteIcon
             className={styles.deleteIcon}
             onClick={() => dispatch(setDeleteAction(workoutEvent))}
-          />
-        }          
+          />  
         </div>
       }
     </div>

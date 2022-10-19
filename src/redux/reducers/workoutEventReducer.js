@@ -8,9 +8,10 @@ import {
   WORKOUTEVENT_SET_CREATE_ACTION,
   WORKOUTEVENT_SET_UPDATE_ACTION,
   WORKOUTEVENT_SET_DELETE_ACTION,
+  WORKOUTEVENT_SET_LISTPARTICIPANTS_ACTION,
   WORKOUTEVENT_UNSET_ACTION
   } from '../types/workoutEventType';
-  import { UPDATE, DELETE, CREATE, NONE } from '../types/modalTypes';
+  import { UPDATE, DELETE, CREATE, NONE, LIST } from '../types/modalTypes';
 
     const initialState = {
     list: [],
@@ -84,6 +85,12 @@ import {
             return {
               ...state,
               actionInProgress: DELETE,
+              selectedWorkoutEvent: { ...action.payload },
+            };
+          case WORKOUTEVENT_SET_LISTPARTICIPANTS_ACTION:
+            return {
+              ...state,
+              actionInProgress: LIST,
               selectedWorkoutEvent: { ...action.payload },
             };
           case WORKOUTEVENT_UNSET_ACTION:

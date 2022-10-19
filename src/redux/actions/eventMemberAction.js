@@ -55,6 +55,23 @@ export const getEventMembersAsync = () => async (dispatch) => {
     dispatch(setError(error?.response?.data?.error));
   }
 };
+export const getEventMembersListAsync = (workoutEventID) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      // eslint-disable-next-line no-undef
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers/list?workoutEvent=${workoutEventID}`
+    );
+    if (res.status === 200) {
+      let eventMember = [];
+      for (let i = 0; i < res.data.length; i++) {
+        eventMember.push(res.data[i]);
+      }
+      dispatch(setEventMembers(eventMember));
+    }
+  } catch (error) {
+    dispatch(setError(error?.response?.data?.error));
+  }
+};
 export const deleteEventMemberAsync = (eventMemberId) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {
