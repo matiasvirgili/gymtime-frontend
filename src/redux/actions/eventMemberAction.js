@@ -38,11 +38,11 @@ export const setLoadingTrue = () => {
   };
 };
 
-export const getEventMembersAsync = () => async (dispatch) => {
-  try {
+export const getEventMembersAsync = (userId, workoutEvent) => async (dispatch) => {
+  try { 
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers?userId=${userId}&workoutEvent=${workoutEvent}`
     );
     if (res.status === 200) {
       let eventMember = [];

@@ -38,7 +38,6 @@ export const WorkoutEventForm = () => {
     dispatch(unsetAction());
   };
 
-
   const handleFormSubmit = (workoutEvent) => {
     if (actionInProgress === UPDATE) {
       workoutEvent._id = selectedWorkoutEvent._id;

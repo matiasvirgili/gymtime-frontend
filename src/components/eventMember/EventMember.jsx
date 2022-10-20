@@ -24,11 +24,11 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
   } = useSelector((state) => state.eventMembers);
   
   useEffect(()=>{
-    dispatch(getEventMembersAsync(eventMemberState));
+    dispatch(getEventMembersAsync(eventMemberState.userId, ""));
   }, [])
   
   const EventMemberCreated = eventMembers && eventMembers.filter(i => i.workoutEvent === eventMemberState.workoutEvent)
-  
+
   return (
     <div className={styles.container} key={_id}>
       <div className={styles.column}>
@@ -37,8 +37,7 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
       </div>
         <div className={styles.actions} key={eventMemberState.workoutEvent}>
           {isLoggedIn && (
-            <>
-              {(!EventMemberCreated.length) ? (
+            <>   
                 <button
                 disabled={!!EventMemberCreated.length}
                 onClick={async () => {
@@ -53,13 +52,12 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
                   className={styles.editIcon}
                 />
               </button>
-              ) :
-              (
+             
               <button
                 disabled={!EventMemberCreated.length}
-                onClick={() => {
+                onClick={async () => {
                   try {
-                    dispatch(deleteEventMemberAsync(EventMemberCreated[0]._id))
+                    await dispatch(deleteEventMemberAsync(EventMemberCreated[0]._id))
                   } catch (error) {
                     return
                   } 
@@ -69,8 +67,8 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
                 className={styles.deleteIcon}
               /> 
               </button>  
-              )
-              }
+              
+              
             </>
           )
           }
