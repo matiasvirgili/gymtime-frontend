@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GenericModal } from '../shared/GenericModal';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/lab/LoadingButton';
@@ -8,13 +8,29 @@ import {
 } from '../../redux/actions/workoutEventAction';
 import styles from './ConfirmDelete.module.css';
 import { ErrorContainer } from '../shared/ErrorContainer';
+import { deleteEventMemberAsync, getEventMembersAsync } from '../../redux/actions/eventMemberAction';
 
 export const ConfirmDelete = () => {
   const dispatch = useDispatch();
   const { isLoading, error, selectedWorkoutEvent } = useSelector((state) => state.workoutEvents);
 
+  const {
+    list: eventMembers,
+  } = useSelector((state) => state.eventMembers);
+  
+  useEffect(()=>{
+    dispatch(getEventMembersAsync("", selectedWorkoutEvent._id));
+  }, [])
+
   const handleCancel = () => dispatch(unsetAction());
-  const handleDelete = () => dispatch(deleteWorkoutEventAsync(selectedWorkoutEvent._id));
+  const handleDelete = () => {
+    if (eventMembers.length) {
+      for (let i = 0; i < eventMembers.length; i++) {
+        dispatch(deleteEventMemberAsync(eventMembers[i]._id))
+      }
+    }
+    dispatch(deleteWorkoutEventAsync(selectedWorkoutEvent._id));
+  }
 
   return (
     <GenericModal>

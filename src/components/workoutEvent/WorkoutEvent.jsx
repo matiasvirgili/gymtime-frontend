@@ -12,7 +12,7 @@ import {
 } from '../../redux/actions/workoutEventAction';
 
 export const WorkoutEvent = ({ workoutEvent, isLoggedIn }) => {
-  const { _id, name, duration, location, classroom } = workoutEvent;
+  const { _id, name, startHour, finalHour, location, classroom } = workoutEvent;
 
   const dispatch = useDispatch();
   
@@ -23,8 +23,12 @@ export const WorkoutEvent = ({ workoutEvent, isLoggedIn }) => {
         <span className={styles.content}>{name}</span>
       </div>
       <div className={styles.column}>
-        <span className={styles.title}>Duration</span>
-        <span className={styles.content}>{duration}</span>
+        <span className={styles.title}>Start Hour</span>
+        <span className={styles.content}>{startHour}</span>
+      </div>
+      <div className={styles.column}>
+        <span className={styles.title}>Final Hour</span>
+        <span className={styles.content}>{finalHour}</span>
       </div>
       <div className={styles.column}>
         <span className={styles.title}>Location</span>

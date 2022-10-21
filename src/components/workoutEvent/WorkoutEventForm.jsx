@@ -88,20 +88,6 @@ export const WorkoutEventForm = () => {
                 </Field>
               </div>
               <div>
-                <Field name="places" validate={composeValidators(required, mustBeNumber)}>
-                  {({input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Places" disabled = {false} />
-                  )}
-                </Field>
-              </div>
-              <div>
-                <Field name="duration" validate={required}>
-                  {({input}) => (
-                    <TimePickersInput input={input} label="Duration of Workout event" />
-                  )}
-                </Field>
-              </div>
-              <div>
                 <Field name={"location"} validate={required}>
                   {({ input }) => (
                     <ComboBoxInput input={input} label="Location" options={optionsLocation} optionsKey={"location"} optionsValue={"location"}/>
@@ -116,6 +102,13 @@ export const WorkoutEventForm = () => {
                 </Field>
               </div>
               <div>
+                <Field name="places" validate={composeValidators(required, mustBeNumber)}>
+                  {({input, meta }) => (
+                    <TextInput input={input} meta={meta} name="Places" disabled = {false} />
+                  )}
+                </Field>
+              </div>
+              <div>
                 <Field name={"day"} validate={required}>
                   {({ input }) => (
                     <ComboBoxInput input={input} label="Day" options={optionsDay} optionsKey={"day"} optionsValue={"day"}/>
@@ -123,9 +116,16 @@ export const WorkoutEventForm = () => {
                 </Field>
               </div>
               <div>
-                <Field name="hour" validate={required}>
+                <Field name="startHour" validate={required}>
                   {({input }) => (
-                    <TimePickersInput input={input} label="Hour" />
+                    <TimePickersInput input={input} label="Start Hour" />
+                  )}
+                </Field>
+              </div>
+              <div>
+                <Field name="finalHour" validate={required}>
+                  {({input}) => (
+                    <TimePickersInput input={input} label="Final Hour" />
                   )}
                 </Field>
               </div>
