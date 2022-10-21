@@ -19,6 +19,7 @@ import { required, mustBeNumber, composeValidators } from '../validations/FormVa
 const initialState = {
   name: '',
   places: '',
+  placesOccupied: '',
   duration: '',
   location: '',
   classroom: '',
@@ -40,9 +41,11 @@ export const WorkoutEventForm = () => {
 
   const handleFormSubmit = (workoutEvent) => {
     if (actionInProgress === UPDATE) {
+      workoutEvent.placesOccupied = selectedWorkoutEvent.placesOccupied
       workoutEvent._id = selectedWorkoutEvent._id;
       dispatch(updateWorkoutEventAsync(workoutEvent));
     } else {
+      workoutEvent.placesOccupied = 0
       dispatch(createWorkoutEventAsync(workoutEvent));
     }
   };

@@ -8,6 +8,7 @@ import {
   deleteEventMemberAsync
 } from '../../redux/actions/eventMemberAction';
 import { BsPatchPlusFill, BsPatchMinusFill } from "react-icons/bs";
+import { updateWorkoutEventAsync } from '../../redux/actions/workoutEventAction';
 
 export const EventMember = ({ workoutEvent, isLoggedIn }) => {
   const { _id, name} = workoutEvent;
@@ -37,38 +38,47 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
       </div>
         <div className={styles.actions} key={eventMemberState.workoutEvent}>
           {isLoggedIn && (
-            <>   
+            <>
+              {(!EventMemberCreated.length) && workoutEvent.places!=workoutEvent.placesOccupied &&(
                 <button
-                disabled={!!EventMemberCreated.length}
-                onClick={async () => {
-                  try {
-                    await dispatch(createEventMemberAsync(eventMemberState))
-                  } catch (error) {
-                    return
-                  } 
-                }}
-              >
-                <BsPatchPlusFill
-                  className={styles.editIcon}
-                />
-              </button>
-             
-              <button
-                disabled={!EventMemberCreated.length}
-                onClick={async () => {
-                  try {
-                    await dispatch(deleteEventMemberAsync(EventMemberCreated[0]._id))
-                  } catch (error) {
-                    return
-                  } 
-                }}
-              >
-                <BsPatchMinusFill
-                className={styles.deleteIcon}
-              /> 
-              </button>  
-              
-              
+                  disabled={!!EventMemberCreated.length}
+                  onClick={async () => {
+                    try {
+                      workoutEvent.placesOccupied += 1
+                      await dispatch(
+                        createEventMemberAsync(eventMemberState), 
+                        updateWorkoutEventAsync(workoutEvent)
+                      )
+                    } catch (error) {
+                      return
+                    } 
+                  }}
+                >
+                  <BsPatchPlusFill
+                    className={styles.editIcon}
+                  />
+                </button>
+              )}
+              {(!!EventMemberCreated.length) &&(
+                <button
+                  disabled={!EventMemberCreated.length}
+                  onClick={async () => {
+                    try {
+                      workoutEvent.placesOccupied -= 1
+                      await dispatch(
+                        deleteEventMemberAsync(EventMemberCreated[0]._id),
+                        updateWorkoutEventAsync(workoutEvent)
+                      )
+                    } catch (error) {
+                      return
+                    } 
+                  }}
+                >
+                  <BsPatchMinusFill
+                    className={styles.deleteIcon}
+                /> 
+                </button>  
+              )}
             </>
           )
           }
