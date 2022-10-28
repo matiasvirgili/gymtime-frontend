@@ -1,8 +1,8 @@
 import {
-  EXERCISE_CREATE_EXERCISE,
-  EXERCISE_UPDATE_EXERCISE,
-  EXERCISE_DELETE_EXERCISE,
-  EXERCISE_SET_ALL_EXERCISES,
+  USER_CREATE_EXERCISE,
+  USER_UPDATE_EXERCISE,
+  USER_DELETE_EXERCISE,
+  USER_SET_ALL_EXERCISES,
   EXERCISE_SET_ERROR,
   EXERCISE_SET_LOADING_TRUE,
   EXERCISE_SET_CREATE_ACTION,
@@ -26,7 +26,7 @@ const initialState = {
 
 export const exerciseReducer = (state = initialState, action) => {
   switch (action.type) {
-    case EXERCISE_CREATE_EXERCISE:
+    case USER_CREATE_EXERCISE:
       return {
         ...state,
         error: '',
@@ -35,7 +35,7 @@ export const exerciseReducer = (state = initialState, action) => {
         actionInProgress: NONE,
         selectedExercise: null,
       };
-    case EXERCISE_UPDATE_EXERCISE:
+    case USER_UPDATE_EXERCISE:
       return {
         ...state,
         error: '',
@@ -46,7 +46,7 @@ export const exerciseReducer = (state = initialState, action) => {
         actionInProgress: NONE,
         selectedExercise: null,
       };
-    case EXERCISE_DELETE_EXERCISE:
+    case USER_DELETE_EXERCISE:
       return {
         ...state,
         error: '',
@@ -55,7 +55,7 @@ export const exerciseReducer = (state = initialState, action) => {
         actionInProgress: NONE,
         selectedExercise: null,
       };
-    case EXERCISE_SET_ALL_EXERCISES:
+    case USER_SET_ALL_EXERCISES:
       return { ...state, list: action.payload, error: '', isLoading: false };
     case EXERCISE_SET_ERROR:
       return {

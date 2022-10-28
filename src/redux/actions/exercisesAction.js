@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {
-  EXERCISE_CREATE_EXERCISE,
-  EXERCISE_UPDATE_EXERCISE,
-  EXERCISE_DELETE_EXERCISE,
-  EXERCISE_SET_ALL_EXERCISES,
+  USER_CREATE_EXERCISE,
+  USER_UPDATE_EXERCISE,
+  USER_DELETE_EXERCISE,
+  USER_SET_ALL_EXERCISES,
   EXERCISE_SET_ERROR,
   EXERCISE_SET_LOADING_TRUE,
   EXERCISE_SET_CREATE_ACTION,
@@ -15,26 +15,26 @@ import { getConfig } from '../../helpers/axiosConfig';
 
 export const createExercise = (exercise) => {
   return {
-    type: EXERCISE_CREATE_EXERCISE,
+    type: USER_CREATE_EXERCISE,
     payload: exercise,
   };
 };
 
 export const updateExercise = (exercise) => {
   return {
-    type: EXERCISE_UPDATE_EXERCISE,
+    type: USER_UPDATE_EXERCISE,
     payload: exercise,
   };
 };
 export const deleteExercise = (exerciseId) => {
   return {
-    type: EXERCISE_DELETE_EXERCISE,
+    type: USER_DELETE_EXERCISE,
     payload: exerciseId,
   };
 };
 export const setExercises = (exercises) => {
   return {
-    type: EXERCISE_SET_ALL_EXERCISES,
+    type: USER_SET_ALL_EXERCISES,
     payload: exercises,
   };
 };
