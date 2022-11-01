@@ -1,58 +1,58 @@
 import React, { useEffect } from 'react';
-import { ExerciseList } from './ExerciseList';
-import styles from './ExerciseScreen.module.css';
+import { RoutineList } from './RoutineList';
+import styles from './RoutineScreen.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
 import { CREATE, DELETE, UPDATE } from '../../redux/types/modalTypes';
 import { ConfirmDelete } from './ConfirmDelete';
-import { ExerciseForm } from './ExerciseForm';
+import { RoutineForm } from './RoutineForm';
 import {
-  getExercisesAsync,
-  setCreateAction,
-} from '../../redux/actions/exercisesAction';
+  getRoutineAsync,
+  setCreateAction as setCreateActionRoutine,
+} from '../../redux/actions/routineAction';
 
-export const ExerciseScreen = () => {
+export const RoutineScreen = () => {
   const dispatch = useDispatch();
   const {
-    list: exercises,
+    list: routines,
     isLoading,
     actionInProgress,
-    selectedExercise,
-  } = useSelector((state) => state.exercises);
+    selectedRoutine,
+  } = useSelector((state) => state.routines);
 
   const {
     credentials
   } = useSelector((state) => state.users);
 
   const handleAddClick = () => {
-    dispatch(setCreateAction());
+    dispatch(setCreateActionRoutine());
   };
 
   useEffect(() => {
-    dispatch(getExercisesAsync());
+    dispatch(getRoutineAsync());
   }, []);
   
   return (
     <div>
-      <h2>Exercises</h2>
-      {
-        credentials.user &&
+      <h2>Routines</h2>
+        
+      {credentials.user &&
         <button className={styles.newButton} onClick={handleAddClick}>
-        New Exercise
-      </button>
-      }
+          New Routine
+        </button>
+      } 
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
-        <ExerciseForm />
+        <RoutineForm />
       )}
       {actionInProgress === DELETE && (
-        <ConfirmDelete exercise={selectedExercise} />
+        <ConfirmDelete routine={selectedRoutine} />
       )}
       {isLoading && (
         <div className={styles.loadingBar}>
           <LinearProgress />
         </div>
       )}
-      <ExerciseList exercises={exercises} />
+      <RoutineList routines={routines}/>
     </div>
   );
 };

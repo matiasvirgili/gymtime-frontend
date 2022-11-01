@@ -9,9 +9,10 @@ import {
   setUpdateAction,
 } from '../../redux/actions/exercisesAction';
 
-export const Exercise = ({ exercise = {}, isLoggedIn }) => {
-  const { name, area, expecifyMuscle, _id } = exercise;
+export const Exercise = ({ exercises , isLoggedIn }) => {
+  const { name, area, expecifyMuscle, _id } = exercises;
   const dispatch = useDispatch();
+  
   return (
     <div className={styles.container} key={_id}>
       <div className={styles.column}>
@@ -30,12 +31,12 @@ export const Exercise = ({ exercise = {}, isLoggedIn }) => {
         <div className={styles.actions}>
           <EditIcon
             className={styles.editIcon}
-            onClick={() => dispatch(setUpdateAction(exercise))}
+            onClick={() => dispatch(setUpdateAction(exercises))}
           />
           {isLoggedIn != _id && (
             <DeleteIcon
               className={styles.deleteIcon}
-              onClick={() => dispatch(setDeleteAction(exercise))}
+              onClick={() => dispatch(setDeleteAction(exercises))}
             />
           )}
         </div>
@@ -45,6 +46,6 @@ export const Exercise = ({ exercise = {}, isLoggedIn }) => {
 };
 
 Exercise.propTypes = {
-  exercise: PropTypes.object.isRequired,
+  exercises: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.string.isRequired,
 };

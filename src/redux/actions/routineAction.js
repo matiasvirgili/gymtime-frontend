@@ -10,6 +10,7 @@ import {
   ROUTINE_SET_UPDATE_ACTION,
   ROUTINE_SET_DELETE_ACTION,
   ROUTINE_UNSET_ACTION,
+  ROUTINE_SET_ROUTINEEXERCISE_ACTION
 } from '../types/routineType';
 import { getConfig } from '../../helpers/axiosConfig';
 
@@ -19,7 +20,6 @@ export const createRoutine = (routine) => {
     payload: routine,
   };
 };
-
 export const updateRoutine = (routine) => {
   return {
     type: USER_UPDATE_ROUTINE,
@@ -66,6 +66,12 @@ export const setDeleteAction = (routine) => {
     payload: routine,
   };
 };
+export const setRoutineExerciseAction = (routine) => {
+  return {
+    type: ROUTINE_SET_ROUTINEEXERCISE_ACTION,
+    payload: routine,
+  };
+};
 export const unsetAction = () => {
   return {
     type: ROUTINE_UNSET_ACTION,
@@ -89,6 +95,7 @@ export const getRoutineAsync = () => async (dispatch) => {
     dispatch(setError(error?.response?.data?.error));
   }
 };
+
 export const createRoutineAsync = (routine) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {
@@ -105,6 +112,7 @@ export const createRoutineAsync = (routine) => async (dispatch) => {
     return dispatch(setError(error?.response?.data?.error));
   }
 };
+
 export const updateRoutineAsync = (routine) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {
@@ -121,6 +129,7 @@ export const updateRoutineAsync = (routine) => async (dispatch) => {
     return dispatch(setError(error?.response?.data?.error));
   }
 };
+
 export const deleteRoutineAsync = (routineId) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {

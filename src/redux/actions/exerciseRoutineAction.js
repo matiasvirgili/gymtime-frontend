@@ -72,11 +72,11 @@ export const unsetAction = () => {
   };
 };
 
-export const getExerciseRoutineAsync = () => async (dispatch) => {
+export const getExerciseWithRoutineIdAsync = (routineId) => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines?routineId=${routineId}`
     );
     if (res.status === 200) {
       let exerciseRoutine = [];

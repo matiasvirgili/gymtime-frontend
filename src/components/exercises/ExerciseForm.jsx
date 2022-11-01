@@ -13,10 +13,9 @@ import { Form, Field } from 'react-final-form';
 import { TextInput } from '../shared/TextInput';
 import { ErrorContainer } from '../shared/ErrorContainer';
 import {
-  mustBeNumber,
-  required,
-  composeValidators,
+  required
 } from '../validations/FormValidation';
+import ComboBoxInput from '../shared/ComboBoxInput';
 
 const initialState = {
   name: '',
@@ -47,6 +46,18 @@ export const ExerciseForm = () => {
     }
   };
 
+  const optionsArea=[
+    {"area": "Pecho"}, 
+    {"area": "Triceps"}, 
+    {"area": "Biceps"}, 
+    {"area": "Trapecios"}, 
+    {"area": "Hombros"}, 
+    {"area": "Abdominales"},
+    {"area": "Isquiotibiales"},
+    {"area": "Cuadriceps "}, 
+    {"area": "Pantorrillas"}, 
+  ]
+
   return (
     <GenericModal>
       <>
@@ -65,18 +76,15 @@ export const ExerciseForm = () => {
                   )}
                 </Field>
               </div>
-              <div>
-                <Field name="area" validate={required}>
-                  {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Area" />
+              <div className={styles.healthSet}>
+                <Field name={"area"} validate={required}>
+                  {({ input }) => (
+                    <ComboBoxInput input={input} label="Area" options={optionsArea} optionsKey={"area"} optionsValue={"area"}/>
                   )}
                 </Field>
               </div>
               <div>
-                <Field
-                  name="expecifyMuscle"
-                  validate={composeValidators(required, mustBeNumber)}
-                >
+                <Field name="expecifyMuscle" validate={required}>
                   {({ input, meta }) => (
                     <TextInput
                       input={input}

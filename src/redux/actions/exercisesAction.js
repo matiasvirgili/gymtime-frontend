@@ -19,7 +19,6 @@ export const createExercise = (exercise) => {
     payload: exercise,
   };
 };
-
 export const updateExercise = (exercise) => {
   return {
     type: USER_UPDATE_EXERCISE,
@@ -125,7 +124,7 @@ export const updateExerciseAsync = (exercise) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/exercise/${exercise._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/exercises/${exercise._id}`,
       exercise,
       getConfig()
     );

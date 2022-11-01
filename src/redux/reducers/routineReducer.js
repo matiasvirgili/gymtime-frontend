@@ -8,9 +8,10 @@ import {
   ROUTINE_SET_CREATE_ACTION,
   ROUTINE_SET_UPDATE_ACTION,
   ROUTINE_SET_DELETE_ACTION,
+  ROUTINE_SET_ROUTINEEXERCISE_ACTION,
   ROUTINE_UNSET_ACTION,
 } from '../types/routineType';
-import { UPDATE, DELETE, CREATE, NONE } from '../types/modalTypes';
+import { UPDATE, DELETE, CREATE, NONE, LIST } from '../types/modalTypes';
 
 const initialState = {
   list: [],
@@ -84,6 +85,12 @@ export const routineReducer = (state = initialState, action) => {
       return {
         ...state,
         actionInProgress: DELETE,
+        selectedRoutine: { ...action.payload },
+      };
+    case ROUTINE_SET_ROUTINEEXERCISE_ACTION:
+      return {
+        ...state,
+        actionInProgress: LIST,
         selectedRoutine: { ...action.payload },
       };
     case ROUTINE_UNSET_ACTION:

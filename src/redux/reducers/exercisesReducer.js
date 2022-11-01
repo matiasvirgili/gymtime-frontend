@@ -18,10 +18,6 @@ const initialState = {
   isLoading: false,
   actionInProgress: NONE,
   selectedExercise: null,
-  credentials: {
-    exercise: null,
-    token: '',
-  },
 };
 
 export const exerciseReducer = (state = initialState, action) => {
