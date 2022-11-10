@@ -3,14 +3,18 @@ import { ExerciseRoutineList } from './ExerciseRoutineList';
 import styles from './ExerciseRoutineScreen.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import LinearProgress from '@mui/material/LinearProgress';
-import { CREATE, DELETE, UPDATE } from '../../redux/types/modalTypes';
+import { CREATE, DELETE, UPDATE, COPY, DELETE_ALL } from '../../redux/types/modalTypes';
 import { ConfirmDelete } from './ConfirmDelete';
 import { ExerciseRoutineForm } from './ExerciseRoutineForm';
+import { ExerciseRoutineCopyForm } from './ExerciseRoutineCopyForm';
 import {
   getExerciseWithRoutineIdAsync,
+  setCopyAction,
   setCreateAction,
+  setDeleteAllAction,
 } from '../../redux/actions/exerciseRoutineAction';
 import { NavLink } from 'react-router-dom';
+import { ConfirmDeleteAll } from './ConfirmDeleteAll';
 
 export const ExerciseRoutineScreen = () => {
   const dispatch = useDispatch();
@@ -33,6 +37,12 @@ export const ExerciseRoutineScreen = () => {
   const handleAddClick = () => {
     dispatch(setCreateAction());
   };
+  const handleCopyRoutineClick = () => {
+    dispatch(setCopyAction(selectedRoutine))
+  }
+  const handleDeleteAllClick = () => {
+    dispatch(setDeleteAllAction(selectedRoutine))
+  }
   
   useEffect(() => {
     if (!selectedRoutine?._id) {
@@ -44,19 +54,43 @@ export const ExerciseRoutineScreen = () => {
   
   return (
     <div>
+      <div className={styles.topButtons}>
+        <div>
+          <NavLink to="/routines" className={styles.link}>
+          <button className={styles.backButton}>
+            Return
+          </button>
+          </NavLink>
+
+          {credentials.user &&
+            <button className={styles.newButton} onClick={handleAddClick}>
+              New Excercise
+            </button>
+          } 
+        </div>
+        <div>
+          {credentials.user &&
+            <button className={styles.copyButton} onClick={handleCopyRoutineClick}>
+              Copy routines
+            </button>
+          } 
+          {credentials.user &&
+            <button className={styles.deleteButton} onClick={handleDeleteAllClick}>
+              Delete all exercises
+            </button>
+          } 
+        </div>
+      </div>
+
       <h2>Routines</h2>
-      <NavLink to="/routines" className={styles.link}>
-        <button className={styles.backButton}>
-          Return
-        </button>
-      </NavLink>
-      {credentials.user &&
-        <button className={styles.newButton} onClick={handleAddClick}>
-          New Excercise
-        </button>
-      } 
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
         <ExerciseRoutineForm />
+      )}
+      {(actionInProgress === COPY) && (
+        <ExerciseRoutineCopyForm/>
+      )}
+      {(actionInProgress === DELETE_ALL) && (
+        <ConfirmDeleteAll />
       )}
       {actionInProgress === DELETE && (
         <ConfirmDelete exerciseRoutine={selectedExerciseRoutine} />

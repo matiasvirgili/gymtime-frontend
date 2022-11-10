@@ -3,11 +3,9 @@ import styles from './RoutineForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   createRoutineAsync,
+  updateRoutineAsync,
   unsetAction,
 } from '../../redux/actions/routineAction';
-import {
-  updateExerciseRoutineAsync,
-} from '../../redux/actions/exerciseRoutineAction';
 import Button from '@mui/lab/LoadingButton';
 import { GenericModal } from '../shared/GenericModal';
 import { UPDATE } from '../../redux/types/modalTypes';
@@ -19,9 +17,8 @@ import {
 import ComboBoxInput from '../shared/ComboBoxInput';
 import { getUsersAsync } from '../../redux/actions/usersAction';
 import { getExercisesAsync } from '../../redux/actions/exercisesAction';
-const initialState = {
-  userId: '',
-};
+import { TextInput } from '../shared/TextInput';
+
 
 export const RoutineForm = () => {
 
@@ -49,7 +46,8 @@ export const RoutineForm = () => {
   const handleFormSubmit = (routine) => {
     if (actionInProgress === UPDATE) {
       routine._id = selectedRoutine._id;
-      dispatch(updateExerciseRoutineAsync(routine));
+      routine.userId = routine.userId._id
+      dispatch(updateRoutineAsync(routine));
     } else {
       dispatch(createRoutineAsync({userId: routine.userId._id}));
     }
@@ -59,6 +57,11 @@ export const RoutineForm = () => {
   };
 
   let action = actionInProgress.charAt(0) + actionInProgress.toLowerCase().slice(1);
+
+  const initialState = {
+    userId: '',
+    name: '',
+  };
 
   return (
     <GenericModal>
@@ -75,6 +78,13 @@ export const RoutineForm = () => {
                 <Field name={"userId._id"} validate={required}>
                   {({ input }) => (
                     <ComboBoxInput input={input} label="User" options={userFormated} optionsKey={"userName"} optionsValue={"_id"}/>
+                  )}
+                </Field>
+              </div>
+              <div>
+                <Field name="name" validate={required}>
+                  {({ input, meta }) => (
+                    <TextInput input={input} meta={meta} name="Name of Routine" />
                   )}
                 </Field>
               </div>

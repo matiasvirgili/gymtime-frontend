@@ -8,9 +8,11 @@ import {
   EXERCISEROUTINE_SET_CREATE_ACTION,
   EXERCISEROUTINE_SET_UPDATE_ACTION,
   EXERCISEROUTINE_SET_DELETE_ACTION,
+  EXERCISEROUTINE_SET_COPYROUTINE_ACTION,
+  EXERCISEROUTINE_SET_DELETEALLROUTINE_ACTION,
   EXERCISEROUTINE_UNSET_ACTION,
 } from '../types/exercisesRoutineType';
-import { UPDATE, DELETE, CREATE, NONE } from '../types/modalTypes';
+import { UPDATE, DELETE, CREATE, NONE, COPY, DELETE_ALL } from '../types/modalTypes';
 
 const initialState = {
   list: [],
@@ -85,6 +87,18 @@ export const exerciseRoutineReducer = (state = initialState, action) => {
         ...state,
         actionInProgress: DELETE,
         selectedExerciseRoutine: { ...action.payload },
+      };
+    case EXERCISEROUTINE_SET_DELETEALLROUTINE_ACTION:
+      return {
+        ...state,
+        actionInProgress: DELETE_ALL,
+        selectedExerciseRoutine: { ...action.payload },
+      };
+    case EXERCISEROUTINE_SET_COPYROUTINE_ACTION:
+      return {
+        ...state,
+        actionInProgress: COPY,
+        selectedRoutine: { ...action.payload },
       };
     case EXERCISEROUTINE_UNSET_ACTION:
       return {

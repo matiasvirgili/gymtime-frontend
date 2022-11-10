@@ -9,6 +9,8 @@ import {
   EXERCISEROUTINE_SET_CREATE_ACTION,
   EXERCISEROUTINE_SET_UPDATE_ACTION,
   EXERCISEROUTINE_SET_DELETE_ACTION,
+  EXERCISEROUTINE_SET_DELETEALLROUTINE_ACTION,
+  EXERCISEROUTINE_SET_COPYROUTINE_ACTION,
   EXERCISEROUTINE_UNSET_ACTION,
 } from '../types/exercisesRoutineType';
 import { getConfig } from '../../helpers/axiosConfig';
@@ -64,6 +66,18 @@ export const setDeleteAction = (exerciseRoutine) => {
   return {
     type: EXERCISEROUTINE_SET_DELETE_ACTION,
     payload: exerciseRoutine,
+  };
+};
+export const setDeleteAllAction = (exerciseRoutine) => {
+  return {
+    type: EXERCISEROUTINE_SET_DELETEALLROUTINE_ACTION,
+    payload: exerciseRoutine,
+  };
+};
+export const setCopyAction = (routine) => {
+  return {
+    type: EXERCISEROUTINE_SET_COPYROUTINE_ACTION,
+    payload: routine,
   };
 };
 export const unsetAction = () => {
