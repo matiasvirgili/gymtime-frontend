@@ -9,8 +9,7 @@ import { required } from '../validations/FormValidation';
 import ComboBoxInput from '../shared/ComboBoxInput';
 import { getExercisesAsync } from '../../redux/actions/exercisesAction';
 import {
-  createExerciseRoutineAsync,
-  getExerciseWithRoutineIdAsync,
+  getExerciseWithRoutineIdAndCopy,
   unsetAction,
 } from '../../redux/actions/exerciseRoutineAction';
 
@@ -21,6 +20,7 @@ const initialState = {
 export const ExerciseRoutineCopyForm = () => {
   const dispatch = useDispatch();
   
+  
   useEffect(() => {
     dispatch(getExercisesAsync());
   }, []);
@@ -28,26 +28,16 @@ export const ExerciseRoutineCopyForm = () => {
   const { list: routines, selectedRoutine, error, isLoading  } = useSelector(
     (state) => state.routines
   );
-  const { list: excercisesInRoutine } = useSelector(
-    (state) => state.exerciseRoutines
-  );
 
-  const routineFiltred = routines.filter(i =>  i.name != undefined||null||"")
 
-  const handleFormSubmit = async (routine) => {
-    dispatch(getExerciseWithRoutineIdAsync(routine.routineId))
+  const routineFiltred = routines.filter(i =>  {
+    if(i.userId._id != selectedRoutine.userId._id && (i.name != undefined || i.name != null || i.name !="")) return i}
+   )
 
-    for (let i = 0; i < excercisesInRoutine.length; i++) {
-      const exerciseRoutineCopy = {
-          routineId: selectedRoutine._id,
-          day: excercisesInRoutine[i].day,
-          exerciseId: excercisesInRoutine[i].exerciseId._id,
-          duration: excercisesInRoutine[i].duration,
-          breakDuration: excercisesInRoutine[i].breakDuration,
-          position: excercisesInRoutine[i].position,
-      }
-      dispatch(createExerciseRoutineAsync(exerciseRoutineCopy))
-    }
+
+  const handleFormSubmit = (routine) => {
+    dispatch(getExerciseWithRoutineIdAndCopy(routine.routineId, selectedRoutine._id))
+
     dispatch(unsetAction())
   };
 

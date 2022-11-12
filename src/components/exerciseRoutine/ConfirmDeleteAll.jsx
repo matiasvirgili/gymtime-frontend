@@ -3,8 +3,7 @@ import { GenericModal } from '../shared/GenericModal';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/lab/LoadingButton';
 import {
-  deleteExerciseRoutineAsync,
-  getExerciseWithRoutineIdAsync,
+  deleteAllExerciseRoutineAsync,
   unsetAction,
 } from '../../redux/actions/exerciseRoutineAction';
 import styles from './ConfirmDelete.module.css';
@@ -12,19 +11,17 @@ import { ErrorContainer } from '../shared/ErrorContainer';
 
 export const ConfirmDeleteAll = () => {
   const dispatch = useDispatch();
-  const { list: excercisesInRoutine, isLoading, error } = useSelector((state) => state.exerciseRoutines);
-  const {selectedRoutine} = useSelector(
+  const { isLoading, error } = useSelector((state) => state.exerciseRoutines);
+  const { selectedRoutine} = useSelector(
     (state) => state.routines
   );
-
   const handleCancel = () => dispatch(unsetAction());
   
-  const handleDelete = async () => {
-    dispatch(getExerciseWithRoutineIdAsync(selectedRoutine._id))
-    for (let i = 0; i < excercisesInRoutine.length; i++) {
-      await dispatch(deleteExerciseRoutineAsync(excercisesInRoutine[i]._id))
+  const handleDelete =  () => {
+    dispatch(deleteAllExerciseRoutineAsync(selectedRoutine._id))
+    if(error == ''){
+      dispatch(unsetAction())
     }
-    dispatch(unsetAction())
   }
 
   return (

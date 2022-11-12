@@ -7,7 +7,7 @@ export const RoutineList = ({ routines }) => {
   const isLoggedIn = useSelector(
     (state) => state.users?.credentials?.user?._id
   );
-  
+
   return routines.map((rtns) => (
     <Routine key={rtns._id} routines={rtns} isLoggedIn={isLoggedIn} />
   ));

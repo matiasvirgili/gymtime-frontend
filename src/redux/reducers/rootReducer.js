@@ -10,8 +10,6 @@ import { eventMemberReducer } from './eventMemberReducer';
 import { exerciseRoutineReducer } from './exerciseRoutineReducer';
 import { routineReducer } from './routineReducer';
 
-
-
 export const rootReducer = combineReducers({
   users: usersReducer,
   exercises: exerciseReducer,
@@ -22,5 +20,5 @@ export const rootReducer = combineReducers({
   subscriptions: subscriptionReducer,
   eventMembers: eventMemberReducer,
   exerciseRoutines: exerciseRoutineReducer,
-  routines: routineReducer
+  routines: routineReducer,
 });

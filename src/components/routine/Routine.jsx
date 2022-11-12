@@ -14,12 +14,12 @@ import { NavLink } from 'react-router-dom';
 export const Routine = ({ routines , isLoggedIn }) => {
   const { userId, _id } = routines;
   const dispatch = useDispatch();
-  
+
   return (
     <div className={styles.container} key={_id}>
       <div className={styles.column}>
         <span className={styles.title}>User</span>
-        <span className={styles.content}>{userId.name + ' ' + userId.lastName}</span>
+        <span className={styles.content}>{userId?.name + ' ' + userId?.lastName}</span>
       </div>
       {isLoggedIn && (
         <div className={styles.actions}>

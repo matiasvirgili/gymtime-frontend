@@ -87,7 +87,7 @@ export const ExerciseRoutineScreen = () => {
         <ExerciseRoutineForm />
       )}
       {(actionInProgress === COPY) && (
-        <ExerciseRoutineCopyForm/>
+        <ExerciseRoutineCopyForm exerciseRoutines={exerciseRoutines}/>
       )}
       {(actionInProgress === DELETE_ALL) && (
         <ConfirmDeleteAll />

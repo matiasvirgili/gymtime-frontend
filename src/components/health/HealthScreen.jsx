@@ -6,7 +6,10 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { CREATE, DELETE, UPDATE } from '../../redux/types/modalTypes';
 import { ConfirmDelete } from './ConfirmDelete';
 import { HealthForm } from './HealthForm';
-import { getHealthsAsync, setCreateAction } from '../../redux/actions/healthAction';
+import { 
+  getHealthsAsync, 
+  setCreateAction 
+} from '../../redux/actions/healthAction';
 
 export const HealthScreen = () => {
   const dispatch = useDispatch();
