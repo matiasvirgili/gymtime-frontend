@@ -26,7 +26,6 @@ const initialState = {
   userId: '',
   date: fecha,
   description: '',
-  likes: 0,
   type: ''
 };
 

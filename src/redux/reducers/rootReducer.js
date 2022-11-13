@@ -9,6 +9,8 @@ import { subscriptionReducer } from './subscriptionReducer';
 import { eventMemberReducer } from './eventMemberReducer';
 import { exerciseRoutineReducer } from './exerciseRoutineReducer';
 import { routineReducer } from './routineReducer';
+import { valorationReducer } from './valorationReducer';
+
 
 export const rootReducer = combineReducers({
   users: usersReducer,
@@ -21,4 +23,5 @@ export const rootReducer = combineReducers({
   eventMembers: eventMemberReducer,
   exerciseRoutines: exerciseRoutineReducer,
   routines: routineReducer,
+  valorations: valorationReducer
 });

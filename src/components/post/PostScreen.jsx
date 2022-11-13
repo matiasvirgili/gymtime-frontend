@@ -7,6 +7,7 @@ import { CREATE, DELETE, UPDATE } from '../../redux/types/modalTypes';
 import { ConfirmDelete } from './ConfirmDelete';
 import { PostForm } from './PostForm';
 import { getPostsAsync, setCreateAction } from '../../redux/actions/postAction';
+import { getValorationsWithPostIdAsync } from '../../redux/actions/valorationAction';
 
 export const PostScreen = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,12 @@ export const PostScreen = () => {
   
   useEffect(()=>{
     dispatch(getPostsAsync());
+    dispatch(getValorationsWithPostIdAsync(''))
   }, [])
+
+
+  const { list: valorationList } =
+  useSelector((state) => state.valorations);
 
   return (
     <div>
@@ -49,7 +55,7 @@ export const PostScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <PostList posts={posts} />
+      <PostList posts={posts} valorations = {valorationList} />
     </div>
   );
 };
