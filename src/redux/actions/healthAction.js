@@ -89,6 +89,23 @@ export const getHealthsAsync = () => async (dispatch) => {
     dispatch(setError(error?.response?.data?.error));
   }
 };
+export const getHealthsWithUserIdAsync = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      // eslint-disable-next-line no-undef
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/health?userId=${userId}`
+    );
+    if (res.status === 200) {
+      let healths = [];
+      for (let i = 0; i < res.data.length; i++) {
+          healths.push(res.data[i]);
+      }
+      dispatch(setHealths(healths));
+    }
+  } catch (error) {
+    dispatch(setError(error?.response?.data?.error));
+  }
+};
 export const deleteHealthAsync = (healthId) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {
