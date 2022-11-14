@@ -1,47 +1,23 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHealthsWithUserIdAsync } from '../../redux/actions/healthAction';
-import { getUsersAsync } from '../../redux/actions/usersAction';
-import { Line } from '@ant-design/charts';
+import 'antd/dist/antd.css'
 import styles from './HomeStyle.module.css';
+import { getUsersAsync } from '../../redux/actions/usersAction';
+import {GraphicsIMC} from './GraphicsIMC';
+import { GraphicsMacros } from './GraphicsMacros';
+import { GraphicsIMCActual } from './GraphicsIMCActual';
 
 export const HomeScreen = () => {
  
   const dispatch = useDispatch();
   
   useEffect(()=>{
-    dispatch(getUsersAsync());
-    dispatch(getHealthsWithUserIdAsync(credentials.userId._id))
+    dispatch(getUsersAsync())
   }, [])
-
+  
   const {
     credentials
   } = useSelector((state) => state.users);
-
-  const {
-    list: healths
-  } = useSelector((state) => state.healths);
-
-  const configuration={
-    data: healths,
-    title:{
-      visible:true,
-      text: "IMC per month"
-    },
-    xField: 'Month',
-    yField: 'IMC',
-    color: '#2593fc',
-    point:{
-      visible: true,
-      size: 5,
-      shape: 'diamond',
-      style:{
-        fill: 'white',
-        stroke: '#2593fc',
-        lineWidth: 2
-      }
-    }
-  }
 
 
   return (
@@ -70,12 +46,23 @@ export const HomeScreen = () => {
             <span>{credentials?.user?.permissionRole}</span>
           </div>
         </div>
-        <div className={styles.graphics}>
-          <div>
-            <br/><br />
-            <Line>{...configuration}</Line>
+        {credentials.user &&
+        <>
+          <div className={styles.graphicsGlobal}>
+            <div className= {styles.graphicsMacroAndImc}>
+              <div className={styles.graphicsMacros}>
+                <GraphicsMacros userId = {credentials?.user?._id}  />
+              </div>
+              <div className={styles.graphicsIMCActual}>
+                <GraphicsIMCActual userId = {credentials?.user?._id}  />
+              </div>
+            </div>
+            <div className={styles.graphicsIMC}>
+              <GraphicsIMC userId = {credentials?.user?._id}  />
+            </div>
           </div>
-        </div>
+        </>
+        }
       </div>
     </>
   )
