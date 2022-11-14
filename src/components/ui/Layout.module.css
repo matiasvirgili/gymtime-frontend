@@ -1,0 +1,18 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+.content {
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+.body{
+  align-content: space-between;
+  width: 85%;
+}
+
+.foot{
+  padding: 2rem
+}

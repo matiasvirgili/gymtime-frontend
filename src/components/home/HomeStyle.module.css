@@ -1,0 +1,23 @@
+.homePage{
+
+}
+.graphicsGlobal{
+    display: flex;
+    flex-direction: column;
+}
+.graphicsMacroAndImc{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+.graphicsMacros{
+    display: flex;
+    width: 90%;
+}
+.graphicsIMCActual{
+    display: flex;
+    width: 50%;
+}
+.graphicsIMC{
+
+}
