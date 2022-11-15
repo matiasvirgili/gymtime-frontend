@@ -22,7 +22,7 @@ export const ConfirmDelete = ({ health }) => {
       <>
         <h2>You are about to delete a Health</h2>
         {error && <ErrorContainer message={error} />}
-        <p>{`This will delete the health of ${health.userId.lastName}, ${health.userId.name} on ${health.day.split("T", 1)?.[0]} permanently`}</p>
+        <p>{`This will delete the health of ${health?.userId?.lastName}, ${health?.userId?.name} on ${health?.day?.split("T", 1)?.[0]} permanently`}</p>
         <p>Are you sure?</p>
         <div className={styles.actionsContainer}>
           <Button
