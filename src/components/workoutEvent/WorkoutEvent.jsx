@@ -61,5 +61,5 @@ export const WorkoutEvent = ({ workoutEvent, isLoggedIn }) => {
 
 WorkoutEvent.propTypes = {
   workoutEvent: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired
+  isLoggedIn: PropTypes.string
 };

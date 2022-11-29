@@ -50,5 +50,5 @@ export const User = ({ user, isLoggedIn }) => {
 
 User.propTypes = {
   user: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.string
 };

@@ -20,7 +20,7 @@ export const Post = ({ post, isLoggedIn, valorations}) => {
     description, 
   } = post;
 
-  const valorationsExist = valorations.filter(i => i.postId === post._id && i.userId === isLoggedIn._id)
+  const valorationsExist = valorations?.filter(i => i.postId === post?._id && i.userId === isLoggedIn?._id)
 
   //PROMEDIO DE VALORACIONES PARA LA ASIGNACION EN VALUES DE LAS VALORACIONES
   let valorationsArray = valorations.filter(i => i.postId === post._id)
@@ -71,6 +71,7 @@ export const Post = ({ post, isLoggedIn, valorations}) => {
               onChange={ (event, newValue) => {
                 valorationChange(newValue)
               }}
+              disabled = {!isLoggedIn}
           />
         </Box>
       </div>
@@ -98,6 +99,6 @@ export const Post = ({ post, isLoggedIn, valorations}) => {
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.object.isRequired,
+  isLoggedIn: PropTypes.object,
   valorations: PropTypes.array.isRequired
 };

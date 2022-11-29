@@ -82,7 +82,7 @@ export const ExerciseRoutineScreen = () => {
         </div>
       </div>
 
-      <h2>Routines</h2>
+      <h2>Exercises in Routine</h2>
       {(actionInProgress === UPDATE || actionInProgress === CREATE) && (
         <ExerciseRoutineForm />
       )}

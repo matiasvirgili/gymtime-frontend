@@ -47,5 +47,5 @@ export const Exercise = ({ exercises , isLoggedIn }) => {
 
 Exercise.propTypes = {
   exercises: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.string
 };

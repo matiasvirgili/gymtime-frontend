@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import styles from './Login.module.css';
@@ -15,19 +15,15 @@ export const Login = () => {
   const avatarStyle = { backgroundColor: '#1bbd7e' };
   const btnstyle = { margin: '50px 0' };
 
-  useEffect(() => {
+  const handleLogin = async () => {
+    if (!email || !password) return;
+    dispatch(login(email, password, history));
     const userSerialized = localStorage.getItem('user');
     if (userSerialized) {
       const user = JSON.parse(userSerialized);
       dispatch(setUserCredentials(user));
       history.push('/home');
     }
-    return () => {};
-  }, []);
-
-  const handleLogin = async () => {
-    if (!email || !password) return;
-    dispatch(login(email, password, history));
   };
 
   return (

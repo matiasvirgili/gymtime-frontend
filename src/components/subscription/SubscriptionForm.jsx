@@ -81,7 +81,7 @@ export const SubscriptionForm = () => {
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}
-          initialValues= {selectedSubscription? {
+          initialValues = {selectedSubscription? {
             ...selectedSubscription, 
             dayOfSubscription : selectedSubscription.dayOfSubscription.split("T", 1)?.[0],
             dayOfExpiration : selectedSubscription.dayOfExpiration.split("T", 1)?.[0]

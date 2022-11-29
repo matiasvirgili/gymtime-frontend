@@ -10,12 +10,13 @@ import {
 } from '../../redux/actions/exerciseRoutineAction';
 
 export const ExerciseRoutine = ({ exerciseRoutine , isLoggedIn }) => {
-  const { exerciseId, duration, breakDuration, _id } = exerciseRoutine;
+  const { exerciseId, duration, breakDuration, position, _id } = exerciseRoutine;
   const dispatch = useDispatch();
 
   return (
     <div>
       <div className={styles.container} key={_id}>
+        <span>{position}</span>
         <div className={styles.column}>
           <span className={styles.title}>Exercise</span>
           <span className={styles.content}>{exerciseId.name}</span>
@@ -48,5 +49,5 @@ export const ExerciseRoutine = ({ exerciseRoutine , isLoggedIn }) => {
 
 ExerciseRoutine.propTypes = {
   exerciseRoutine: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.string
 };

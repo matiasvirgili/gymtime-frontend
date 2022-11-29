@@ -25,10 +25,10 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
   } = useSelector((state) => state.eventMembers);
   
   useEffect(()=>{
-    dispatch(getEventMembersAsync(eventMemberState.userId, ""));
+    if(eventMemberState?.userId) dispatch(getEventMembersAsync(eventMemberState?.userId, ""));
   }, [])
   
-  const EventMemberCreated = eventMembers && eventMembers.filter(i => i.workoutEvent === eventMemberState.workoutEvent)
+  const EventMemberCreated = eventMembers && eventMembers.filter(i => i.workoutEvent === eventMemberState?.workoutEvent)
 
   return (
     <div className={styles.container} key={_id}>
@@ -89,5 +89,5 @@ export const EventMember = ({ workoutEvent, isLoggedIn }) => {
 
 EventMember.propTypes = {
   workoutEvent: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired
+  isLoggedIn: PropTypes.string
 };

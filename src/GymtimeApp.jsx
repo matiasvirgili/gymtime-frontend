@@ -15,6 +15,8 @@ function GymTimeApp() {
       const user = JSON.parse(userSerialized)
       dispatch(setUserCredentials(user))
       history.push('/home')
+    } else {
+      history.push('/')
     }
     return () => {};
   }, []);

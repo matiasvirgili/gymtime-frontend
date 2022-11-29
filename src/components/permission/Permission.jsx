@@ -38,5 +38,5 @@ export const Permission = ({ permission = {}, isLoggedIn }) => {
 
 Permission.propTypes = {
   permission: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.string
 };

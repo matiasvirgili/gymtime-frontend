@@ -18,6 +18,7 @@ import ComboBoxInput from '../shared/ComboBoxInput';
 import { getUsersAsync } from '../../redux/actions/usersAction';
 import { getExercisesAsync } from '../../redux/actions/exercisesAction';
 import { TextInput } from '../shared/TextInput';
+import { CREATE } from '../../redux/types/modalTypes';
 
 
 export const RoutineForm = () => {
@@ -70,7 +71,7 @@ export const RoutineForm = () => {
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}
-          initialValues= {selectedRoutine || initialState}
+          initialValues= {(actionInProgress === CREATE)? initialState : selectedRoutine }
         >
           {({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>

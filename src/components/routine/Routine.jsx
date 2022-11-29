@@ -48,5 +48,5 @@ export const Routine = ({ routines , isLoggedIn }) => {
 
 Routine.propTypes = {
   routines: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.string
 };

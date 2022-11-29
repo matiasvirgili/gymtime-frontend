@@ -59,7 +59,6 @@ export const ExerciseRoutineForm = () => {
       dispatch(updateExerciseRoutineAsync(exerciseRoutine));
     } else {
       exerciseRoutine.routineId = selectedRoutine._id;
-      exerciseRoutine.exerciseId = exerciseRoutine.exerciseId._id
       dispatch(createExerciseRoutineAsync(exerciseRoutine));
     }
   };
@@ -76,7 +75,10 @@ export const ExerciseRoutineForm = () => {
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}
-          initialValues= {selectedExerciseRoutine || initialState}
+          initialValues= {selectedExerciseRoutine? {
+            ...selectedExerciseRoutine,
+            exerciseId : selectedExerciseRoutine.exerciseId._id
+          } : initialState}
         >
           {({ handleSubmit, submitting }) => (
             <form onSubmit={handleSubmit}>
@@ -88,7 +90,7 @@ export const ExerciseRoutineForm = () => {
                 </Field>
               </div>
               <div className={styles.healthSet}>
-                <Field name={"exerciseId._id"} validate={required}>
+                <Field name={"exerciseId"} validate={required}>
                   {({ input }) => (
                     <ComboBoxInput input={input} label="Exercise" options={exerciseList} optionsKey={"name"} optionsValue={"_id"}/>
                   )}

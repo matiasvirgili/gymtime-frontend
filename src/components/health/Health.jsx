@@ -44,5 +44,5 @@ export const Health = ({ health, isLoggedIn }) => {
 
 Health.propTypes = {
   health: PropTypes.object.isRequired,
-  isLoggedIn: PropTypes.string.isRequired,
+  isLoggedIn: PropTypes.string
 };
