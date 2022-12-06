@@ -11,7 +11,7 @@ import {
 } from '../../redux/actions/usersAction';
 import Button from '@mui/lab/LoadingButton';
 import { GenericModal } from '../shared/GenericModal';
-import { UPDATE } from '../../redux/types/modalTypes';
+import { CONSULT, UPDATE } from '../../redux/types/modalTypes';
 import { Form, Field } from 'react-final-form';
 import { TextInput } from '../shared/TextInput';
 import { CheckboxInput } from '../shared/CheckBoxInput';
@@ -114,42 +114,42 @@ export const HealthForm = () => {
               <div className={styles.healthSet}>
                 <Field name={"userId._id"} validate={required}>
                   {({ input }) => (
-                    <ComboBoxInput input={input} label="User" options={userFormated} optionsKey={"userName"} optionsValue={"_id"}/>
+                    <ComboBoxInput input={input} label="User" options={userFormated} optionsKey={"userName"} optionsValue={"_id"} disabled={!(actionInProgress != CONSULT)}/>
                   )}
                 </Field>
               </div>
               <div>
                 <Field name="height" validate={composeValidators(required, mustBeNumber)}>
                   {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Height" />
+                    <TextInput input={input} meta={meta} name="Height" disabled={!(actionInProgress != CONSULT)}/>
                   )}
                 </Field>
               </div>
               <div>
                 <Field name="weight" validate={composeValidators(required, mustBeNumber)}>
                   {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Weight" />
+                    <TextInput input={input} meta={meta} name="Weight" disabled={!(actionInProgress != CONSULT)}/>
                   )}
                 </Field>
               </div>
               <div>
                 <Field name="age" validate={composeValidators(required, mustBeNumber)}>
                   {({ input, meta }) => (
-                    <TextInput input={input} meta={meta} name="Age" />
+                    <TextInput input={input} meta={meta} name="Age" disabled={!(actionInProgress != CONSULT)}/>
                   )}
                 </Field>
               </div>
               <div className={styles.healthSet}>
                 <Field name="sex" validate={required}>
                 {({input}) => (
-                   <ComboBoxInput input={input} label="Sex" options={optionsSex} optionsKey="sex" optionsValue={"sex"}/>
+                   <ComboBoxInput input={input} label="Sex" options={optionsSex} optionsKey="sex" optionsValue={"sex"} disabled={!(actionInProgress != CONSULT)}/>
                   )}
                 </Field>
               </div>
               <div>
                 <Field name="macroCheck" type="checkbox">
                   {({input}) => (
-                   <CheckboxInput input={input} name="Macros" />
+                   <CheckboxInput input={input} name="Macros"  disabled={!(actionInProgress != CONSULT)}/>
                   )}
                 </Field>
                 {values.macroCheck &&
@@ -157,14 +157,14 @@ export const HealthForm = () => {
                     <div className={styles.healthSet}>
                       <Field name="stage" validate={required}>
                       {({input}) => (
-                        <ComboBoxInput input={input} label="Stage" options={optionsStage} optionsKey="stage" optionsValue={"stage"}/>
+                        <ComboBoxInput input={input} label="Stage" options={optionsStage} optionsKey="stage" optionsValue={"stage"}  disabled={!(actionInProgress != CONSULT)}/>
                       )}
                       </Field>
                     </div>
                     <div className={styles.healthSet}>
                       <Field name="activity" validate={required}>
                       {({input}) => (
-                        <ComboBoxInput input={input} label="Activity" options={optionsActivity} optionsKey="activity" optionsValue={"activity"}/>
+                        <ComboBoxInput input={input} label="Activity" options={optionsActivity} optionsKey="activity" optionsValue={"activity"}  disabled={!(actionInProgress != CONSULT)}/>
                       )}
                       </Field>
                     </div>
@@ -173,17 +173,19 @@ export const HealthForm = () => {
               </div>
     
               <div className={styles.actionsContainer}>
-                <Button
-                  disabled={submitting}
-                  color="primary"
-                  variant="contained"
-                  disableRipple
-                  type="submit"
-                  loading={isLoading}
-                  onClick={handleSubmit}
-                >
-                  {actionInProgress}
-                </Button>
+                {actionInProgress != CONSULT && (
+                  <Button
+                    disabled={submitting}
+                    color="primary"
+                    variant="contained"
+                    disableRipple
+                    type="submit"
+                    loading={isLoading}
+                    onClick={handleSubmit}
+                  >
+                    {actionInProgress}
+                  </Button>
+                )}
                 <Button variant="outlined" type="button" onClick={handleCancel}>
                   Cancel
                 </Button>

@@ -18,7 +18,7 @@ export const GraphicsMacros = (userId) => {
 
     ///////////REORGANIZACION DE DATOS PARA EL GRAFICO////////////
 
-    var healthsOrdenDeFecha = healths.sort((a, b) => {
+    var healthsOrdenDeFecha = healths?.sort((a, b) => {
         if(new Date(a.day).getTime() < new Date(b.day).getTime()) return 1 
         else return -1})
     var actualHealthMacros = healthsOrdenDeFecha.find(i => i.macroCheck === true)
@@ -83,8 +83,8 @@ export const GraphicsMacros = (userId) => {
         },
         ],
     }
-  
     return (
+        (healths.length != 0) && (
         <>
             <div className={styles.divContainerMacros}>
                 <div className={styles.divBasal}>
@@ -94,5 +94,6 @@ export const GraphicsMacros = (userId) => {
                 <Pie {...configuration} className={styles.pie}/>;
             </div>
         </>
+        )
     )
 };

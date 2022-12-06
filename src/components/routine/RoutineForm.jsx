@@ -49,7 +49,8 @@ export const RoutineForm = () => {
       routine.userId = routine.userId._id
       dispatch(updateRoutineAsync(routine));
     } else {
-      dispatch(createRoutineAsync({userId: routine.userId._id, name: routine.name}));
+      routine.userId = routine.userId._id
+      dispatch(createRoutineAsync(routine));
     }
   };
   const handleCancel = () => {

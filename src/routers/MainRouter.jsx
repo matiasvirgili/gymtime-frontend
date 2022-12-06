@@ -13,7 +13,7 @@ import { PostScreen } from '../components/post/PostScreen';
 import { SubscriptionScreen } from '../components/subscription/SubscriptionScreen';
 import { EventMemberScreen } from '../components/eventMember/EventMemberScreen';
 import { RoutineScreen } from '../components/routine/RoutineScreen';
- import { ExerciseRoutineScreen } from '../components/exerciseRoutine/ExerciseRoutineScreen';
+import { ExerciseRoutineScreen } from '../components/exerciseRoutine/ExerciseRoutineScreen';
 
 export const MainRouter = () => {
   return (

@@ -96,6 +96,24 @@ export const getRoutineAsync = () => async (dispatch) => {
   }
 };
 
+export const getRoutineWithUserIdAsync = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      // eslint-disable-next-line no-undef
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines?userId=${userId}`
+    );
+    if (res.status === 200) {
+      let routine = [];
+      for (let i = 0; i < res.data.length; i++) {
+        routine.push(res.data[i]);
+      }
+      dispatch(setRoutine(routine));
+    }
+  } catch (error) {
+    dispatch(setError(error?.response?.data?.error));
+  }
+};
+
 export const createRoutineAsync = (routine) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {

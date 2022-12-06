@@ -19,25 +19,20 @@ import {
 
 const initialState = {
   role: '',
-  addUser: '',
-  modifyUser: '',
-  deleteUser: '',
-  addHealth: '',
-  modifyHealth: '',
-  deleteHealth: '',
-  addExcercises: '',
-  modifyExcercises: '',
-  deleteExcercises: '',
-  addRoutines: '',
-  modifyRoutines: '',
-  deleteRoutines: '',
-  addSuscription: '',
-  modifySuscription: '',
-  deleteSuscription: ''
+  users: '',
+  permissions: '',
+  exercises: '',
+  routinesAction: '',
+  routinesView: '',
+  healthsAction: '',
+  healthsView: '',
+  subscriptions: '',
+  lessons: '',
+  workout: ''
 };
 
 export const PermissionForm = () => {
-  const { actionInProgress, selectedPermission, isLoading, error } = useSelector(
+  const { actionInProgress, selectedPermission, isLoading, error  } = useSelector(
     (state) => state.permissions
   );
 
@@ -78,122 +73,88 @@ export const PermissionForm = () => {
                 </Field>
               </div>
               <div className={styles.permissionCombo}>
-                Users
                 <div className={styles.permissionSet}>
                   <div>
-                    <Field name="addUser" type="checkbox">
+                    <Field name="users" type="checkbox">
                       {({input}) => (
-                      <CheckboxInput input={input} name="Add" />
-                      )}
-                    </Field>
-                  </div>
-                  <div>
-                    <Field name="modifyUser" type="checkbox">
-                      {({input}) => (
-                      <CheckboxInput input={input} name="Modify" />
-                      )}
-                    </Field>
-                  </div>
-                  <div>
-                    <Field name="deleteUser" type="checkbox">
-                      {({input}) => (
-                      <CheckboxInput input={input} name="Delete" />
+                      <CheckboxInput input={input} name="Users" />
                       )}
                     </Field>
                   </div>
                 </div>
-                Health
                 <div className={styles.permissionSet}>
                   <div>
-                    <Field name="addHealth" type="checkbox">
+                    <Field name="permissions" type="checkbox">
                       {({input}) => (
-                      <CheckboxInput input={input} name="Add" />
-                      )}
-                    </Field>
-                  </div>
-                  <div>
-                    <Field name="modifyHealth" type="checkbox">
-                      {({input}) => (
-                      <CheckboxInput input={input} name="Modify" />
-                      )}
-                    </Field>
-                  </div>
-                  <div>
-                    <Field name="deleteHealth" type="checkbox">
-                      {({input}) => (
-                      <CheckboxInput input={input} name="Delete" />
+                      <CheckboxInput input={input} name="Permissions" />
                       )}
                     </Field>
                   </div>
                 </div>
-                Excercises
                 <div className={styles.permissionSet}>
                   <div>
-                    <Field name="addExcercises" type="checkbox">
+                    <Field name="exercises" type="checkbox">
                       {({input}) => (
-                      <CheckboxInput input={input} name="Add" />
-                      )}
-                    </Field>
-                  </div>
-                  <div>
-                    <Field name="modifyExcercises" type="checkbox">
-                      {({input}) => (
-                      <CheckboxInput input={input} name="Modify" />
-                      )}
-                    </Field>
-                  </div>
-                  <div>
-                    <Field name="deleteExcercises" type="checkbox">
-                      {({input}) => (
-                      <CheckboxInput input={input} name="Delete" />
+                      <CheckboxInput input={input} name="Exercises" />
                       )}
                     </Field>
                   </div>
                 </div>
-                Routines
                 <div className={styles.permissionSet}>
                   <div>
-                    <Field name="addRoutines" type="checkbox">
+                    <Field name="routinesAction" type="checkbox">
                       {({input}) => (
-                      <CheckboxInput input={input} name="Add" />
+                      <CheckboxInput input={input} name="Actions in routines" />
                       )}
                     </Field>
                   </div>
                   <div>
-                    <Field name="modifyRoutines" type="checkbox">
+                    <Field name="routinesView" type="checkbox">
                       {({input}) => (
-                      <CheckboxInput input={input} name="Modify" />
-                      )}
-                    </Field>
-                  </div>
-                  <div>
-                    <Field name="deleteRoutines" type="checkbox">
-                      {({input}) => (
-                      <CheckboxInput input={input} name="Delete" />
+                      <CheckboxInput input={input} name="View of routines" />
                       )}
                     </Field>
                   </div>
                 </div>
-                Suscription
                 <div className={styles.permissionSet}>
                   <div>
-                    <Field name="addSuscription" type="checkbox">
+                    <Field name="healthsAction" type="checkbox">
                       {({input}) => (
-                      <CheckboxInput input={input} name="Add" />
+                      <CheckboxInput input={input} name="Action in healths" />
                       )}
                     </Field>
                   </div>
                   <div>
-                    <Field name="modifySuscription" type="checkbox">
+                    <Field name="healthsView" type="checkbox">
                       {({input}) => (
-                      <CheckboxInput input={input} name="Modify" />
+                      <CheckboxInput input={input} name="View of healths" />
                       )}
                     </Field>
                   </div>
+                </div>
+                <div className={styles.permissionSet}>
                   <div>
-                    <Field name="deleteSuscription" type="checkbox">
+                    <Field name="subscriptions" type="checkbox">
                       {({input}) => (
-                      <CheckboxInput input={input} name="Delete" />
+                      <CheckboxInput input={input} name="Subscriptions" />
+                      )}
+                    </Field>
+                  </div>
+                </div>
+                <div className={styles.permissionSet}>
+                  <div>
+                    <Field name="lessons" type="checkbox">
+                      {({input}) => (
+                      <CheckboxInput input={input} name="Lessons" />
+                      )}
+                    </Field>
+                  </div>
+                </div>
+                <div className={styles.permissionSet}>
+                  <div>
+                    <Field name="workout" type="checkbox">
+                      {({input}) => (
+                      <CheckboxInput input={input} name="Workout" />
                       )}
                     </Field>
                   </div>

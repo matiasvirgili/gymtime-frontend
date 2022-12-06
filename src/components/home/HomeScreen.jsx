@@ -46,7 +46,7 @@ export const HomeScreen = () => {
             <span>{credentials?.user?.permissionRole}</span>
           </div>
         </div>
-        {credentials.user &&
+        {credentials?.user &&
         <>
           <div className={styles.graphicsGlobal}>
             <div className= {styles.graphicsMacroAndImc}>

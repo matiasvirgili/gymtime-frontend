@@ -31,7 +31,7 @@ export const ExerciseRoutineCopyForm = () => {
 
 
   const routineFiltred = routines.filter(i =>  {
-    if(i.userId._id != selectedRoutine.userId._id && (i.name != undefined || i.name != null || i.name !="")) return i}
+    if((i.name != undefined || i.name != null || i.name !="")) return i}
    )
 
 

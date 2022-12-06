@@ -30,11 +30,12 @@ export const ListOfParticipantsForm = () => {
     <GenericModal>
       <>
         <h2>List of participants:</h2>
-        {error && <ErrorContainer message={error} />}
-
-        {eventMembers.map((evntMmb) => (
-            <p key={evntMmb._id} >{`${evntMmb.userId.lastName}, ${evntMmb.userId.name}`}</p>
+        <div>
+          {error && <ErrorContainer message={error} />}
+          {eventMembers.map((evntMmb) => (
+              <p key={evntMmb._id} >{`${evntMmb.userId.lastName}, ${evntMmb.userId.name}`}</p>
           ))}
+        </div>
 
         <div className={styles.actionsContainer}>
           <Button onClick={handleCancel} variant="outlined" disableRipple>

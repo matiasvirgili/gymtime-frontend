@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FaTimes as DeleteIcon, FaListAlt as ListExercises } from 'react-icons/fa';
 import { MdEdit as EditIcon } from 'react-icons/md';
 import styles from './Routine.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setDeleteAction,
   setUpdateAction,
@@ -12,8 +12,16 @@ import {
 import { NavLink } from 'react-router-dom';
 
 export const Routine = ({ routines , isLoggedIn }) => {
-  const { userId, _id } = routines;
+  const { name, userId, _id } = routines;
   const dispatch = useDispatch();
+  
+  const { permissionUser } = useSelector(
+    (state) => state.permissions
+  );
+  let permissionsConvert 
+  if(permissionUser != null){
+    permissionsConvert  = permissionUser[0]
+  }
 
   return (
     <div className={styles.container} key={_id}>
@@ -21,8 +29,12 @@ export const Routine = ({ routines , isLoggedIn }) => {
         <span className={styles.title}>User</span>
         <span className={styles.content}>{userId?.name + ' ' + userId?.lastName}</span>
       </div>
+      <div className={styles.column}>
+        <span className={styles.title}>Routine</span>
+        <span className={styles.content}>{name}</span>
+      </div>
+      <div className={styles.actions}>
       {isLoggedIn && (
-        <div className={styles.actions}>
           <NavLink to="/exerciseroutines" className={styles.link}>
             <ListExercises
               className={styles.listIcon}
@@ -30,18 +42,20 @@ export const Routine = ({ routines , isLoggedIn }) => {
               }
             />
           </NavLink>
+      )}
+      {permissionsConvert?.routinesAction && (
+        <>
           <EditIcon
             className={styles.editIcon}
             onClick={() => dispatch(setUpdateAction(routines))}
           />
-          {isLoggedIn != _id && (
-            <DeleteIcon
-              className={styles.deleteIcon}
-              onClick={() => dispatch(setDeleteAction(routines))}
-            />
-          )}
-        </div>
+          <DeleteIcon
+            className={styles.deleteIcon}
+            onClick={() => dispatch(setDeleteAction(routines))}
+          />
+        </>
       )}
+      </div>
     </div>
   );
 };

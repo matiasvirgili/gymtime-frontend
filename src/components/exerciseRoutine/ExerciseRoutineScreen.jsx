@@ -52,29 +52,37 @@ export const ExerciseRoutineScreen = () => {
     }
   }, []);
   
+  const { permissionUser } = useSelector(
+    (state) => state.permissions
+  );
+  let permissionsConvert 
+  if(permissionUser != null){
+    permissionsConvert  = permissionUser[0]
+  }
+
   return (
     <div>
       <div className={styles.topButtons}>
         <div>
           <NavLink to="/routines" className={styles.link}>
-          <button className={styles.backButton}>
-            Return
-          </button>
+            <button className={styles.backButton}>
+              Return
+            </button>
           </NavLink>
 
-          {credentials.user &&
+          {(credentials.user && permissionsConvert?.routinesAction) &&
             <button className={styles.newButton} onClick={handleAddClick}>
               New Excercise
             </button>
           } 
         </div>
         <div>
-          {credentials.user &&
+          {(credentials.user && permissionsConvert?.routinesAction) &&
             <button className={styles.copyButton} onClick={handleCopyRoutineClick}>
               Copy routines
             </button>
           } 
-          {credentials.user &&
+          {(credentials.user && permissionsConvert?.routinesAction) &&
             <button className={styles.deleteButton} onClick={handleDeleteAllClick}>
               Delete all exercises
             </button>

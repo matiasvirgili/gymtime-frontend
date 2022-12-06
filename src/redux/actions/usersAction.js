@@ -94,6 +94,7 @@ export const setUserCredentials = (user) => {
 };
 export const login = (email, password, history) => async (dispatch) => {
   dispatch(setLoadingTrue());
+  
   const payload = { email, password }
   try {
     const res = await axios.post(
@@ -104,12 +105,16 @@ export const login = (email, password, history) => async (dispatch) => {
 
     if(res.status === 200) {
       const { data } = res
-      localStorage.setItem('auth_token', data.token)
-      localStorage.setItem('user', JSON.stringify(data.user))
-      dispatch(userLoginAction(data))
-      history.replace('/home')
+      if(res.data.user.status) {
+        localStorage.setItem('auth_token', data.token)
+        localStorage.setItem('user', JSON.stringify(data.user))
+        dispatch(userLoginAction(data))
+        dispatch(setUserCredentials(data.user));
+        history.push('/home')
+      } else {
+        dispatch(setError("Account status disabled, contact support"))
+      }
     }
-
   } catch (error){
     dispatch(setError(error?.response?.data?.error));
   }

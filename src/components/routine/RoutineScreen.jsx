@@ -8,8 +8,10 @@ import { ConfirmDelete } from './ConfirmDelete';
 import { RoutineForm } from './RoutineForm';
 import {
   getRoutineAsync,
+  getRoutineWithUserIdAsync,
   setCreateAction as setCreateActionRoutine,
 } from '../../redux/actions/routineAction';
+import { getPermissionsWithRoleAsync } from '../../redux/actions/permissionAction';
 
 export const RoutineScreen = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,15 @@ export const RoutineScreen = () => {
     selectedRoutine,
   } = useSelector((state) => state.routines);
 
+
+  const { permissionUser } = useSelector(
+    (state) => state.permissions
+  );
+  let permissionsConvert 
+  if(permissionUser != null){
+    permissionsConvert  = permissionUser[0]
+  }
+
   const {
     credentials
   } = useSelector((state) => state.users);
@@ -29,14 +40,24 @@ export const RoutineScreen = () => {
   };
 
   useEffect(() => {
-    dispatch(getRoutineAsync());
-  }, []);
+      if(permissionsConvert?.routinesView && permissionsConvert?.routinesAction) {
+        dispatch(getRoutineAsync())
+      }
+      if(permissionsConvert?.routinesView && !permissionsConvert?.routinesAction) {
+        const actuallyUserLogged = JSON.parse(localStorage.getItem('user')) 
+        dispatch(getRoutineWithUserIdAsync(actuallyUserLogged?._id))
+      }
+      if(permissionsConvert== null){
+        const user = JSON.parse(localStorage.getItem('user')) 
+        dispatch(getPermissionsWithRoleAsync(user?.permissionRole))
+      }
+  }, [permissionsConvert]);
   
   return (
     <div>
       <h2>Routines</h2>
         
-      {credentials.user &&
+      {(credentials.user && permissionsConvert?.routinesAction) &&
         <button className={styles.newButton} onClick={handleAddClick}>
           New Routine
         </button>

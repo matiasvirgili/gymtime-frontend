@@ -9,6 +9,7 @@ import {
   HEALTH_SET_CREATE_ACTION,
   HEALTH_SET_UPDATE_ACTION,
   HEALTH_SET_DELETE_ACTION,
+  HEALTH_SET_CONSULT_ACTION,
   HEALTH_UNSET_ACTION,
 } from '../types/healthType';
 import { getConfig } from '../../helpers/axiosConfig';
@@ -63,6 +64,12 @@ export const setDeleteAction = (health) => {
 export const setUpdateAction = (health) => {
   return {
       type: HEALTH_SET_UPDATE_ACTION,
+      payload: health,
+  };
+};
+export const setConsultAction = (health) => {
+  return {
+      type: HEALTH_SET_CONSULT_ACTION,
       payload: health,
   };
 };

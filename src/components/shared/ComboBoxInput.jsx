@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { FormControl, FormHelperText, InputLabel } from '@mui/material';
 import { Box } from '@mui/system';
 
-export default function ComboBoxInput({ input, options, label, optionsKey, optionsValue}) {
+export default function ComboBoxInput({ input, options, label, optionsKey, optionsValue, disabled}) {
     const [selected, setSelected] = useState(input.value);
 
     const selectionChangeHandler = (event) => {
@@ -17,6 +17,7 @@ export default function ComboBoxInput({ input, options, label, optionsKey, optio
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">{label}</InputLabel>
         <Select
+          disabled = {disabled}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={selected}
@@ -39,5 +40,6 @@ export default function ComboBoxInput({ input, options, label, optionsKey, optio
     options: PropTypes.array.isRequired,
     label: PropTypes.string.isRequired,
     optionsKey: PropTypes.string.isRequired,
-    optionsValue: PropTypes.string.isRequired
+    optionsValue: PropTypes.string.isRequired,
+    disabled: PropTypes.string
   }

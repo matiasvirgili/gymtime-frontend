@@ -12,7 +12,8 @@
 .permissionSet{
   display: flex;
   flex-direction: row;
-  justify-content:space-around;
+  justify-content:initial;
+  padding-left: 0.8rem;
   margin: 0.2rem;
   border: 2px solid rgb(230, 215, 215);
   border-radius: 10px;

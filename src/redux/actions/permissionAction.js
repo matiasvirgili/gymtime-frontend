@@ -10,6 +10,7 @@ import {
   PERMISSION_SET_UPDATE_ACTION,
   PERMISSION_SET_DELETE_ACTION,
   PERMISSION_UNSET_ACTION,
+  USER_SET_USER_PERMISSIONS
 } from '../types/permissionType.js';
 import { getConfig } from '../../helpers/axiosConfig';
 
@@ -35,6 +36,12 @@ export const deletePermission = (permissionId) => {
 export const setPermissions = (permissions) => {
   return {
     type: USER_SET_ALL_PERMISSIONS,
+    payload: permissions,
+  };
+};
+export const setUserPermissions = (permissions) => {
+  return {
+    type: USER_SET_USER_PERMISSIONS,
     payload: permissions,
   };
 };
@@ -89,6 +96,23 @@ export const getPermissionsAsync = () => async (dispatch) => {
     dispatch(setError(error?.response?.data?.error));
   }
 };
+export const getPermissionsWithRoleAsync = (role) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      // eslint-disable-next-line no-undef
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission?role=${role}`
+    );
+    if (res.status === 200) {
+      let permissions = [];
+      for (let i = 0; i < res.data.length; i++) {
+        permissions.push(res.data[i]);
+      }
+      await dispatch(setUserPermissions(permissions));
+    }
+  } catch (error) {
+    dispatch(setError(error?.response?.data?.error));
+  }
+};
 export const deletePermissionAsync = (permissionId) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {
@@ -119,6 +143,8 @@ export const createPermissionAsync = (permission) => async (dispatch) => {
       getConfig()
     );
     if (res.status === 201) {
+      const user = JSON.parse(localStorage?.getItem('user')) 
+      dispatch(getPermissionsWithRoleAsync(user?.permissionRole))
       return dispatch(createPermission(res.data.data));
     }
   } catch (error) {
@@ -140,6 +166,8 @@ export const updatePermissionAsync = (permission) => async (dispatch) => {
       getConfig()
     );
     if (res.status === 200) {
+      const user = JSON.parse(localStorage?.getItem('user')) 
+      dispatch(getPermissionsWithRoleAsync(user?.permissionRole))
       return dispatch(updatePermission(res.data.data));
     }
   } catch (error) {

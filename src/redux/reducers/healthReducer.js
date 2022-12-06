@@ -9,8 +9,9 @@ import {
     HEALTH_SET_UPDATE_ACTION,
     HEALTH_SET_DELETE_ACTION,
     HEALTH_UNSET_ACTION,
+    HEALTH_SET_CONSULT_ACTION
   } from '../types/healthType';
-  import { UPDATE, DELETE, CREATE, NONE } from '../types/modalTypes';
+  import { UPDATE, DELETE, CREATE, CONSULT, NONE } from '../types/modalTypes';
 
     const initialState = {
     list: [],
@@ -84,6 +85,12 @@ import {
             return {
               ...state,
               actionInProgress: DELETE,
+              selectedHealth: { ...action.payload },
+            };
+          case HEALTH_SET_CONSULT_ACTION:
+            return {
+              ...state,
+              actionInProgress: CONSULT,
               selectedHealth: { ...action.payload },
             };
           case HEALTH_UNSET_ACTION:

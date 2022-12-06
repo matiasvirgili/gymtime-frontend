@@ -54,8 +54,10 @@ export const UserForm = () => {
   const handleFormSubmit = (user) => {
     if (actionInProgress === UPDATE) {
       user._id = selectedUser._id;
+      user.status ? (user.status = true) : (user.status = false)
       dispatch(updateUserAsync(user));
     } else {
+      user.status ? (user.status = true) : (user.status = false)
       dispatch(createUserAsync(user));
     }
   };

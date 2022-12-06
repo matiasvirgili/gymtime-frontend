@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import styles from './Login.module.css';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login, setUserCredentials } from '../../redux/actions/usersAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/actions/usersAction';
+import { ErrorContainer } from '../shared/ErrorContainer';
 
 export const Login = () => {
   const history = useHistory();
@@ -12,18 +13,12 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { error } =
+  useSelector((state) => state.users);
+
+
   const avatarStyle = { backgroundColor: '#1bbd7e' };
   const btnstyle = { margin: '50px 0' };
-
-  useEffect(() => {
-    const userSerialized = localStorage.getItem('user');
-    if (userSerialized) {
-      const user = JSON.parse(userSerialized);
-      dispatch(setUserCredentials(user));
-      history.push('/home');
-    }
-    return () => {};
-  }, []);
 
   const handleLogin = async () => {
     if (!email || !password) return;
@@ -42,6 +37,7 @@ export const Login = () => {
           </Avatar>
           <h2>Sign In</h2>
         </Grid>
+        {error && <ErrorContainer message={error} />}
         <TextField
           label="Email"
           placeholder="Enter email"

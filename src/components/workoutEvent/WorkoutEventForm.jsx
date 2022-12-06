@@ -51,13 +51,13 @@ export const WorkoutEventForm = () => {
   };
 
   const optionsDay=[
-    {"day": "Lunes"}, 
-    {"day": "Martes"}, 
-    {"day": "Miercoles"}, 
-    {"day": "Jueves"},
-    {"day": "Viernes"},
-    {"day": "Sabado"},
-    {"day": "Domingo"}
+    {"day": "Monday"}, 
+    {"day": "Tuesday"}, 
+    {"day": "Wednesday"}, 
+    {"day": "Thursday"},
+    {"day": "Friday"},
+    {"day": "Saturday"},
+    {"day": "Sunday"}
   ]
 
   const optionsLocation=[

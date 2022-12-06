@@ -26,7 +26,8 @@ const initialState = {
   userId: '',
   date: fecha,
   description: '',
-  type: ''
+  type: '',
+  promValoration: "0"
 };
 
 export const PostForm = () => {

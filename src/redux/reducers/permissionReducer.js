@@ -9,6 +9,7 @@ import {
   PERMISSION_SET_UPDATE_ACTION,
   PERMISSION_SET_DELETE_ACTION,
   PERMISSION_UNSET_ACTION,
+  USER_SET_USER_PERMISSIONS
 } from '../types/permissionType';
 import { UPDATE, DELETE, CREATE, NONE } from '../types/modalTypes';
 
@@ -18,6 +19,7 @@ const initialState = {
   isLoading: false,
   actionInProgress: NONE,
   selectedPermission: null,
+  permissionUser: null
 };
 
 export const permissionReducer = (state = initialState, action) => {
@@ -53,6 +55,8 @@ export const permissionReducer = (state = initialState, action) => {
       };
     case USER_SET_ALL_PERMISSIONS:
       return { ...state, list: action.payload, error: '', isLoading: false };
+      case USER_SET_USER_PERMISSIONS:
+      return { ...state, permissionUser: action.payload, error: '', isLoading: false };
     case PERMISSION_SET_ERROR:
       return {
         ...state,
