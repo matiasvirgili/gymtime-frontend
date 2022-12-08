@@ -19,7 +19,6 @@ export const HomeScreen = () => {
     credentials
   } = useSelector((state) => state.users);
 
-
   return (
     <>
       <div className={styles.homePage}>

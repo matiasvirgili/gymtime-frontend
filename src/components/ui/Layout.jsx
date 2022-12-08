@@ -8,7 +8,7 @@ export const Layout = ({ children }) => {
   
   return (
     <div className={styles.mainWrapper}>
-      <NavBar />
+      <NavBar/>
       <div className={styles.body}>
         <div className={styles.content}>
           <Header title="GymTime" />

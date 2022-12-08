@@ -1,9 +1,18 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import { logout } from '../../redux/actions/usersAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPermissionsWithRoleAsync } from '../../redux/actions/permissionAction';
+import { AiFillHome,  } from "react-icons/ai";
+import { FaUserEdit, FaMoneyBill, FaCommentAlt } from "react-icons/fa";
+import { GrSecure, GrUserAdd } from "react-icons/gr";
+import { GiWeightLiftingUp } from "react-icons/gi";
+import { GoListOrdered  } from "react-icons/go";
+import { RiHeartPulseFill } from "react-icons/ri";
+import { HiUserGroup } from "react-icons/hi";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 export const NavBar = () => {
   const dispatch = useDispatch();
@@ -16,6 +25,8 @@ export const NavBar = () => {
     searchPermissions()
   }, [])
 
+  const isLoggedIn = useSelector((state) => state.users?.credentials?.user); 
+
   const { permissionUser } = useSelector(
     (state) => state.permissions
   );
@@ -23,88 +34,131 @@ export const NavBar = () => {
   if(permissionUser != null){
     permissionsConvert  = permissionUser[0]
   }
+  const [stateClicked, setStateClicked] = useState(false);
 
   return (
-    <nav className={styles.NavBar}>
-      <ul>
-        <li>
-          <NavLink to="/home" className={styles.link}>
-            Home
+    <div className={stateClicked ? (styles.containerActive) : (styles.container)}>
+      <a href="#"
+      onClick= {()=> setStateClicked(!stateClicked)}
+      className={stateClicked ? (styles.toggleBoxActive) : (styles.toggleBox)}
+      >
+        <div className={styles.threeLine}>
+          <span className={styles.icon}></span>
+        </div>
+      </a>
+      <ul className={stateClicked ? (styles.navItemsActive) : (styles.navItems)}>
+        <li id={stateClicked ? (styles.li1Active) : (styles.li1)}>
+          <NavLink to="/home" 
+          className = {styles.link} >
+            <i>
+              <AiFillHome/>
+            </i>
+            <span>home</span>
           </NavLink>
         </li>
-        {permissionsConvert?.users && (
-          <li>
-            <NavLink to="/users" className={styles.link}>
-              Users
-            </NavLink>
-          </li>
-        )}
-        {permissionsConvert?.permissions && (
-          <li>
-            <NavLink to="/permission" className={styles.link}>
-              Role and Permission
-            </NavLink>
-          </li>
-        )}
-        {permissionsConvert?.exercises  && (
-          <li>
-            <NavLink to="/exercises" className={styles.link}>
-              Exercises
-            </NavLink>
-          </li>
-        )}
-        {(permissionsConvert?.routinesView || permissionsConvert?.routinesAction) && (
-          <li>
-            <NavLink to="/routines" className={styles.link}>
-              Routines
-            </NavLink>
-          </li>
-        )}
-        {(permissionsConvert?.healthsView || permissionsConvert?.healthsAction) && (
-          <li>
-            <NavLink to="/health" className={styles.link}>
-              Healths
-            </NavLink>
-          </li>
-        )}
-        {permissionsConvert?.posts && (
-          <li>
-            <NavLink to="/post" className={styles.link}>
-              Posts
-            </NavLink>
-          </li>
-        )}
-        {permissionsConvert?.subscriptions && (
-          <li>
-            <NavLink to="/subscription" className={styles.link}>
-              Subscriptions
-            </NavLink>
-          </li>
-        )}
-        {permissionsConvert?.lessons && (
-          <li>
-            <NavLink to="/eventMembers" className={styles.link}>
-              Lessons
-            </NavLink>
-          </li>
-        )}
-        {permissionsConvert?.workout && (
-          <li>
-            <NavLink to="/workoutevent" className={styles.link}>
-              Workout Event
-            </NavLink>
-          </li>
-        )}
-        <li>
+      {permissionsConvert?.users && (
+        <li id={stateClicked ? (styles.li2Active) : (styles.li2)}>
+          <NavLink to="/users" className = {styles.link}>
+            <i>
+              <FaUserEdit/>
+            </i>
+            <span>Users</span>
+          </NavLink>
+        </li>
+      )}
+      {permissionsConvert?.permissions && (
+        <li id={stateClicked ? (styles.li3Active) : (styles.li3)}>
+          <NavLink to="/permission" className = {styles.link}>
+            <i>
+              <GrSecure/>
+            </i>
+            <span>Role</span>
+          </NavLink>
+        </li>
+      )}
+      {permissionsConvert?.exercises  && (
+        <li id={stateClicked ? (styles.li4Active) : (styles.li4)}>
+          <NavLink to="/exercises" className = {styles.link}>
+            <i>
+              <GiWeightLiftingUp/>
+            </i>
+            <span>Exercises</span>
+          </NavLink>
+        </li>
+      )}
+      {(permissionsConvert?.routinesView || permissionsConvert?.routinesAction) && (
+        <li id={stateClicked ? (styles.li5Active) : (styles.li5)}>
+          <NavLink to="/routines" className = {styles.link}>
+            <i>
+              <GoListOrdered/>
+            </i>
+            <span>Routines</span>
+          </NavLink>
+        </li>
+      )}
+      {(permissionsConvert?.healthsView || permissionsConvert?.healthsAction) && (
+        <li id={stateClicked ? (styles.li6Active) : (styles.li6)}>
+          <NavLink to="/health" className = {styles.link}>
+            <i>
+              <RiHeartPulseFill/>
+            </i>
+            <span>Healths</span>
+          </NavLink>
+        </li>
+      )}
+      {isLoggedIn && (
+        <li id={stateClicked ? (styles.li7Active) : (styles.li7)}>
+          <NavLink to="/post" className = {styles.link}>
+            <i>
+              <FaCommentAlt/>
+            </i>
+            <span>Posts</span>
+          </NavLink>
+        </li>
+      )}
+      {permissionsConvert?.subscriptions && (
+        <li id={stateClicked ? (styles.li8Active) : (styles.li8)}>
+          <NavLink to="/subscription" className = {styles.link}>
+            <i>
+              <FaMoneyBill/>
+            </i>
+            <span>Subscription</span>
+          </NavLink>
+        </li>
+      )}
+      {permissionsConvert?.lessons && (
+        <li id={stateClicked ? (styles.li9Active) : (styles.li9)}>
+          <NavLink to="/eventMembers" className = {styles.link}>
+            <i>
+              <GrUserAdd/>
+            </i>
+            <span>Lessons</span>
+          </NavLink>
+        </li>
+      )}
+      {permissionsConvert?.workout && (
+        <li id={stateClicked ? (styles.li10Active) : (styles.li10)}>
+          <NavLink to="/workoutevent" className = {styles.link}>
+            <i>
+              <HiUserGroup/>
+            </i>
+            <span>Workout Event</span>
+          </NavLink>
+        </li>
+      )}
+        <li id={stateClicked ? (styles.li11Active) : (styles.li11)}>
           <NavLink
             to="/"
             onClick={() => dispatch(logout())}
-            className={styles.link}
-          >
-            Log out
+            className = {styles.link}
+            >
+            <i>
+              <RiLogoutBoxLine/>
+            </i>
+            <span>LogOut</span>
           </NavLink>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 };

@@ -10,14 +10,3 @@
     flex-direction: row;
     width: auto;
 }
-.graphicsMacros{
-    display: flex;
-    width: 90%;
-}
-.graphicsIMCActual{
-    display: flex;
-    width: 50%;
-}
-.graphicsIMC{
-
-}
