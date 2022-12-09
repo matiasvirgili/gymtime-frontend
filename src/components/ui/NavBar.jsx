@@ -37,8 +37,10 @@ export const NavBar = () => {
   const [stateClicked, setStateClicked] = useState(false);
 
   return (
+    <>
+    <div className={stateClicked ? (styles.NavBarFixedActive) : (styles.NavBarFixed)}/>
     <div className={stateClicked ? (styles.containerActive) : (styles.container)}>
-      <a href="#"
+      <a 
       onClick= {()=> setStateClicked(!stateClicked)}
       className={stateClicked ? (styles.toggleBoxActive) : (styles.toggleBox)}
       >
@@ -160,5 +162,7 @@ export const NavBar = () => {
         </li>
       </ul>
     </div>
+    </>
+    
   );
 };

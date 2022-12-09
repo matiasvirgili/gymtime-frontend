@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getHealthsWithUserIdAsync } from '../../redux/actions/healthAction';
 import { Pie, G2 } from '@ant-design/plots';
 import styles from './GraphicsMacros.module.css'
+import { GraphicsIMCActual } from './GraphicsIMCActual';
 
 export const GraphicsMacros = (userId) => {
     const dispatch = useDispatch();
@@ -66,7 +67,7 @@ export const GraphicsMacros = (userId) => {
                 x: 0,
                 y: 25,
                 text: `${data.value?.toFixed(2)} grms - ${(data.percent * 100)?.toFixed(2)}%`,
-                fill: 'rgba(0, 0, 0, 0.65)',
+                fill: 'rgba(255, 255, 255, 0.65)',
                 fontWeight: 700,
             },
             });
@@ -88,10 +89,15 @@ export const GraphicsMacros = (userId) => {
         <>
             <div className={styles.divContainerMacros}>
                 <div className={styles.divBasal}>
-                    <h1 className={styles.h1}>Basal metabolic rate</h1>
-                    <span className={styles.basal}>{(actualHealthMacros?.macros?.tmb)?.toFixed(2)} Kilocalories</span>
+                    <h1 className={styles.h1}>Basal Metabolic Rate</h1>
+                    <div className={styles.divBasalASpan}>
+                        <span className={styles.basal}>{(actualHealthMacros?.macros?.tmb)?.toFixed(2)} Kilocalories</span>
+                    </div>
                 </div>
-                <Pie {...configuration} className={styles.pie}/>;
+                <div className={styles.graphics}>
+                    <Pie {...configuration} className={styles.pie}/>;
+                    <GraphicsIMCActual className={styles.gauge}/>
+                </div>
             </div>
         </>
         )

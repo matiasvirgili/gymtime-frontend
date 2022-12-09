@@ -2,7 +2,7 @@ import React from 'react';
 import {  useSelector } from 'react-redux';
 import 'antd/dist/antd.css'
 import {Gauge} from '@ant-design/charts';
-import styles from './HomeStyle.module.css';
+import styles from './GraphicsIMCActual.module.css'
 
 export const GraphicsIMCActual = () => {
 
@@ -51,6 +51,7 @@ export const GraphicsIMCActual = () => {
             style: {
               fontSize: '1.5rem',
               lineHeight: '1.5rem',
+              color: "white"
             },
           },
         },
@@ -58,10 +59,7 @@ export const GraphicsIMCActual = () => {
   return (
     (healths.length != 0) && (
       <>
-        <div className={styles.graphics}>
-            <br/><br />
-            <Gauge {...configuration}/>
-        </div>
+        <Gauge {...configuration} className={styles.gauge}/>
       </>
     )
   )
