@@ -34,3 +34,11 @@
 .loadingBar {
   padding-top: 1rem;
 }
+.permissions{
+  margin-top: 1vh;
+  width: 50%;
+  padding-right: 5%;
+  height: 68vh;
+  overflow: auto;
+  overflow-x: hidden;
+}

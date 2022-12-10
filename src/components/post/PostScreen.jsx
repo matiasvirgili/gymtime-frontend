@@ -54,8 +54,10 @@ export const PostScreen = () => {
         <div className={styles.loadingBar}>
           <LinearProgress />
         </div>
-      )}
-      <PostList posts={posts} valorations = {valorationList} />
+      )} 
+      <div className={styles.list}>
+        <PostList posts={posts} valorations = {valorationList} />
+      </div>
     </div>
   );
 };

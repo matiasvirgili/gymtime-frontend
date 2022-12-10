@@ -71,7 +71,7 @@ export const PostForm = () => {
   return (
     <GenericModal>
       <>
-        <h2>{action} Post</h2>
+        <h2 className={styles.actionTitle}>{action} Post</h2>
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}

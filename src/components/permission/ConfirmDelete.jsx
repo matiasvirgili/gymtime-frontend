@@ -20,7 +20,7 @@ export const ConfirmDelete = ({ permission }) => {
   return (
     <GenericModal>
       <>
-        <h2>You are about to delete a Permission</h2>
+        <h2 className={styles.deleteObj}>You are about to delete a Permission</h2>
         {error && <ErrorContainer message={error} />}
         <p>{`This will delete ${permission.role} permanently`}</p>
         <p>Are you sure?</p>

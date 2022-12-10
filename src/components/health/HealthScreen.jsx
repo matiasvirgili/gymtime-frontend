@@ -71,7 +71,9 @@ export const HealthScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <HealthList healths={healths} />
+      <div className={styles.healths}>
+        <HealthList healths={healths} />
+      </div>
     </div>
   );
 };

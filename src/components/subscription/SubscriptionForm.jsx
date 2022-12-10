@@ -77,7 +77,7 @@ export const SubscriptionForm = () => {
   return (
     <GenericModal>
       <>
-        <h2>{action} Subscription</h2>
+        <h2 className={styles.actionTitle}>{action} Subscription</h2>
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}

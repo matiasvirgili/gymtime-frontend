@@ -63,6 +63,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 margin-top: 1rem;
+width: 84vw;
 }
 
 .copyButton{
@@ -121,4 +122,12 @@ margin-top: 1rem;
 
 .loadingBar {
   padding-top: 1rem;
+}
+.exerciseRoutine{
+  margin-top: 1vh;
+  width: 95%;
+  padding-right: 5%;
+  height: 68vh;
+  overflow:scroll;
+  overflow-x: hidden;
 }

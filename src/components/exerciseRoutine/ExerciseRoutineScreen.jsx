@@ -108,7 +108,9 @@ export const ExerciseRoutineScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <ExerciseRoutineList exerciseRoutines={exerciseRoutines}/>
+      <div className={styles.exerciseRoutine}>
+        <ExerciseRoutineList exerciseRoutines={exerciseRoutines}/>
+      </div>
     </div>
   );
 };

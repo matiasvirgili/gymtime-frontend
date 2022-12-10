@@ -46,7 +46,9 @@ export const UserScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <UserList users={users} />
+      <div className={styles.users}>
+        <UserList users={users}/>
+      </div>
     </div>
   );
 };

@@ -20,7 +20,7 @@ export const ConfirmDelete = ({ user }) => {
   return (
     <GenericModal>
       <>
-        <h2>You are about to delete a User</h2>
+        <h2 className={styles.deleteObj}>You are about to delete a User</h2>
         {error && <ErrorContainer message={error} />}
         <p>{`This will delete ${user.name} ${user.lastName} permanently`}</p>
         <p>Are you sure?</p>

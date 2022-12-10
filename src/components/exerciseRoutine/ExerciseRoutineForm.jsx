@@ -73,7 +73,7 @@ export const ExerciseRoutineForm = () => {
   return (
     <GenericModal>
       <>
-        <h2>{action} Exercise</h2>
+        <h2 className={styles.actionTitle}>{action} Exercise</h2>
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}

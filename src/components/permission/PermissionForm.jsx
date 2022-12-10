@@ -57,7 +57,7 @@ export const PermissionForm = () => {
   return (
     <GenericModal>
       <>
-        <h2>{action} Permission</h2>
+        <h2 className={styles.actionTitle}>{action} Permission</h2>
         {error && <ErrorContainer message={error} />}
         <Form
           onSubmit={handleFormSubmit}

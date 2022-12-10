@@ -17,7 +17,8 @@ export const Post = ({ post, isLoggedIn, valorations}) => {
     _id, 
     userId, 
     date, 
-    description, 
+    description,
+    type
   } = post;
 
   const valorationsExist = valorations.filter(i => i.postId === post._id && i.userId === isLoggedIn._id)
@@ -49,49 +50,61 @@ export const Post = ({ post, isLoggedIn, valorations}) => {
   }
 
   return (
-    <div className={styles.container} key={_id}>
-      <div className={styles.column}>
-        <span className={styles.title}>User</span>
-        <span className={styles.content}>{userId.name + ' ' + userId.lastName}</span>
-      </div>
-      <div className={styles.column}>
-        <span className={styles.title}>Description</span>
-        <span className={styles.content}>{description}</span>
-      </div>
-      <div className={styles.column}>
-        <span className={styles.title}>Date</span>
-        <span className={styles.content}>{date.slice(0, 10)}</span>
-      </div>
-      <div className={styles.healthSet}>
-        <span className={styles.title}>Valoration</span>
-        <Box>
-          <Rating
-              name="simple-controlled"
-              value={valorationProm}
-              onChange={ (event, newValue) => {
-                valorationChange(newValue)
-              }}
-          />
-        </Box>
-      </div>
-      {valorationsExist.length != 0 && 
-        <span className={styles.title}>Voted!</span>
-      }
-      {
-        (isLoggedIn?._id == userId._id) &&
-        <div className={styles.actions}>
-          <EditIcon
-            className={styles.editIcon}
-            onClick={() => dispatch(setUpdateAction(post))}
-          />
+    <div className={styles.fondoBlanco}>
+      <div className={
+        (type == "Nutrition") ?  (styles.containerNutrition) : (
+          (type == "Routine") ? (styles.containerRoutine) : (
+            (type == "Suggestion") ? ((styles.containerSuggestion)) : (
+              (type == "Complaints") ? (styles.containerComplaints) : ("")
+            )
+          )
+        )
+        } 
+        key={_id}
+      >
         {
-          <DeleteIcon
-            className={styles.deleteIcon}
-            onClick={() => dispatch(setDeleteAction(post))}
-          />
-        }          
+          (isLoggedIn?._id == userId._id) &&
+          <div className={styles.actions}>
+            <EditIcon
+              className={styles.editIcon}
+              onClick={() => dispatch(setUpdateAction(post))}
+            />
+          {
+            <DeleteIcon
+              className={styles.deleteIcon}
+              onClick={() => dispatch(setDeleteAction(post))}
+            />
+          }          
+          </div>
+        }
+        <div className={styles.column}>
+          <span className={styles.title}>User</span>
+          <span className={styles.content}>{userId.name + ' ' + userId.lastName}</span>
         </div>
-      }
+        <div className={styles.column}>
+          <span className={styles.title}>Description</span>
+          <span className={styles.description}>{description}</span>
+        </div>
+        <div className={styles.column}>
+          <span className={styles.title}>Date</span>
+          <span className={styles.content}>{date.slice(0, 10)}</span>
+        </div>
+        <div className={styles.column}>
+          <span className={styles.title}>Valoration</span>
+            <Box>
+              <Rating
+                  name="simple-controlled"
+                  value={valorationProm}
+                  onChange={ (event, newValue) => {
+                    valorationChange(newValue)
+                  }}
+              />
+            </Box>
+            {valorationsExist.length != 0 && 
+              <span className={styles.voted}>Voted!</span>
+            }
+        </div>
+      </div>
     </div>
   );
 };

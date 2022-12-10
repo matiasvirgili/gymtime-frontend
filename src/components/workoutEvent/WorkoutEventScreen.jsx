@@ -53,7 +53,9 @@ export const WorkoutEventScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <WorkoutEventsList workoutEvents={workoutEvents} />
+      <div className={styles.workouts}>
+        <WorkoutEventsList workoutEvents={workoutEvents} />
+      </div>
     </div>
   );
 };

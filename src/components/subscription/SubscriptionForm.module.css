@@ -8,7 +8,10 @@
   display: flex;
   gap: 1rem;
 }
-
 .healthSet{
   padding-bottom: 0.5rem;
+}
+.actionTitle{
+  color: #102541;
+  font-size: 2rem;
 }

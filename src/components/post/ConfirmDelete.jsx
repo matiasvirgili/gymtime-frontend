@@ -20,7 +20,7 @@ export const ConfirmDelete = ({ post }) => {
   return (
     <GenericModal>
       <>
-        <h2>You are about to delete a Post</h2>
+        <h2 className={styles.deleteObj}>You are about to delete a Post</h2>
         {error && <ErrorContainer message={error} />}
         <p>{`This will delete the post of ${post.userId.lastName}, ${post.userId.name} on ${post.date.split("T", 1)?.[0]} permanently`}</p>
         <p>Are you sure?</p>
