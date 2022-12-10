@@ -49,7 +49,9 @@ export const PermissionScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <PermissionList permissions={permissions} />
+      <div className={styles.permissions} >
+        <PermissionList permissions={permissions}/>
+      </div>
     </div>
   );
 };

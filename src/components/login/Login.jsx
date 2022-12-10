@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/usersAction';
 import { ErrorContainer } from '../shared/ErrorContainer';
+import logo from '../images/NutriTimeLogo.png'
 
 export const Login = () => {
   const history = useHistory();
@@ -28,6 +29,7 @@ export const Login = () => {
   return (
     <Grid>
       <nav className={styles.nav}>
+        <img src={logo}></img>
         <h1>GymTime</h1>
       </nav>
       <Paper elevation={10} className={styles.paperStyle}>
@@ -35,7 +37,7 @@ export const Login = () => {
           <Avatar style={avatarStyle}>
             <LockOutlinedIcon />
           </Avatar>
-          <h2>Sign In</h2>
+          <h2 className={styles.textLogIn}>Sign In</h2>
         </Grid>
         {error && <ErrorContainer message={error} />}
         <TextField

@@ -49,7 +49,9 @@ export const SubscriptionScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <SubscriptionsList subscriptions={subscriptions} />
+      <div className={styles.subscriptions}>
+        <SubscriptionsList subscriptions={subscriptions} />
+      </div>
     </div>
   );
 };

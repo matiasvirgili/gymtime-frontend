@@ -22,7 +22,6 @@ export const HomeScreen = () => {
     <>
       <div className={styles.homePage}>
         <div className={styles.personalInformation}>
-          <div className={styles.personalInformationLetter}>Personal information:</div>
           <div className={styles.personalInformationData}>
             <div className={styles.divName}>
               <span>Name:</span>

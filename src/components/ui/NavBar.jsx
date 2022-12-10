@@ -38,7 +38,6 @@ export const NavBar = () => {
 
   return (
     <>
-    <div className={stateClicked ? (styles.NavBarFixedActive) : (styles.NavBarFixed)}/>
     <div className={stateClicked ? (styles.containerActive) : (styles.container)}>
       <a 
       onClick= {()=> setStateClicked(!stateClicked)}

@@ -27,7 +27,7 @@ export const ConfirmDeleteAll = () => {
   return (
     <GenericModal>
       <>
-        <h2>You are about to delete a Exercise</h2>
+        <h2 className={styles.deleteObj}>You are about to delete a Exercise</h2>
         {error && <ErrorContainer message={error} />}
         <p>{`This will delete all exercise permanently`}</p>
         <p>Are you sure?</p>

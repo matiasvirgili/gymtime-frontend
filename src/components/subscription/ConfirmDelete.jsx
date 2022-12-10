@@ -19,7 +19,7 @@ export const ConfirmDelete = () => {
   return (
     <GenericModal>
       <>
-        <h2>You are about to delete a Subscription</h2>
+        <h2 className={styles.deleteObj}>You are about to delete a Subscription</h2>
         {error && <ErrorContainer message={error} />}
         <p>{`This will delete the subscription of ${selectedSubscription.userId.lastName}, ${selectedSubscription.userId.name} on ${selectedSubscription.dayOfSubscription.split("T", 1)?.[0]} permanently`}</p>
         <p>Are you sure?</p>

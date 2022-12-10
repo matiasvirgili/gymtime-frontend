@@ -5,11 +5,13 @@
 }
 .content {
   flex-grow: 1;
-  padding: 2rem;
+  width: 100%;
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 .body{
   align-content: space-between;
-  width: 85%;
+  width: 100%;
 }
 .foot{
   padding: 2rem

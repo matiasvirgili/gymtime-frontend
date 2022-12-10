@@ -30,7 +30,9 @@ export const EventMemberScreen = () => {
         </div>
       )}
       {error && <ErrorContainer message={error} />}
-      <EventMemberList workoutEvents={workoutEvents} />
+      <div className={styles.eventMembers}>
+        <EventMemberList workoutEvents={workoutEvents} />
+      </div>
     </div>
   );
 };

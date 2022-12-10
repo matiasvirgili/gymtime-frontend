@@ -1,17 +1,6 @@
 @import "@fontsource/poppins";
 
-.NavBarFixed{
-  top:0;
-  left:0;
-  position: relative;
-  margin-left: 80px;
-}
-.NavBarFixedActive{
-  top:0;
-  left:0;
-  position: relative;
-  margin-left: 180px;
-}
+
 .container {
   margin: 20px 0px 20px 20px;
   top: 52px;
@@ -19,7 +8,7 @@
   width: 68px;
   background-color: #fff;
   border-radius:  50px;
-  position: fixed;
+  position: relative;
   transition: 0.4s ease;
   display: flex;
   flex-direction: column
@@ -31,14 +20,14 @@
   width: 68px;
   background-color: #fff;
   border-radius:  50px;
-  position: fixed;
+  position: relative;
   transition: 0.4s ease;
   display: flex;
   flex-direction: column
 }
 
 .toggleBox{
-  position: fixed; 
+  position: relative; 
   height: 70px;
   width: 70px;
   border-radius: 50px;

@@ -73,7 +73,9 @@ export const RoutineScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <RoutineList routines={routines}/>
+      <div className={styles.routines}>
+        <RoutineList routines={routines}/>
+      </div>
     </div>
   );
 };

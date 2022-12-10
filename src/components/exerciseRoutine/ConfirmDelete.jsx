@@ -20,7 +20,7 @@ export const ConfirmDelete = ({ exerciseRoutine }) => {
   return (
     <GenericModal>
       <>
-        <h2>You are about to delete a Exercise</h2>
+        <h2 className={styles.deleteObj}>You are about to delete a Exercise</h2>
         {error && <ErrorContainer message={error} />}
         <p>{`This will delete ${exerciseRoutine.exerciseId.name} on ${exerciseRoutine.day} permanently`}</p>
         <p>Are you sure?</p>

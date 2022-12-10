@@ -52,7 +52,9 @@ export const ExerciseScreen = () => {
           <LinearProgress />
         </div>
       )}
-      <ExerciseList exercises={exercises} />
+      <div className={styles.exercises}>
+        <ExerciseList exercises={exercises} />
+      </div>
     </div>
   );
 };

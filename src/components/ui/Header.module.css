@@ -5,6 +5,8 @@
   align-items: center;
   color: #023859;
   font-size: 2rem;
+  margin-top: 1.7rem;
+  width: 84vw;
 }
 .logoAndTitle{
   display: flex;
