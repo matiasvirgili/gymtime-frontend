@@ -4,8 +4,8 @@ import {
   USER_DELETE_EVENTMEMBER,
   USER_SET_ALL_EVENTMEMBERS,
   EVENTMEMBERS_SET_ERROR,
-  EVENTMEMBERS_SET_LOADING_TRUE
-  } from '../types/event-memberType';
+  EVENTMEMBERS_SET_LOADING_TRUE,
+} from '../types/event-memberType';
 import { getConfig } from '../../helpers/axiosConfig';
 
 export const createWorkoutEvent = (eventMember) => {
@@ -38,46 +38,48 @@ export const setLoadingTrue = () => {
   };
 };
 
-export const getEventMembersAsync = (userId, workoutEvent) => async (dispatch) => {
-  try { 
-    const res = await axios.get(
-      // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers?userId=${userId}&workoutEvent=${workoutEvent}`
-    );
-    if (res.status === 200) {
-      let eventMember = [];
-      for (let i = 0; i < res.data.length; i++) {
-        eventMember.push(res.data[i]);
+export const getEventMembersAsync =
+  (userId, workoutEvent) => async (dispatch) => {
+    try {
+      const res = await axios.get(
+        // eslint-disable-next-line no-undef
+        `${process.env.REACT_APP_BACKEND_URL_PORT}eventmembers?userId=${userId}&workoutEvent=${workoutEvent}`
+      );
+      if (res.status === 200) {
+        let eventMember = [];
+        for (let i = 0; i < res.data.length; i++) {
+          eventMember.push(res.data[i]);
+        }
+        dispatch(setEventMembers(eventMember));
       }
-      dispatch(setEventMembers(eventMember));
+    } catch (error) {
+      dispatch(setError(error?.response?.data?.error));
     }
-  } catch (error) {
-    dispatch(setError(error?.response?.data?.error));
-  }
-};
-export const getEventMembersListAsync = (workoutEventID) => async (dispatch) => {
-  try {
-    const res = await axios.get(
-      // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers/list?workoutEvent=${workoutEventID}`
-    );
-    if (res.status === 200) {
-      let eventMember = [];
-      for (let i = 0; i < res.data.length; i++) {
-        eventMember.push(res.data[i]);
+  };
+export const getEventMembersListAsync =
+  (workoutEventID) => async (dispatch) => {
+    try {
+      const res = await axios.get(
+        // eslint-disable-next-line no-undef
+        `${process.env.REACT_APP_BACKEND_URL_PORT}eventmembers/list?workoutEvent=${workoutEventID}`
+      );
+      if (res.status === 200) {
+        let eventMember = [];
+        for (let i = 0; i < res.data.length; i++) {
+          eventMember.push(res.data[i]);
+        }
+        dispatch(setEventMembers(eventMember));
       }
-      dispatch(setEventMembers(eventMember));
+    } catch (error) {
+      dispatch(setError(error?.response?.data?.error));
     }
-  } catch (error) {
-    dispatch(setError(error?.response?.data?.error));
-  }
-};
+  };
 export const deleteEventMemberAsync = (eventMemberId) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers/${eventMemberId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}eventmembers/${eventMemberId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -92,7 +94,7 @@ export const createEventMemberAsync = (eventMember) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}eventmembers`,
       eventMember,
       getConfig()
     );

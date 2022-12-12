@@ -10,7 +10,7 @@ import {
   PERMISSION_SET_UPDATE_ACTION,
   PERMISSION_SET_DELETE_ACTION,
   PERMISSION_UNSET_ACTION,
-  USER_SET_USER_PERMISSIONS
+  USER_SET_USER_PERMISSIONS,
 } from '../types/permissionType.js';
 import { getConfig } from '../../helpers/axiosConfig';
 
@@ -83,7 +83,7 @@ export const getPermissionsAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}permission`
     );
     if (res.status === 200) {
       let permissions = [];
@@ -100,7 +100,7 @@ export const getPermissionsWithRoleAsync = (role) => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission?role=${role}`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}permission?role=${role}`
     );
     if (res.status === 200) {
       let permissions = [];
@@ -118,7 +118,7 @@ export const deletePermissionAsync = (permissionId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission/${permissionId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}permission/${permissionId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -131,20 +131,20 @@ export const deletePermissionAsync = (permissionId) => async (dispatch) => {
 export const createPermissionAsync = (permission) => async (dispatch) => {
   dispatch(setLoadingTrue());
   try {
-    Object.keys(permission).map(function(key){    
-      if(permission[key] == ""){
-        permission[key] = false
+    Object.keys(permission).map(function (key) {
+      if (permission[key] == '') {
+        permission[key] = false;
       }
-    })
+    });
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}permission`,
       permission,
       getConfig()
     );
     if (res.status === 201) {
-      const user = JSON.parse(localStorage?.getItem('user')) 
-      dispatch(getPermissionsWithRoleAsync(user?.permissionRole))
+      const user = JSON.parse(localStorage?.getItem('user'));
+      dispatch(getPermissionsWithRoleAsync(user?.permissionRole));
       return dispatch(createPermission(res.data.data));
     }
   } catch (error) {
@@ -153,21 +153,21 @@ export const createPermissionAsync = (permission) => async (dispatch) => {
 };
 export const updatePermissionAsync = (permission) => async (dispatch) => {
   dispatch(setLoadingTrue());
-  try { 
-    Object.keys(permission).map(function(key){    
-      if(permission[key] == ""){
-        permission[key] = false
+  try {
+    Object.keys(permission).map(function (key) {
+      if (permission[key] == '') {
+        permission[key] = false;
       }
-    })
+    });
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission/${permission._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}permission/${permission._id}`,
       permission,
       getConfig()
     );
     if (res.status === 200) {
-      const user = JSON.parse(localStorage?.getItem('user')) 
-      dispatch(getPermissionsWithRoleAsync(user?.permissionRole))
+      const user = JSON.parse(localStorage?.getItem('user'));
+      dispatch(getPermissionsWithRoleAsync(user?.permissionRole));
       return dispatch(updatePermission(res.data.data));
     }
   } catch (error) {

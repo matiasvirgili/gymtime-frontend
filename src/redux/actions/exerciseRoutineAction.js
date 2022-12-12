@@ -86,112 +86,116 @@ export const unsetAction = () => {
   };
 };
 
-
-export const getExerciseWithRoutineIdAndCopy = (routineId, newRoutine) => async (dispatch) => {
-  try {
-    const res = await axios.get(
-      // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines?routineId=${routineId}`
-    );
-    if (res.status === 200) {
-      let exerciseRoutine = [];
-      for (let i = 0; i < res.data.length; i++) {
-        exerciseRoutine.push(res.data[i]);
-        let exerciseRoutineCopy = {
-          routineId: newRoutine,
-          day: exerciseRoutine[i].day,
-          exerciseId: exerciseRoutine[i].exerciseId._id,
-          duration: exerciseRoutine[i].duration,
-          breakDuration: exerciseRoutine[i].breakDuration,
-          position: exerciseRoutine[i].position,
+export const getExerciseWithRoutineIdAndCopy =
+  (routineId, newRoutine) => async (dispatch) => {
+    try {
+      const res = await axios.get(
+        // eslint-disable-next-line no-undef
+        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines?routineId=${routineId}`
+      );
+      if (res.status === 200) {
+        let exerciseRoutine = [];
+        for (let i = 0; i < res.data.length; i++) {
+          exerciseRoutine.push(res.data[i]);
+          let exerciseRoutineCopy = {
+            routineId: newRoutine,
+            day: exerciseRoutine[i].day,
+            exerciseId: exerciseRoutine[i].exerciseId._id,
+            duration: exerciseRoutine[i].duration,
+            breakDuration: exerciseRoutine[i].breakDuration,
+            position: exerciseRoutine[i].position,
+          };
+          await dispatch(createExerciseRoutineAsync(exerciseRoutineCopy));
         }
-        await dispatch(createExerciseRoutineAsync(exerciseRoutineCopy))
       }
+    } catch (error) {
+      dispatch(setError(error?.response?.data?.error));
     }
-  } catch (error) {
-    dispatch(setError(error?.response?.data?.error));
-  }
-};
-export const getExerciseWithRoutineIdAsync = (routineId) => async (dispatch) => {
-  try {
-    const res = await axios.get(
-      // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines?routineId=${routineId}`
-    );
-    if (res.status === 200) {
-      let exerciseRoutine = [];
-      for (let i = 0; i < res.data.length; i++) {
-        exerciseRoutine.push(res.data[i]);
+  };
+export const getExerciseWithRoutineIdAsync =
+  (routineId) => async (dispatch) => {
+    try {
+      const res = await axios.get(
+        // eslint-disable-next-line no-undef
+        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines?routineId=${routineId}`
+      );
+      if (res.status === 200) {
+        let exerciseRoutine = [];
+        for (let i = 0; i < res.data.length; i++) {
+          exerciseRoutine.push(res.data[i]);
+        }
+        await dispatch(setExerciseRoutine(exerciseRoutine));
       }
-      await dispatch(setExerciseRoutine(exerciseRoutine));
+    } catch (error) {
+      dispatch(setError(error?.response?.data?.error));
     }
-  } catch (error) {
-    dispatch(setError(error?.response?.data?.error));
-  }
-};
-export const createExerciseRoutineAsync = (exerciseRoutine) => async (dispatch) => {
-  dispatch(setLoadingTrue());
-  try {
-    const res = await axios.post(
-      // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines`,
-      exerciseRoutine,
-      getConfig()
-    );
-    if (res.status === 201) {
-      return dispatch(createExerciseRoutine(res.data.data));
-    }
-  } catch (error) {
-    return dispatch(setError(error?.response?.data?.error));
-  }
-};
-export const updateExerciseRoutineAsync = (exerciseRoutine) => async (dispatch) => {
-  dispatch(setLoadingTrue());
-  try {
-    const res = await axios.put(
-      // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines/${exerciseRoutine._id}`,
-      exerciseRoutine,
-      getConfig()
-    );
-    if (res.status === 200) {
-      return dispatch(updateExerciseRoutine(res.data.data));
-    }
-  } catch (error) {
-    return dispatch(setError(error?.response?.data?.error));
-  }
-};
-export const deleteExerciseRoutineAsync = (exerciseRoutineId) => async (dispatch) => {
-  dispatch(setLoadingTrue());
-  try {
-    const res = await axios.delete(
-      // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines/${exerciseRoutineId}`,
-      getConfig()
-    );
-    if (res.status === 200) {
-      dispatch(deleteExerciseRoutine(exerciseRoutineId));
-    }
-  } catch (error) {
-    dispatch(setError(error?.response?.data?.error));
-  }
-};
-export const deleteAllExerciseRoutineAsync = (routineId) => async (dispatch) => {
-  dispatch(setLoadingTrue());
-  try {
-    const res = await axios.get(
-      // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines?routineId=${routineId}`
-    );
-    if (res.status === 200) {
-      let exerciseRoutine = [];
-      for (let i = 0; i < res.data.length; i++) {
-        exerciseRoutine.push(res.data[i]);
-        await dispatch(deleteExerciseRoutineAsync(exerciseRoutine[i]._id))
+  };
+export const createExerciseRoutineAsync =
+  (exerciseRoutine) => async (dispatch) => {
+    dispatch(setLoadingTrue());
+    try {
+      const res = await axios.post(
+        // eslint-disable-next-line no-undef
+        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines`,
+        exerciseRoutine,
+        getConfig()
+      );
+      if (res.status === 201) {
+        return dispatch(createExerciseRoutine(res.data.data));
       }
+    } catch (error) {
+      return dispatch(setError(error?.response?.data?.error));
     }
-  } catch (error) {
-    dispatch(setError(error?.response?.data?.error));
-  }
-};
-
+  };
+export const updateExerciseRoutineAsync =
+  (exerciseRoutine) => async (dispatch) => {
+    dispatch(setLoadingTrue());
+    try {
+      const res = await axios.put(
+        // eslint-disable-next-line no-undef
+        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines/${exerciseRoutine._id}`,
+        exerciseRoutine,
+        getConfig()
+      );
+      if (res.status === 200) {
+        return dispatch(updateExerciseRoutine(res.data.data));
+      }
+    } catch (error) {
+      return dispatch(setError(error?.response?.data?.error));
+    }
+  };
+export const deleteExerciseRoutineAsync =
+  (exerciseRoutineId) => async (dispatch) => {
+    dispatch(setLoadingTrue());
+    try {
+      const res = await axios.delete(
+        // eslint-disable-next-line no-undef
+        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines/${exerciseRoutineId}`,
+        getConfig()
+      );
+      if (res.status === 200) {
+        dispatch(deleteExerciseRoutine(exerciseRoutineId));
+      }
+    } catch (error) {
+      dispatch(setError(error?.response?.data?.error));
+    }
+  };
+export const deleteAllExerciseRoutineAsync =
+  (routineId) => async (dispatch) => {
+    dispatch(setLoadingTrue());
+    try {
+      const res = await axios.get(
+        // eslint-disable-next-line no-undef
+        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines?routineId=${routineId}`
+      );
+      if (res.status === 200) {
+        let exerciseRoutine = [];
+        for (let i = 0; i < res.data.length; i++) {
+          exerciseRoutine.push(res.data[i]);
+          await dispatch(deleteExerciseRoutineAsync(exerciseRoutine[i]._id));
+        }
+      }
+    } catch (error) {
+      dispatch(setError(error?.response?.data?.error));
+    }
+  };

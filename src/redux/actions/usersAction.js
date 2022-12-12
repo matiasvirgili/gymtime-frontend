@@ -1,20 +1,20 @@
 import axios from 'axios';
 import {
-    USER_CREATE_USER,
-    USER_UPDATE_USER,
-    USER_DELETE_USER,
-    USER_SET_ALL_USERS,
-    USER_SET_ERROR,
-    USER_SET_LOADING_TRUE,
-    USER_SET_CREATE_ACTION,
-    USER_SET_UPDATE_ACTION,
-    USER_SET_DELETE_ACTION,
-    USER_UNSET_ACTION,
-    USER_LOGIN,
-    SET_USER_CREDENTIALS,
-    LOGOUT
-  } from '../types/usersType.js';
-import {getConfig} from '../../helpers/axiosConfig';
+  USER_CREATE_USER,
+  USER_UPDATE_USER,
+  USER_DELETE_USER,
+  USER_SET_ALL_USERS,
+  USER_SET_ERROR,
+  USER_SET_LOADING_TRUE,
+  USER_SET_CREATE_ACTION,
+  USER_SET_UPDATE_ACTION,
+  USER_SET_DELETE_ACTION,
+  USER_UNSET_ACTION,
+  USER_LOGIN,
+  SET_USER_CREDENTIALS,
+  LOGOUT,
+} from '../types/usersType.js';
+import { getConfig } from '../../helpers/axiosConfig';
 
 export const createUser = (user) => {
   return {
@@ -83,47 +83,48 @@ export const unsetAction = () => {
 export const userLoginAction = (credentials) => {
   return {
     type: USER_LOGIN,
-    payload: credentials
+    payload: credentials,
   };
 };
 export const setUserCredentials = (user) => {
   return {
     type: SET_USER_CREDENTIALS,
-    payload: user
+    payload: user,
   };
 };
 export const login = (email, password, history) => async (dispatch) => {
   dispatch(setLoadingTrue());
-  
-  const payload = { email, password }
+
+  const payload = { email, password };
   try {
+    console.log('entroooo', process.env.REACT_APP_BACKEND_URL_PORT);
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/users/login`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}users/login`,
       payload
-    )
+    );
 
-    if(res.status === 200) {
-      const { data } = res
-      if(res.data.user.status) {
-        localStorage.setItem('auth_token', data.token)
-        localStorage.setItem('user', JSON.stringify(data.user))
-        dispatch(userLoginAction(data))
+    if (res.status === 200) {
+      const { data } = res;
+      if (res.data.user.status) {
+        localStorage.setItem('auth_token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        dispatch(userLoginAction(data));
         dispatch(setUserCredentials(data.user));
-        history.push('/home')
+        history.push('/home');
       } else {
-        dispatch(setError("Account status disabled, contact support"))
+        dispatch(setError('Account status disabled, contact support'));
       }
     }
-  } catch (error){
+  } catch (error) {
     dispatch(setError(error?.response?.data?.error));
   }
-}
+};
 export const getUsersAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/users`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}users`
     );
     if (res.status === 200) {
       let users = [];
@@ -141,7 +142,7 @@ export const deleteUserAsync = (userId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/users/${userId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}users/${userId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -149,7 +150,7 @@ export const deleteUserAsync = (userId) => async (dispatch) => {
     }
   } catch (error) {
     if (error.message === 'auth_error') {
-      return dispatch(logout())
+      return dispatch(logout());
     }
     dispatch(setError(error?.response?.data?.error));
   }
@@ -159,7 +160,7 @@ export const createUserAsync = (user) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/users`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}users`,
       user,
       getConfig()
     );
@@ -168,7 +169,7 @@ export const createUserAsync = (user) => async (dispatch) => {
     }
   } catch (error) {
     if (error.message === 'auth_error') {
-      return dispatch(logout())
+      return dispatch(logout());
     }
     return dispatch(setError(error?.response?.data?.error));
   }
@@ -178,7 +179,7 @@ export const updateUserAsync = (user) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/users/${user._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}users/${user._id}`,
       user,
       getConfig()
     );
@@ -187,7 +188,7 @@ export const updateUserAsync = (user) => async (dispatch) => {
     }
   } catch (error) {
     if (error.message === 'auth_error') {
-      return dispatch(logout())
+      return dispatch(logout());
     }
     return dispatch(setError(error?.response?.data?.error));
   }
