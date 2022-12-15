@@ -83,7 +83,7 @@ export const getWorkoutEventAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/workoutevents`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}workoutevents`
     );
     if (res.status === 200) {
       let workoutEvent = [];
@@ -101,7 +101,7 @@ export const deleteWorkoutEventAsync = (workoutEventId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/workoutEvents/${workoutEventId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}workoutEvents/${workoutEventId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -116,7 +116,7 @@ export const createWorkoutEventAsync = (workoutEvent) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/workoutevents`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}workoutevents`,
       workoutEvent,
       getConfig()
     );
@@ -132,7 +132,7 @@ export const updateWorkoutEventAsync = (workoutEvent) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/workoutevents/${workoutEvent._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}workoutevents/${workoutEvent._id}`,
       workoutEvent,
       getConfig()
     );

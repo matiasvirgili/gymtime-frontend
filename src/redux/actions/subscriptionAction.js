@@ -15,60 +15,60 @@ import { getConfig } from '../../helpers/axiosConfig';
 
 export const createSubscription = (subscription) => {
   return {
-      type: USER_CREATE_SUBSCRIPTION,
-      payload: subscription,
+    type: USER_CREATE_SUBSCRIPTION,
+    payload: subscription,
   };
 };
 
 export const updateSubscription = (subscription) => {
   return {
-      type: USER_UPDATE_SUBSCRIPTION,
-      payload: subscription,
+    type: USER_UPDATE_SUBSCRIPTION,
+    payload: subscription,
   };
 };
 export const deleteSubscription = (subscriptionId) => {
   return {
-      type: USER_DELETE_SUBSCRIPTION,
-      payload: subscriptionId,
+    type: USER_DELETE_SUBSCRIPTION,
+    payload: subscriptionId,
   };
 };
 export const setSubscriptions = (subscriptions) => {
   return {
-      type: USER_SET_ALL_SUBSCRIPTIONS,
-      payload: subscriptions,
+    type: USER_SET_ALL_SUBSCRIPTIONS,
+    payload: subscriptions,
   };
 };
 export const setError = (error) => {
   return {
-      type: SUBSCRIPTION_SET_ERROR,
-      payload: error,
+    type: SUBSCRIPTION_SET_ERROR,
+    payload: error,
   };
 };
 export const setLoadingTrue = () => {
   return {
-      type: SUBSCRIPTION_SET_LOADING_TRUE,
+    type: SUBSCRIPTION_SET_LOADING_TRUE,
   };
 };
 export const setCreateAction = () => {
   return {
-      type: SUBSCRIPTION_SET_CREATE_ACTION,
+    type: SUBSCRIPTION_SET_CREATE_ACTION,
   };
 };
 export const setDeleteAction = (subscription) => {
   return {
-      type: SUBSCRIPTION_SET_DELETE_ACTION,
-      payload: subscription,
+    type: SUBSCRIPTION_SET_DELETE_ACTION,
+    payload: subscription,
   };
 };
 export const setUpdateAction = (subscription) => {
   return {
-      type: SUBSCRIPTION_SET_UPDATE_ACTION,
-      payload: subscription,
+    type: SUBSCRIPTION_SET_UPDATE_ACTION,
+    payload: subscription,
   };
 };
 export const unsetAction = () => {
   return {
-      type: SUBSCRIPTION_UNSET_ACTION,
+    type: SUBSCRIPTION_UNSET_ACTION,
   };
 };
 
@@ -76,7 +76,7 @@ export const getSubscriptionsAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/subscription`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}subscription`
     );
     if (res.status === 200) {
       let subscriptions = [];
@@ -94,7 +94,7 @@ export const deleteSubscriptionAsync = (subscriptionId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/subscription/${subscriptionId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}subscription/${subscriptionId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -109,7 +109,7 @@ export const createSubscriptionAsync = (subscription) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/subscription`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}subscription`,
       subscription,
       getConfig()
     );
@@ -122,10 +122,10 @@ export const createSubscriptionAsync = (subscription) => async (dispatch) => {
 };
 export const updateSubscriptionAsync = (subscription) => async (dispatch) => {
   dispatch(setLoadingTrue());
-  try { 
+  try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/subscription/${subscription._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}subscription/${subscription._id}`,
       subscription,
       getConfig()
     );
