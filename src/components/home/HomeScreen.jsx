@@ -21,30 +21,7 @@ export const HomeScreen = () => {
   return (
     <>
       <div className={styles.homePage}>
-        <div className={styles.personalInformation}>
-          <div className={styles.personalInformationData}>
-            <div className={styles.divName}>
-              <span>Name:</span>
-              <span>{credentials?.user?.lastName}, {credentials?.user?.name}</span>
-            </div>
-            <div className={styles.divDNI}>
-              <span>DNI:</span>
-              <span>{credentials?.user?.dni}</span>
-            </div>
-            <div className={styles.divEmail}>
-              <span>Email:</span>
-              <span>{credentials?.user?.email}</span>
-            </div>
-            <div className={styles.divPhone}>
-              <span>Phone:</span>
-              <span>{credentials?.user?.phone}</span>
-            </div>
-            <div className={styles.divPermission}>
-              <span>Permission:</span>
-              <span>{credentials?.user?.permissionRole}</span>
-            </div>
-          </div>
-        </div>
+        
         {credentials?.user &&
         <>
           <div className={styles.graphicsGlobal}>

@@ -6,10 +6,9 @@ import { logout } from '../../redux/actions/usersAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPermissionsWithRoleAsync } from '../../redux/actions/permissionAction';
 import { AiFillHome,  } from "react-icons/ai";
-import { FaUserEdit, FaMoneyBill, FaCommentAlt } from "react-icons/fa";
+import { FaUserEdit, FaMoneyBill, FaCommentAlt, FaChartPie } from "react-icons/fa";
 import { GrSecure, GrUserAdd } from "react-icons/gr";
 import { GiWeightLiftingUp } from "react-icons/gi";
-import { GoListOrdered  } from "react-icons/go";
 import { RiHeartPulseFill } from "react-icons/ri";
 import { HiUserGroup } from "react-icons/hi";
 import { RiLogoutBoxLine } from "react-icons/ri";
@@ -48,15 +47,23 @@ export const NavBar = () => {
         </div>
       </a>
       <ul className={stateClicked ? (styles.navItemsActive) : (styles.navItems)}>
-        <li id={stateClicked ? (styles.li1Active) : (styles.li1)}>
-          <NavLink to="/home" 
-          className = {styles.link} >
+        <li id={stateClicked ? (styles.li5Active) : (styles.li5)}>
+          <NavLink to="/routines" className = {styles.link}>
             <i>
               <AiFillHome/>
             </i>
-            <span>home</span>
+            <span>Home</span>
           </NavLink>
         </li>
+      <li id={stateClicked ? (styles.li1Active) : (styles.li1)}>
+        <NavLink to="/home" 
+        className = {styles.link} >
+          <i>
+            <FaChartPie/>
+          </i>
+          <span>BSM</span>
+        </NavLink>
+      </li>
       {permissionsConvert?.users && (
         <li id={stateClicked ? (styles.li2Active) : (styles.li2)}>
           <NavLink to="/users" className = {styles.link}>
@@ -87,16 +94,7 @@ export const NavBar = () => {
           </NavLink>
         </li>
       )}
-      {(permissionsConvert?.routinesView || permissionsConvert?.routinesAction) && (
-        <li id={stateClicked ? (styles.li5Active) : (styles.li5)}>
-          <NavLink to="/routines" className = {styles.link}>
-            <i>
-              <GoListOrdered/>
-            </i>
-            <span>Routines</span>
-          </NavLink>
-        </li>
-      )}
+
       {(permissionsConvert?.healthsView || permissionsConvert?.healthsAction) && (
         <li id={stateClicked ? (styles.li6Active) : (styles.li6)}>
           <NavLink to="/health" className = {styles.link}>
