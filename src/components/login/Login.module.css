@@ -8,7 +8,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #102541;
+  background-color: #2e062b;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
   color: whitesmoke;
@@ -17,7 +17,7 @@ body {
 .containerActions button {
   margin-left: 20px;
   border-style: none;
-  background-color: #102541;
+  background-color: #2e062b;
   color: whitesmoke;
   cursor: pointer;
   transition-duration: 0.3s;

@@ -10,7 +10,7 @@ import {
   ROUTINE_SET_UPDATE_ACTION,
   ROUTINE_SET_DELETE_ACTION,
   ROUTINE_UNSET_ACTION,
-  ROUTINE_SET_ROUTINEEXERCISE_ACTION
+  ROUTINE_SET_ROUTINEEXERCISE_ACTION,
 } from '../types/routineType';
 import { getConfig } from '../../helpers/axiosConfig';
 
@@ -82,7 +82,7 @@ export const getRoutineAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}routines`
     );
     if (res.status === 200) {
       let routine = [];
@@ -100,7 +100,7 @@ export const getRoutineWithUserIdAsync = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines?userId=${userId}`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}routines?userId=${userId}`
     );
     if (res.status === 200) {
       let routine = [];
@@ -119,7 +119,7 @@ export const createRoutineAsync = (routine) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}routines`,
       routine,
       getConfig()
     );
@@ -136,7 +136,7 @@ export const updateRoutineAsync = (routine) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines/${routine._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}routines/${routine._id}`,
       routine,
       getConfig()
     );
@@ -153,7 +153,7 @@ export const deleteRoutineAsync = (routineId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines/${routineId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}routines/${routineId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -163,4 +163,3 @@ export const deleteRoutineAsync = (routineId) => async (dispatch) => {
     dispatch(setError(error?.response?.data?.error));
   }
 };
-

@@ -9,25 +9,25 @@ import {
   setDeleteAction,
   setUpdateAction,
 } from '../../redux/actions/healthAction';
-import { AiFillEye } from "react-icons/ai";
+import { AiFillEye } from 'react-icons/ai';
 
 export const Health = ({ health, isLoggedIn }) => {
   const { _id, userId, day } = health;
   const dispatch = useDispatch();
-  
-  const { permissionUser } = useSelector(
-    (state) => state.permissions
-  );
-  let permissionsConvert 
-  if(permissionUser != null){
-    permissionsConvert  = permissionUser[0]
+
+  const { permissionUser } = useSelector((state) => state.permissions);
+  let permissionsConvert;
+  if (permissionUser != null) {
+    permissionsConvert = permissionUser[0];
   }
 
   return (
     <div className={styles.container} key={_id}>
       <div className={styles.column}>
         <span className={styles.title}>User</span>
-        <span className={styles.content}>{userId.name + ' ' + userId.lastName}</span>
+        <span className={styles.content}>
+          {userId.name + ' ' + userId.lastName}
+        </span>
       </div>
       <div className={styles.column}>
         <span className={styles.title}>Day</span>
@@ -38,7 +38,7 @@ export const Health = ({ health, isLoggedIn }) => {
           className={styles.editIcon}
           onClick={() => dispatch(setConsultAction(health))}
         />
-        {(isLoggedIn && permissionsConvert?.routinesAction) &&
+        {isLoggedIn && permissionsConvert?.healthsAction && (
           <>
             <EditIcon
               className={styles.editIcon}
@@ -49,7 +49,7 @@ export const Health = ({ health, isLoggedIn }) => {
               onClick={() => dispatch(setDeleteAction(health))}
             />
           </>
-        }
+        )}
       </div>
     </div>
   );

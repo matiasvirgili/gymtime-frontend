@@ -42,3 +42,32 @@
   overflow:scroll;
   overflow-x: hidden;
 }
+.personalInformation{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 85vw;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 50px;
+  background-color: rgb(0, 0, 0,.45);
+}
+.personalInformationData{
+  display: flex;
+  flex-direction: row;
+}
+.personalInformationLetter, .divName span, .divDNI span, .divEmail span, .divPhone span, .divPermission span{
+  font-family: "Poppins";
+  margin: 7px;
+  color: black;
+}
+.divName, .divDNI, .divEmail, .divPhone, .divPermission{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin:10px;
+  background-color: #fff;
+  width: 200px;
+  border-radius: 50px;
+}

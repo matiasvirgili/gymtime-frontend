@@ -16,66 +16,66 @@ import { getConfig } from '../../helpers/axiosConfig';
 
 export const createHealth = (health) => {
   return {
-      type: USER_CREATE_HEALTH,
-      payload: health,
+    type: USER_CREATE_HEALTH,
+    payload: health,
   };
 };
 
 export const updateHealth = (health) => {
   return {
-      type: USER_UPDATE_HEALTH,
-      payload: health,
+    type: USER_UPDATE_HEALTH,
+    payload: health,
   };
 };
 export const deleteHealth = (healthId) => {
   return {
-      type: USER_DELETE_HEALTH,
-      payload: healthId,
+    type: USER_DELETE_HEALTH,
+    payload: healthId,
   };
 };
 export const setHealths = (healths) => {
   return {
-      type: USER_SET_ALL_HEALTHS,
-      payload: healths,
+    type: USER_SET_ALL_HEALTHS,
+    payload: healths,
   };
 };
 export const setError = (error) => {
   return {
-      type: HEALTH_SET_ERROR,
-      payload: error,
+    type: HEALTH_SET_ERROR,
+    payload: error,
   };
 };
 export const setLoadingTrue = () => {
   return {
-      type: HEALTH_SET_LOADING_TRUE,
+    type: HEALTH_SET_LOADING_TRUE,
   };
 };
 export const setCreateAction = () => {
   return {
-      type: HEALTH_SET_CREATE_ACTION,
+    type: HEALTH_SET_CREATE_ACTION,
   };
 };
 export const setDeleteAction = (health) => {
   return {
-      type: HEALTH_SET_DELETE_ACTION,
-      payload: health,
+    type: HEALTH_SET_DELETE_ACTION,
+    payload: health,
   };
 };
 export const setUpdateAction = (health) => {
   return {
-      type: HEALTH_SET_UPDATE_ACTION,
-      payload: health,
+    type: HEALTH_SET_UPDATE_ACTION,
+    payload: health,
   };
 };
 export const setConsultAction = (health) => {
   return {
-      type: HEALTH_SET_CONSULT_ACTION,
-      payload: health,
+    type: HEALTH_SET_CONSULT_ACTION,
+    payload: health,
   };
 };
 export const unsetAction = () => {
   return {
-      type: HEALTH_UNSET_ACTION,
+    type: HEALTH_UNSET_ACTION,
   };
 };
 
@@ -83,12 +83,12 @@ export const getHealthsAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/health`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}health`
     );
     if (res.status === 200) {
       let healths = [];
       for (let i = 0; i < res.data.length; i++) {
-          healths.push(res.data[i]);
+        healths.push(res.data[i]);
       }
       dispatch(setHealths(healths));
     }
@@ -100,12 +100,12 @@ export const getHealthsWithUserIdAsync = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/health?userId=${userId}`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}health?userId=${userId}`
     );
     if (res.status === 200) {
       let healths = [];
       for (let i = 0; i < res.data.length; i++) {
-          healths.push(res.data[i]);
+        healths.push(res.data[i]);
       }
       await dispatch(setHealths(healths));
     }
@@ -118,7 +118,7 @@ export const deleteHealthAsync = (healthId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/health/${healthId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}health/${healthId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -133,7 +133,7 @@ export const createHealthAsync = (health) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/health`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}health`,
       health,
       getConfig()
     );
@@ -146,10 +146,10 @@ export const createHealthAsync = (health) => async (dispatch) => {
 };
 export const updateHealthAsync = (health) => async (dispatch) => {
   dispatch(setLoadingTrue());
-  try { 
+  try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}/health/${health._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}health/${health._id}`,
       health,
       getConfig()
     );
