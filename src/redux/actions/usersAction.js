@@ -97,10 +97,9 @@ export const login = (email, password, history) => async (dispatch) => {
 
   const payload = { email, password };
   try {
-    console.log('entroooo', process.env.REACT_APP_BACKEND_URL_PORT);
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}users/login`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}//users/login`,
       payload
     );
 
@@ -124,7 +123,7 @@ export const getUsersAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}users`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/users`
     );
     if (res.status === 200) {
       let users = [];
@@ -142,7 +141,7 @@ export const deleteUserAsync = (userId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}users/${userId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/users/${userId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -160,7 +159,7 @@ export const createUserAsync = (user) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}users`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/users`,
       user,
       getConfig()
     );
@@ -179,7 +178,7 @@ export const updateUserAsync = (user) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}users/${user._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/users/${user._id}`,
       user,
       getConfig()
     );

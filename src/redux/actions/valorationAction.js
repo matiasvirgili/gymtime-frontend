@@ -56,7 +56,7 @@ export const getValorationsWithPostIdAsync = (postId) => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}valoration?postId=${postId}`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/valoration?postId=${postId}`
     );
     if (res.status === 200) {
       let valorations = [];
@@ -74,7 +74,7 @@ export const createValorationAsync = (valoration) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}valoration`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/valoration`,
       valoration,
       getConfig()
     );
@@ -90,7 +90,7 @@ export const updateValorationAsync = (valoration) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}valoration/${valoration._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/valoration/${valoration._id}`,
       valoration,
       getConfig()
     );
@@ -106,7 +106,7 @@ export const deleteValorationAsync = (valorationId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}valoration/${valorationId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/valoration/${valorationId}`,
       getConfig()
     );
     if (res.status === 200) {

@@ -76,7 +76,7 @@ export const getSubscriptionsAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}subscription`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/subscription`
     );
     if (res.status === 200) {
       let subscriptions = [];
@@ -94,7 +94,7 @@ export const deleteSubscriptionAsync = (subscriptionId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}subscription/${subscriptionId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/subscription/${subscriptionId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -109,7 +109,7 @@ export const createSubscriptionAsync = (subscription) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}subscription`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/subscription`,
       subscription,
       getConfig()
     );
@@ -125,7 +125,7 @@ export const updateSubscriptionAsync = (subscription) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}subscription/${subscription._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/subscription/${subscription._id}`,
       subscription,
       getConfig()
     );

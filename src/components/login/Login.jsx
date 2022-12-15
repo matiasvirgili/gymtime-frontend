@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/usersAction';
 import { ErrorContainer } from '../shared/ErrorContainer';
-import logo from '../images/NutriTimeLogo.png'
+import logo from '../images/GymTimeLogo.png'
 
 export const Login = () => {
   const history = useHistory();

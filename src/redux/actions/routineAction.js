@@ -82,7 +82,7 @@ export const getRoutineAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}routines`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines`
     );
     if (res.status === 200) {
       let routine = [];
@@ -100,7 +100,7 @@ export const getRoutineWithUserIdAsync = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}routines?userId=${userId}`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines?userId=${userId}`
     );
     if (res.status === 200) {
       let routine = [];
@@ -119,7 +119,7 @@ export const createRoutineAsync = (routine) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}routines`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines`,
       routine,
       getConfig()
     );
@@ -136,7 +136,7 @@ export const updateRoutineAsync = (routine) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}routines/${routine._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines/${routine._id}`,
       routine,
       getConfig()
     );
@@ -153,7 +153,7 @@ export const deleteRoutineAsync = (routineId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}routines/${routineId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/routines/${routineId}`,
       getConfig()
     );
     if (res.status === 200) {

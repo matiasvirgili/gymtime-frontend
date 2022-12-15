@@ -76,7 +76,7 @@ export const getPostsAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}post`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/post`
     );
     if (res.status === 200) {
       let posts = [];
@@ -94,7 +94,7 @@ export const deletePostAsync = (postId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}post/${postId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/post/${postId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -109,7 +109,7 @@ export const createPostAsync = (post) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}post`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/post`,
       post,
       getConfig()
     );
@@ -125,7 +125,7 @@ export const updatePostAsync = (post) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}post/${post._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/post/${post._id}`,
       post,
       getConfig()
     );

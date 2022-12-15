@@ -75,7 +75,7 @@ export const getExercisesAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}exercises`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/exercises`
     );
     if (res.status === 200) {
       let exercises = [];
@@ -93,7 +93,7 @@ export const deleteExerciseAsync = (exerciseId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}exercises/${exerciseId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/exercises/${exerciseId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -108,7 +108,7 @@ export const createExerciseAsync = (exercise) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}exercises`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/exercises`,
       exercise,
       getConfig()
     );
@@ -124,7 +124,7 @@ export const updateExerciseAsync = (exercise) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}exercises/${exercise._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/exercises/${exercise._id}`,
       exercise,
       getConfig()
     );

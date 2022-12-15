@@ -83,7 +83,7 @@ export const getHealthsAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}health`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/health`
     );
     if (res.status === 200) {
       let healths = [];
@@ -100,7 +100,7 @@ export const getHealthsWithUserIdAsync = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}health?userId=${userId}`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/health?userId=${userId}`
     );
     if (res.status === 200) {
       let healths = [];
@@ -118,7 +118,7 @@ export const deleteHealthAsync = (healthId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}health/${healthId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/health/${healthId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -133,7 +133,7 @@ export const createHealthAsync = (health) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}health`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/health`,
       health,
       getConfig()
     );
@@ -149,7 +149,7 @@ export const updateHealthAsync = (health) => async (dispatch) => {
   try {
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}health/${health._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/health/${health._id}`,
       health,
       getConfig()
     );

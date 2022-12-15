@@ -91,7 +91,7 @@ export const getExerciseWithRoutineIdAndCopy =
     try {
       const res = await axios.get(
         // eslint-disable-next-line no-undef
-        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines?routineId=${routineId}`
+        `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines?routineId=${routineId}`
       );
       if (res.status === 200) {
         let exerciseRoutine = [];
@@ -117,7 +117,7 @@ export const getExerciseWithRoutineIdAsync =
     try {
       const res = await axios.get(
         // eslint-disable-next-line no-undef
-        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines?routineId=${routineId}`
+        `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines?routineId=${routineId}`
       );
       if (res.status === 200) {
         let exerciseRoutine = [];
@@ -136,7 +136,7 @@ export const createExerciseRoutineAsync =
     try {
       const res = await axios.post(
         // eslint-disable-next-line no-undef
-        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines`,
+        `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines`,
         exerciseRoutine,
         getConfig()
       );
@@ -153,7 +153,7 @@ export const updateExerciseRoutineAsync =
     try {
       const res = await axios.put(
         // eslint-disable-next-line no-undef
-        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines/${exerciseRoutine._id}`,
+        `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines/${exerciseRoutine._id}`,
         exerciseRoutine,
         getConfig()
       );
@@ -170,7 +170,7 @@ export const deleteExerciseRoutineAsync =
     try {
       const res = await axios.delete(
         // eslint-disable-next-line no-undef
-        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines/${exerciseRoutineId}`,
+        `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines/${exerciseRoutineId}`,
         getConfig()
       );
       if (res.status === 200) {
@@ -186,7 +186,7 @@ export const deleteAllExerciseRoutineAsync =
     try {
       const res = await axios.get(
         // eslint-disable-next-line no-undef
-        `${process.env.REACT_APP_BACKEND_URL_PORT}exerciseroutines?routineId=${routineId}`
+        `${process.env.REACT_APP_BACKEND_URL_PORT}/exerciseroutines?routineId=${routineId}`
       );
       if (res.status === 200) {
         let exerciseRoutine = [];

@@ -43,7 +43,7 @@ export const getEventMembersAsync =
     try {
       const res = await axios.get(
         // eslint-disable-next-line no-undef
-        `${process.env.REACT_APP_BACKEND_URL_PORT}eventmembers?userId=${userId}&workoutEvent=${workoutEvent}`
+        `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers?userId=${userId}&workoutEvent=${workoutEvent}`
       );
       if (res.status === 200) {
         let eventMember = [];
@@ -61,7 +61,7 @@ export const getEventMembersListAsync =
     try {
       const res = await axios.get(
         // eslint-disable-next-line no-undef
-        `${process.env.REACT_APP_BACKEND_URL_PORT}eventmembers/list?workoutEvent=${workoutEventID}`
+        `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers/list?workoutEvent=${workoutEventID}`
       );
       if (res.status === 200) {
         let eventMember = [];
@@ -79,7 +79,7 @@ export const deleteEventMemberAsync = (eventMemberId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}eventmembers/${eventMemberId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers/${eventMemberId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -94,7 +94,7 @@ export const createEventMemberAsync = (eventMember) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}eventmembers`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/eventmembers`,
       eventMember,
       getConfig()
     );

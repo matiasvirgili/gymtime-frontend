@@ -83,7 +83,7 @@ export const getPermissionsAsync = () => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}permission`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission`
     );
     if (res.status === 200) {
       let permissions = [];
@@ -100,7 +100,7 @@ export const getPermissionsWithRoleAsync = (role) => async (dispatch) => {
   try {
     const res = await axios.get(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}permission?role=${role}`
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission?role=${role}`
     );
     if (res.status === 200) {
       let permissions = [];
@@ -118,7 +118,7 @@ export const deletePermissionAsync = (permissionId) => async (dispatch) => {
   try {
     const res = await axios.delete(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}permission/${permissionId}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission/${permissionId}`,
       getConfig()
     );
     if (res.status === 200) {
@@ -138,7 +138,7 @@ export const createPermissionAsync = (permission) => async (dispatch) => {
     });
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}permission`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission`,
       permission,
       getConfig()
     );
@@ -161,7 +161,7 @@ export const updatePermissionAsync = (permission) => async (dispatch) => {
     });
     const res = await axios.put(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}permission/${permission._id}`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/permission/${permission._id}`,
       permission,
       getConfig()
     );
