@@ -99,7 +99,7 @@ export const login = (email, password, history) => async (dispatch) => {
   try {
     const res = await axios.post(
       // eslint-disable-next-line no-undef
-      `${process.env.REACT_APP_BACKEND_URL_PORT}//users/login`,
+      `${process.env.REACT_APP_BACKEND_URL_PORT}/users/login`,
       payload
     );
 
